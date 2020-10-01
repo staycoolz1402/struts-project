@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+  
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="PersonalEmployment"
+		table="personal_employment"
+		batch-size="100"
+	>
+	
+		<meta attribute="sync-DAO">true</meta>
+	
+		<id
+			name="Id"
+			type="long"
+			column="personal_id"
+		>
+		</id>
+		<property 
+			name="JobId" 
+			column="job_id" 
+			type="long" 
+		/>
+
+		<property 
+			name="CompanyName" 
+			column="company_name" 
+			type="string" 
+		/>
+
+		<property 
+			name="CompanyAddress" 
+			column="company_address" 
+			type="string" 
+		/>
+
+		<property 
+			name="CompanyRt" 
+			column="company_rt" 
+			type="string" 
+		/>
+
+		<property 
+			name="CompanyRw" 
+			column="company_rw" 
+			type="string" 
+		/>
+
+		<property 
+			name="CompanyPostalCodeId" 
+			column="company_postal_code_id" 
+			type="long" 
+		/>
+
+		<property 
+			name="CompanyProvince" 
+			column="company_province" 
+			type="string" 
+		/>
+
+		<property 
+			name="CompanyCity" 
+			column="company_city" 
+			type="string" 
+		/>
+
+		<property 
+			name="CompanySubdistrict" 
+			column="company_subdistrict" 
+			type="string" 
+		/>
+
+		<property 
+			name="CompanyVillage" 
+			column="company_village" 
+			type="string" 
+		/>
+
+		<property 
+			name="CompanyPostalCode" 
+			column="company_postal_code" 
+			type="string" 
+		/>
+
+		<property 
+			name="CompanyPhoneNumber" 
+			column="company_phone_number" 
+			type="string" 
+		/>
+
+		<property 
+			name="CompanyHandphoneNumber" 
+			column="company_handphone_number" 
+			type="string" 
+		/>
+
+		<property 
+			name="BusinessSectorId" 
+			column="business_sector_id" 
+			type="long" 
+		/>
+
+		<property 
+			name="SubBusinessSectorId" 
+			column="sub_business_sector_id" 
+			type="long" 
+		/>
+
+		<property 
+			name="SubBusinessSector2Id" 
+			column="sub_business_sector2_id" 
+			type="long" 
+		/>
+
+		<property 
+			name="SubBusinessSector3Id" 
+			column="sub_business_sector3_id" 
+			type="long" 
+		/>
+
+		<property 
+			name="JobRank" 
+			column="job_rank" 
+			type="string" 
+		/>
+
+		<property 
+			name="JobLength" 
+			column="job_length" 
+			type="int" 
+		/>
+
+		<property 
+			name="Salary" 
+			column="salary" 
+			type="double" 
+		/>
+
+		<property 
+			name="Npwp" 
+			column="npwp" 
+			type="string" 
+		/>
+
+		<property 
+			name="CreateBy" 
+			column="create_by" 
+			type="string" 
+		/>
+
+		<property 
+			name="CreateOn" 
+			column="create_on" 
+			type="timestamp" 
+		/>
+
+		<property 
+			name="ChangeBy" 
+			column="change_by" 
+			type="string" 
+		/>
+
+		<property 
+			name="ChangeOn" 
+			column="change_on" 
+			type="timestamp" 
+		/>
+
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+  
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="PersonalSpouseGuarantor"
+		table="personal_spouse_guarantor"
+		batch-size="100"
+	>
+	
+		<meta attribute="sync-DAO">true</meta>
+	
+		<id
+			name="Id"
+			type="long"
+			column="personal_id"
+		>
+		</id>
+		<property 
+			name="SpouseFullName" 
+			column="spouse_full_name" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpousePlaceOfBirth" 
+			column="spouse_place_of_birth" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseDateOfBirth" 
+			column="spouse_date_of_birth" 
+			type="date" 
+		/>
+		
+		<property 
+			name="SpouseIdNumber" 
+			column="spouse_id_number" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseJobId" 
+			column="spouse_job_id" 
+			type="long" 
+		/>
+		
+		<property 
+			name="SpouseCompanyName" 
+			column="spouse_company_name" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseCompanyAddress" 
+			column="spouse_company_address" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseCompanyRt" 
+			column="spouse_company_rt" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseCompanyRw" 
+			column="spouse_company_rw" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseCompanyPostalCodeId" 
+			column="spouse_company_postal_code_id" 
+			type="long" 
+		/>
+		
+		<property 
+			name="SpouseCompanyProvince" 
+			column="spouse_company_province" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseCompanyCity" 
+			column="spouse_company_city" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseCompanySubdistrict" 
+			column="spouse_company_subdistrict" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseCompanyVillage" 
+			column="spouse_company_village" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseCompanyPostalCode" 
+			column="spouse_company_postal_code" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseCompanyPhoneNumber" 
+			column="spouse_company_phone_number" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseHandphone" 
+			column="spouse_handphone" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseBusinessSectorId" 
+			column="spouse_business_sector_id" 
+			type="long" 
+		/>
+		
+		<property 
+			name="SpouseSubBusinessSecId" 
+			column="spouse_sub_business_sec_id" 
+			type="long" 
+		/>
+		
+		<property 
+			name="SpouseSubbusinessSec2Id" 
+			column="spouse_subbusiness_sec2_id" 
+			type="long" 
+		/>
+		
+		<property 
+			name="SpouseSubbusinessSec3Id" 
+			column="spouse_subbusiness_sec3_id" 
+			type="long" 
+		/>
+		
+		<property 
+			name="SpouseJobRank" 
+			column="spouse_job_rank" 
+			type="string" 
+		/>
+		
+		<property 
+			name="SpouseJobLength" 
+			column="spouse_job_length" 
+			type="int" 
+		/>
+		
+		<property 
+			name="CreateBy" 
+			column="create_by" 
+			type="string" 
+		/>
+		
+		<property 
+			name="CreateOn" 
+			column="create_on" 
+			type="timestamp" 
+		/>
+		
+		<property 
+			name="ChangeBy" 
+			column="change_by" 
+			type="string" 
+		/>
+		
+		<property 
+			name="ChangeOn" 
+			column="change_on" 
+			type="timestamp" 
+		/>
+		
+
+
+	</class>	
+</hibernate-mapping>

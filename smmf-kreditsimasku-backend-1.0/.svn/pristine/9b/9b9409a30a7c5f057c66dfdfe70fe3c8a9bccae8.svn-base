@@ -1,0 +1,349 @@
+<%@ page contentType="text/html;charset=iso-8859-1" language="java" %>
+<% response.setHeader("Pragma", "No-cache");
+response.setDateHeader("Expires", 0);
+response.setHeader("Cache-Control", "no-cache");%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+<%
+	int sequence = 0;
+%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title><bean:message key="page.index.title"/></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="<html:rewrite page="/js/simas.css"/>" rel="stylesheet" type="text/css">
+</head>
+
+<body style="margin:0px;" >
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_header.gif"/>); background-repeat:repeat-x; " height="94" valign="top" align="left">
+    
+    <!-- header start -->
+    
+<tiles:insert template='/common/header.jsp'/>
+    
+    <!-- header end -->
+    
+    </td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/list.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/bg_body.gif"/>); background-repeat:repeat-x; background-position:bottom; " height="627" bgcolor="#fbfdff" align="left" valign="top">
+			
+        
+         <html:form action="/user/logging" onsubmit="gowait(this);" >   
+         <table width="900" border="0" cellspacing="0" cellpadding="5" style="margin-left:10px; margin-right:10px; ">
+        <tr>
+	        <td align="left" class="text03" width="20%"><b><logic:present name="viewName"><bean:write name="viewName"/></logic:present></b></td>
+	        <td align="left">      
+         <div  id="wait" style="visibility:hidden;">
+			   <table width="100%" height="10px" border="0" valign="top"> 
+		       	<tr valign="top"><td align="center" valign="top"><b><i><bean:message key="pleaseWait"/></i></b></td></tr>
+		        <tr valign="top">
+		           <td align="center" valign="top">
+		             <img src="<html:rewrite page="/images/progressbar.gif"/>" name="progressbar" id="progressbar">
+		           </td>
+		        </tr>
+			   </table>
+				 </div>
+				 </td>
+	      </tr>
+        <TR>
+          <TD align=middle width="100%" colspan="2">
+				 <div id="main">
+         <TABLE cellSpacing="0" cellPadding="0" width="100%" align="center" border="0" class="text04">
+    			<tr valign="top"><td><html:errors/></td></tr>
+					<html:hidden property="start"/>
+					<html:hidden property="count"/>
+					<html:hidden property="orderBy"/>
+					<html:hidden property="ascDesc"/>
+					<html:hidden property="subaction"/>
+					<tr>
+						<td>
+							<table width="900" border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td width="1%"><html:img page="/images/round.gif"/></td>
+			            <td width="98%" class="smalltext" style="border-top:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td width="1%"><html:img page="/images/round1.gif"/></td>
+			          </tr>
+			          <tr>
+			            <td style="border-left:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td valign="top">
+			            
+							<table width="100%">
+								<tr>
+									<td align="left" class="DataForm"><bean:message key="page.action.title"/></td><td>:</td><td><html:text property="action" size="50" styleClass="textbox"/></td>
+								</tr>
+								<tr>
+									<td align="left" class="DataForm"><bean:message key="page.ip.title"/></td><td>:</td><td><html:text property="ip" size="20" styleClass="textbox"/></td>
+								</tr>
+								<tr>
+									<td align="left" class="DataForm"><bean:message key="page.accessDate.title"/></td><td>:</td><td>
+										<html:text property="fromDate" size="12" styleClass="textbox"/>&nbsp;<html:img page="/images/cal.gif" border="0" title="Calendar" onclick="displayCalendar(document.forms[0].fromDate,'dd/mm/yyyy',this);"/>&nbsp;(<bean:message key="date.format"/>)&nbsp;-&nbsp;
+										<html:text property="toDate" size="12" styleClass="textbox"/>&nbsp;<html:img page="/images/cal.gif" border="0" title="Calendar" onclick="displayCalendar(document.forms[0].toDate,'dd/mm/yyyy',this);"/>&nbsp;(<bean:message key="date.format"/>)
+									</td>
+								</tr>
+								<tr>
+									<td align="left" class="DataForm"><bean:message key="page.userName.title"/></td><td>:</td><td><html:text property="userName" size="40" styleClass="textbox"/>&nbsp;<html:submit styleClass="button" onclick="resetPage();this.form.subaction.value='search';"><bean:message key="page.search.link"/></html:submit></td>
+								</tr>
+							</table>
+							
+							</td>
+											<td  style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+										</tr>
+										<tr>
+					            <td width="1%"><html:img page="/images/round3.gif"/></td>
+					           	<td class="smalltext" style="border-bottom:solid 1px #6b6b71; ">&nbsp;</td>
+					            <td width="1%"><html:img page="/images/round2.gif"/></td>
+					          </tr>
+									</table>
+							
+						</td>
+					</tr>
+    			<tr><td>&nbsp;</td></tr>    			
+    			<tr>
+						<td>
+							<table width="900" border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td width="1%"><html:img page="/images/round.gif"/></td>
+			            <td width="98%" class="smalltext" style="border-top:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td width="1%"><html:img page="/images/round1.gif"/></td>
+			          </tr>
+			          <tr>
+			            <td style="border-left:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td valign="top">						
+										<table width="100%">
+										
+    			<tr>
+    				<td>
+    					<table width="100%">
+    						<tr>
+    							<td align="left"><bean:write name="PAGER" scope="request" filter="false"/></td>
+    							<td align="center">Goto page : <html:text property="gotoPage" size="4" styleClass="textbox" onchange="gotoPager();"/>&nbsp;</td>
+    							<td align="right"><bean:write name="PAGERITEM" scope="request" filter="false"/></td>
+    						</tr>
+    					</table>
+    				</td>
+    			</tr>
+          <tr> 
+            <td align="center"> 
+              <table border="0" cellspacing=0 cellpadding=0 width="100%">
+                <tr align="center"> 
+                  <td width="1%" align="right"><html:img page="/images/round_table.gif"/></td>
+                  <td nowrap="nowrap" bgcolor="#1e272d" class="text05 padding">&nbsp;</td>
+				  <td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><a href=javascript:sort('UserName')><bean:message key="page.userName.title"/></a>&nbsp;<logic:match name="userForm" property="orderBy" value="UserName"><logic:match name="userForm" property="ascDesc" value="desc"><html:img page="/images/sort_terang.gif" border="0"/></logic:match><logic:match name="userForm" property="ascDesc" value="asc"><html:img page="/images/sort2_terang.gif" border="0"/></logic:match></logic:match></td>
+                  <td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><a href=javascript:sort('Ip')><bean:message key="page.ip.title"/></a>&nbsp;<logic:match name="userForm" property="orderBy" value="Ip"><logic:match name="userForm" property="ascDesc" value="desc"><html:img page="/images/sort_terang.gif" border="0"/></logic:match><logic:match name="userForm" property="ascDesc" value="asc"><html:img page="/images/sort2_terang.gif" border="0"/></logic:match></logic:match></td>
+                  <td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><a href=javascript:sort('AccessDate')><bean:message key="page.accessDate.title"/></a>&nbsp;<logic:match name="userForm" property="orderBy" value="AccessDate"><logic:match name="userForm" property="ascDesc" value="desc"><html:img page="/images/sort_terang.gif" border="0"/></logic:match><logic:match name="userForm" property="ascDesc" value="asc"><html:img page="/images/sort2_terang.gif" border="0"/></logic:match></logic:match></td>
+                  <td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><bean:message key="page.accessTime.title"/></td>
+                  <td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><a href=javascript:sort('Action')><bean:message key="page.action.title"/></a>&nbsp;<logic:match name="userForm" property="orderBy" value="Action"><logic:match name="userForm" property="ascDesc" value="desc"><html:img page="/images/sort_terang.gif" border="0"/></logic:match><logic:match name="userForm" property="ascDesc" value="asc"><html:img page="/images/sort2_terang.gif" border="0"/></logic:match></logic:match></td>
+                  <td width="1%" align="left"><html:img page="/images/round_table1.gif"/></td>
+                </tr>
+<%
+int i = 0;
+try {
+i = Integer.parseInt(request.getParameter("start"));
+}catch(Exception ex){
+i = 0;
+}
+%>
+								<logic:present name="USER_LOGGING">
+                <logic:iterate id="users" name="USER_LOGGING" type="com.ams.mufins.model.UserLogging">
+								<% 
+									sequence++;
+									String bgcolor = "#FFFFFF";
+									if(sequence%2 == 0){
+										bgcolor = "#f9f3da";
+									}
+								 %>
+								
+								<logic:match name="users" property="trustedIp" scope="page" value='true'>
+								<logic:match name="users" property="trustedAction" scope="page" value='true'>
+                <tr bgcolor="<% out.print(bgcolor); %>">
+                	<td></td>
+                    <td nowrap="nowrap" class=" padding" align="left" align=right><%=++i%>.</td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="userName" scope="page"/></td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="ip" scope="page"/></td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="formatedAccessDate" scope="page"/></td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="formatedAccessTime" scope="page"/></td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="action" scope="page"/></td>                  
+                	<td></td>
+                </tr>
+                </logic:match>                
+                <logic:match name="users" property="trustedAction" scope="page" value='false'>
+                <tr bgcolor="#fef120">
+                	<td></td>
+                    <td nowrap="nowrap" class=" padding" align="left" align=right><%=++i%>.</td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="userName" scope="page"/></td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="ip" scope="page"/></td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="formatedAccessDate" scope="page"/></td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="formatedAccessTime" scope="page"/></td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="action" scope="page"/></td>                  
+                	<td></td>
+                </tr>
+                </logic:match>
+                </logic:match>
+                
+                <logic:match name="users" property="trustedIp" scope="page" value='false'>
+                <tr bgcolor="#f57575">
+                	<td></td>
+                    <td nowrap="nowrap" class=" padding" align="left" align=right><%=++i%>.</td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="userName" scope="page"/></td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="ip" scope="page"/></td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="formatedAccessDate" scope="page"/></td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="formatedAccessTime" scope="page"/></td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="users" property="action" scope="page"/></td>                  
+                	<td></td>
+                </tr>
+                </logic:match>
+                
+                
+                </logic:iterate>
+                </logic:present>
+                    <tr>
+                      <td width="1%" class="smalltext" align="right"><html:img page="/images/round_table2.gif"/></td>
+                      <td bgcolor="#1e272d"></td>
+                      <td bgcolor="#1e272d" class="borderLeft"></td>
+                      <td bgcolor="#1e272d" class="borderLeft"></td>
+                      <td bgcolor="#1e272d" class="borderLeft"></td>
+                      <td bgcolor="#1e272d" class="borderLeft"></td>
+                      <td bgcolor="#1e272d" class="borderLeft"></td>
+                      <td width="1%" align="left"><html:img page="/images/round_table3.gif"/></td>
+                    </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+    				<td>
+    					<table width="100%">
+    						<tr>
+    							<td align="left"><bean:write name="PAGER" scope="request" filter="false"/></td>
+    							<td align="center">Goto page : <html:text property="gotoPage2" size="4" styleClass="textbox" onchange="gotoPager2();"/>&nbsp;</td>
+    							<td align="right"><bean:write name="PAGERITEM" scope="request" filter="false"/></td>
+    						</tr>
+    					</table>
+    				</td>
+    			</tr>
+          <tr>
+	    		 	<td>
+		    			<table width="100%">
+		    				<tr valign="top"><td>
+		    					<ul>
+		    						<li>Red : Untrusted IP</li>
+		    						<li>Yellow : Warning Action Execution</li>
+		    					</ul>
+		    				</td></tr>
+		    			</table>
+	    			</td>
+    	  	</tr>
+        </table>
+        					</td>
+									<td  style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+								</tr>
+								<tr>
+			            <td width="1%"><html:img page="/images/round3.gif"/></td>
+			           	<td class="smalltext" style="border-bottom:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td width="1%"><html:img page="/images/round2.gif"/></td>
+			          </tr>
+							</table>							
+						</td>
+					</tr>
+        </table>  
+        </div>
+        </TD>
+        </TR>
+      </TABLE>
+        </html:form>
+<!-- end content-->            
+    </td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/list1.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_footer.gif"/>); background-repeat:repeat-x; " height="57" align="left" valign="top">
+    
+    <!-- footer start -->
+	<tiles:insert template='/common/footer.jsp'/>
+    
+    <!-- footer end -->
+    
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+
+<script type="text/javascript">
+ function gowait(form) {
+ 	var t;
+ 	t = true;
+ 	//eval(t = validateRopForm(form));
+ 	if (t) {
+ 		document.getElementById("main").style.visibility="hidden";
+   document.getElementById("wait").style.visibility="visible";
+   window.setTimeout('showProgress()', 400);
+ 	}
+ }
+ function showProgress(){ 
+   var wg = document.getElementById("progressbar");
+   wg.src=wg.src;
+ }
+ 
+</script>
+<script language="javascript">
+
+function resetPage() {
+	document.forms[0].gotoPage.value = '';
+	document.forms[0].gotoPage2.value = '';
+	document.forms[0].start.value = '';
+	document.forms[0].count.value = '';
+};
+
+function page(start,count) {
+	document.forms[0].gotoPage.value = '';
+	document.forms[0].start.value = start;
+	document.forms[0].count.value = count;
+	document.forms[0].submit();
+};
+
+function gotoPager() {
+	if (document.forms[0].gotoPage.value >= 1) {
+		if (document.forms[0].count.value == '' || document.forms[0].count.value == 0) document.forms[0].count.value = 50; 
+		var a = (document.forms[0].gotoPage.value - 1) * document.forms[0].count.value;
+		document.forms[0].start.value = a;
+		document.forms[0].gotoPage2.value = document.forms[0].gotoPage.value;
+		document.forms[0].submit();
+	}
+};
+
+function gotoPager2() {
+	if (document.forms[0].gotoPage2.value >= 1) {
+		if (document.forms[0].count.value == '' || document.forms[0].count.value == 0) document.forms[0].count.value = 50; 
+		var a = (document.forms[0].gotoPage2.value - 1) * document.forms[0].count.value;
+		document.forms[0].start.value = a;
+		document.forms[0].gotoPage.value = document.forms[0].gotoPage2.value;
+		document.forms[0].submit();
+	}
+};
+
+function sort(orderBy) {
+	document.forms[0].orderBy.value = orderBy;
+	if (document.forms[0].ascDesc.value=='') {
+		document.forms[0].ascDesc.value='desc';
+	} else if (document.forms[0].ascDesc.value=='desc') {
+		document.forms[0].ascDesc.value='asc';
+	} else {
+		document.forms[0].ascDesc.value='desc';
+	}
+	document.forms[0].submit();
+};
+
+</script>

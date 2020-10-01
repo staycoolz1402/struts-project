@@ -1,0 +1,176 @@
+<% response.setHeader("Pragma", "No-cache");
+response.setDateHeader("Expires", 0);
+response.setHeader("Cache-Control", "no-cache");%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+<%
+	int sequence = 0;
+%>
+
+<%@ page import="com.ams.mufins.model.*, com.mpe.common.*" %>
+<% Users users = (Users)session.getAttribute(CommonConstants.USER); %>
+
+<tr>
+	<td>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="1%"><html:img page="/images/round.gif"/></td>
+				<td width="98%" class="smalltext" style="border-top:solid 1px #6b6b71; ">&nbsp;</td>
+				<td width="1%"><html:img page="/images/round1.gif"/></td>
+			</tr>
+			<tr valign="top">			
+				<td style="border-left:solid 1px #6b6b71; " >&nbsp;</td>
+				<td valign="top" align="center"><font  size="2"><b>DASHBOARD HOME LIST</b></font></td>
+				<td style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+			</tr>
+			<tr valign="top">			
+				<td style="border-left:solid 1px #6b6b71; " >&nbsp;</td>
+				<td valign="top" align="center">&nbsp;</td>
+				<td style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+			</tr>
+			<%-- <tr>
+				<td style="border-left:solid 1px #6b6b71; ">&nbsp;</td>
+				<td valign="top">						
+					<table width="100%">
+						<tr> 
+							<td align="center"> 
+								<table border="0" cellspacing=0 cellpadding=0 width="100%">
+									<tr align="center"> 
+										<td width="1%" align="right"><html:img page="/images/round_table.gif"/></td>
+										<td nowrap="nowrap" bgcolor="#1e272d" class="text05 padding">&nbsp;</td>
+										<td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><bean:message key="page.applicationNumber.title"/></td>
+										<% if(users.getRoleGroup("COORDINATOR_SURVEYOR")) { %>
+										<td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><bean:message key="page.branchOutlet.title"/></td>
+										<% } %>
+										<% if(!users.getRoleGroup("COORDINATOR_SURVEYOR")) { %>
+										<td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><bean:message key="page.branchOutlet.title"/></td>
+										<td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><bean:message key="page.product.title"/></td>
+										<% } %>
+										<td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><bean:message key="page.applicationDate.title"/></td>
+										<td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><bean:message key="page.name.title"/></td>
+										<td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><bean:message key="page.task.title"/></td>
+										<td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><bean:message key="page.assignDate.title"/></td>
+										<% if(users.getRoleGroup("COORDINATOR_SURVEYOR")) { %>
+										<td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><bean:message key="totalScore"/></td>
+										<td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"></td>
+										<% } %>
+										<td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding">&nbsp;</td>
+										<td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding">&nbsp;</td>
+										<td width="1%" align="left"><html:img page="/images/round_table1.gif"/></td>
+									</tr>
+									<%
+										int i = 0;
+										try {
+										i = Integer.parseInt(request.getParameter("start"));
+										}catch(Exception ex){
+										i = 0;
+										}
+									%>
+									<logic:present name="dashboardHomeList">
+									<% sequence=0; %>
+									<logic:iterate id="dashboard" name="dashboardHomeList" type="com.ams.mufins.model.list.DashboardHomeList">
+									<% 
+										sequence++;
+										String bgcolor = "#FFFFFF";
+										if(sequence%2 == 0){
+										bgcolor = "#f9f3da";
+										}
+									%>
+									<tr bgcolor="<% out.print(bgcolor); %>">
+										<td align="right"></td>
+										<td align="right"><%=++i%>.</td>
+										<td nowrap="nowrap" class=" borderLeft padding" align="left">
+										<a href="javascript:confirmAssignTask(<bean:write name="dashboard" property="id"/>);" >
+										<bean:write name="dashboard" property="applicationNumber" scope="page"/>
+										</a>
+										</td>
+										<% if(users.getRoleGroup("COORDINATOR_SURVEYOR")) { %>
+										<td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="dashboard" property="branch" scope="page"/></td>
+										<% } %>
+										<% if(!users.getRoleGroup("COORDINATOR_SURVEYOR")) { %>
+										<td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="dashboard" property="branch" scope="page"/></td>
+										<td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="dashboard" property="product" scope="page"/></td>
+										<% } %>
+										<td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="dashboard" property="applicationDate" scope="page"/></td>
+										<td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="dashboard" property="name" scope="page"/></td>
+										<td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="dashboard" property="task" scope="page"/></td>
+										<td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="dashboard" property="formatedAssignDate" scope="page"/></td>
+										<% if(users.getRoleGroup("COORDINATOR_SURVEYOR")) { %>
+										<td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="dashboard" property="totalScore" scope="page"/></td>
+										<td nowrap="nowrap" class=" borderLeft padding" align="left">
+										<logic:notEqual name="dashboard" property="scoringId" value="0">
+										<a href="#" id="scoringCS" onclick="javascript:scoringDetail('<bean:write name="dashboard" property="id" scope="page"/>', '<bean:write name="roleGroupIdCs"/>', '<bean:write name="userName"/>', '<bean:write name="roleId"/>');"><html:img page="/images/detail.gif" border="0" title="Scoring Detail"/></a>
+										<a href="#" onclick="window.open('<bean:write name="dashboard" property="url" scope="page"/>','score<%=i%>','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=yes,width=900,height=800');"><html:img page="/images/detail.gif" border="0" title="Scoring Detail"/></a>
+										</logic:notEqual>
+										</td>
+										<% } %>
+										<td nowrap="nowrap" class=" borderLeft padding" align="left"><a href="#" onclick="window.open('<html:rewrite page="/cfApplicationNotes/popup.do"/>?cfApplicationId='+<bean:write name="dashboard" property="id" scope="page"/>+'&subaction=DASHNOTES','zz','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=yes,width=950,height=500');"><html:img page="/images/popup.gif" title="CfApplication Notes" border="0"/></a></td>
+										<td nowrap="nowrap" class=" borderLeft padding" align="left"></td>
+										<td></td>
+									</tr>
+									</logic:iterate>
+									</logic:present>
+									<tr>
+										<td width="1%" class="smalltext" align="right"><html:img page="/images/round_table2.gif"/></td>
+										<td bgcolor="#1e272d"></td>
+										<td bgcolor="#1e272d" class="borderLeft"></td>
+										<% if(users.getRoleGroup("COORDINATOR_SURVEYOR")) { %>
+										<td bgcolor="#1e272d" class="borderLeft"></td>
+										<% } %>
+										<% if(!users.getRoleGroup("COORDINATOR_SURVEYOR")) { %>
+										<td bgcolor="#1e272d" class="borderLeft"></td>
+										<td bgcolor="#1e272d" class="borderLeft"></td>
+										<% } %>
+										<td bgcolor="#1e272d" class="borderLeft"></td>
+										<td bgcolor="#1e272d" class="borderLeft"></td>
+										<td bgcolor="#1e272d" class="borderLeft"></td>
+										<td bgcolor="#1e272d" class="borderLeft"></td>
+										<td bgcolor="#1e272d" class="borderLeft"></td>
+										<% if(users.getRoleGroup("COORDINATOR_SURVEYOR")) { %>
+										<td bgcolor="#1e272d" class="borderLeft"></td>
+										<td bgcolor="#1e272d" class="borderLeft"></td>
+										<% } %>
+										<td bgcolor="#1e272d" class="borderLeft"></td>
+										<td width="1%" align="left"><html:img page="/images/round_table3.gif"/></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table width="100%">
+									<tr>
+										<td align="left" colspan="3">&nbsp;</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>							
+				</td>
+				<td  style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+			</tr> --%>
+			<tr>
+				<td width="1%"><html:img page="/images/round3.gif"/></td>
+				<td class="smalltext" style="border-bottom:solid 1px #6b6b71; ">&nbsp;</td>
+				<td width="1%"><html:img page="/images/round2.gif"/></td>
+			</tr>
+		</table>							
+	</td>
+</tr>
+
+<script language="javascript">
+function confirmAssignTask(id) {
+	var str = "Apakah Anda akan mengambil Task berikut ini?";
+	if (confirm(str)) {
+		window.location.href=('<html:rewrite page="/cfApplication/process.do"/>?cfApplicationId='+id);
+		return true;
+	}
+}
+
+function scoringDetail(cfApplicationId, roleGroupId, userName, roleId){
+	window.open('<html:rewrite page="/scoringNew/detail.do"/>?cfApplicationId='+cfApplicationId+'&roleGroupId='+roleGroupId+'&userName='+userName+'&roleId='+roleId,'scoring','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=yes,width=600,height=400');
+}
+</script>

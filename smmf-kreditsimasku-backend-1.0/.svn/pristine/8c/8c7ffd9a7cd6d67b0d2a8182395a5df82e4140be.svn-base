@@ -1,0 +1,982 @@
+<% response.setHeader("Pragma", "No-cache");
+response.setDateHeader("Expires", 0);
+response.setHeader("Cache-Control", "no-cache");%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+<%
+	int sequence = 0;
+%>
+
+<%@ page import="com.ams.mufins.model.*, com.mpe.common.*" %>
+<% Users users = (Users)session.getAttribute(CommonConstants.USER); %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title><bean:message key="page.index.title"/></title>
+	<link href="<html:rewrite page="/js/simas.css"/>" rel="stylesheet" type="text/css">
+</head>
+
+<body style="margin:0px;" >
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_header.gif"/>); background-repeat:repeat-x; " height="94" valign="top" align="left">
+        <!-- header start -->
+    	<tiles:insert template='/common/header.jsp'/>
+        <!-- header end -->
+    </td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/list.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/bg_body.gif"/>); background-repeat:repeat-x; background-position:bottom; " height="627" bgcolor="#fbfdff" align="left" valign="top">
+		<logic:present name="warning" scope="request">
+			<tr>
+				<td align="center"><font size="6" color="red">
+				<bean:write name="warning"/>
+				</font></td> 
+			</tr>
+  		</logic:present>
+  	<logic:notPresent name="warning" scope="request">
+  		<!-- Content Start -->
+  			
+  				<table width="900" border="0" cellspacing="0" cellpadding="5" style="margin-left:10px; margin-right:10px; ">
+  					
+  					<!-- Loading + Judul Halaman Start -->
+  					<tr>
+	       				<td align="left" class="text03" width="20%"><b><logic:present name="viewName"><bean:write name="viewName"/></logic:present></b></td>
+	       				<td align="left">         
+	     					<div  id="wait" style="visibility:hidden;">
+			  					<table width="100%" height="10px" border="0" valign="top"> 
+		       						<tr valign="top"><td align="center" valign="top"><b><i><bean:message key="pleaseWait"/></i></b></td></tr>
+		        					<tr valign="top">
+		           						<td align="center" valign="top">
+		             					<img src="<html:rewrite page="/images/progressbar.gif"/>" name="progressbar" id="progressbar">
+		          						</td>
+		        					</tr>
+		        				</table>
+							</div>
+						</td>
+	      			</tr>
+	      			<!-- Loading + Judul Halaman End -->
+	      			
+	      			<tr>
+          				<td align=left width="100%" colspan="2">
+          				  <div id="main">
+	      					<table width="100%" border="0" cellspacing="2" cellpadding="0" class="text04">
+	      						<tr valign="top"><td><html:errors/></td></tr>
+    								<tr valign="top"><td>&nbsp;</td></tr>
+    								<html:form action="/consumerFinanceSetup/insert">
+									<html:hidden property="start"/>
+									<html:hidden property="count"/>
+									<html:hidden property="orderBy"/>
+									<html:hidden property="ascDesc"/>
+									<html:hidden property="subaction"/>
+																          								
+									<!-- Main Start --> 
+									<tr>
+	      								<td>
+											<table width="900" border="0" cellspacing="0" cellpadding="0">
+			          							<tr>
+										            <td width="1%"><html:img page="/images/round.gif"/></td>
+										            <td width="98%" class="smalltext" style="border-top:solid 1px #6b6b71; ">&nbsp;</td>
+										            <td width="1%"><html:img page="/images/round1.gif"/></td>
+			          							</tr>
+			          							<!-- Content Search Start -->
+			          							<tr>
+			            							<td style="border-left:solid 1px #6b6b71; ">&nbsp;</td>
+			            							<td valign="top">
+			                							<table width="100%" border="0" cellspacing="2" cellpadding="0">
+														<tr valign="top"><td>&nbsp;</td></tr>
+																														
+															<td align="center"> 
+																<table width="100%" border="0" cellspacing="1" cellpadding="3" class=abuabu>
+																<tr> 
+																	<td align="right">CF Receivable Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="cfReceivableAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable CF Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayableCfAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable Premi Asuransi Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayablePremiAsuransiAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable Premi Risk Asuransi Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayablePremiRiskAsuransiAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable Refund Dealer Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayableRefundDealerAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable Premi Asuransi (Old) Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayablePremiAsuransiOldId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable Refund ke Dealer (Old) Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayableRefundDealerOldId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">CF Income Insurance (Old) Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="cfIncomeInsuranceOldId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">CF Income Installment Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="cfIncomeInstallmentAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">CF Income Insurance Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="cfIncomeInsuranceAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">CF Income Insurance Risk Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="cfIncomeInsuranceRiskAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">CF Income Penalty Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="cfIncomePenaltyAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">CF Administration Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="cfAdministrationAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Income CF Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherIncomeCfAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Unit Titipan Nasabah Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="assetForFutureSaleAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable CF (Referral Fee) Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayableCfReferralFeeAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Income CF (DD) Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherIncomeCfDdAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Income CF (WO) Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherIncomeCfWoAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Income CF (UTN) Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherIncomeCfAffsAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Income CF (Referral Fee) Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherIncomeCfReferralFeeAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Bad Debt Expense Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="badDebtExpenseAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Biaya Penanganan Kasus CF Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="biayaPenangananKasusCfAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Operating Expense (CF) Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherOperatingExpenseCfAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Insentive Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="insentiveAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Life Insurance Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="cfIncomeLifeInsuranceAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Bank Charge</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="bankChargeId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable Drawdown</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayableDrawdownId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Bad Debt Expense - Take Away</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="badDebtExpenseTakeAwayId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable Premi Life Insurance Channeling</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayablePremiLifeInsuranceChannelingId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable Admin Motor Channeling</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayableAdminMotorChannelingId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable Channeling</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayableChannelingId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">CF Administrasi Channeling</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="cfAdministrasiChannelingId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable Payment Motor Chaneling</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayablePaymentMotorChanelingId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable Cf Motor Channeling</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayableCfMotorChannelingId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Pendapatan Motor Channeling/td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="pendapatanMotorChannelingId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Kewajiban Lain Channeling/td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="kewajibanLainChannelingId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Income Channeling/td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherIncomeChannelingId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																<tr> 
+																	<td align="right">Other Income CF Channeling Account</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherIncomeCfChannelingAccountId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																<tr> 
+																	<td align="right">Other Payable Provision</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayableProvisiId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Payable Balance</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherPayableBalanceId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Bank KPNO</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="bankKpnoId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Tax Payable Art 21</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="taxPayableArt21Id" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Tax Payable Art 23</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="taxPayableArt23Id" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Operating EXP CF</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="otherOperatingExpCFId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Bad Debt OS</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="badDebtOSId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Partner Fee AP/BP</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="partnerFeeApBpId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Partner Fee SAS</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="partnerFeeSasId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Fidusia Consumer Finance</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="fidusiaConsumerFinanceId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Interest Refund</td>
+																	<td align="center">:</td>
+																	<td align="left">
+																	<html:select property="interestRefundId" styleClass="selectBox">
+																		<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+																		<html:options collection="chartOfAccountList" property="id" labelProperty="numberName" />
+						                  							</html:select>
+																	</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Buy Rate</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="buyRate" size="2" maxlength="4" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Sell Rate</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="sellRate" size="2" maxlength="4" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Discount Rate</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="discountRate" size="2" maxlength="4" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																
+																
+																<tr> 
+																	<td align="right">Advance Flat Rate</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="advanceFlatRate" size="2" maxlength="4" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Arrear Flat Rate</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="arrearFlatRate" size="2" maxlength="4" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Life Insurance Rate</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="lifeInsuranceRate" size="2" maxlength="4" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																
+																
+																<tr> 
+																	<td align="right">Risk Insurance Rate</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="riskInsuranceRate" size="20"  styleClass="selectBox" />&nbsp;% Risk Insurance Amount : <html:text property="riskInsuranceAmount" size="25"  styleClass="selectBox"/>&nbsp; </td>
+																	<td></td>
+																</tr>
+																
+																
+																<tr> 
+																	<td align="right">Old Risk Insurance Rate (2000 s/d 2009)</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="oldRiskInsuranceRate2" size="20"  styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Old Risk Insurance Rate (< 2000)</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="oldRiskInsuranceRate3" size="20" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Risk Insurance Rate Niaga</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="riskInsuranceRateNiaga" size="20"  styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Discount Rate Insurance Rate - Leaseback</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="discountRiskInsuranceRate" size="2" maxlength="4" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Discount Rate Insurance Rate -  Non Leaseback </td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="discountRiskInsuranceRateNonLeaseback" size="2" maxlength="4" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Discount Rate Mobil Tua</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="discountRateOldCar" size="2" maxlength="4" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Discount Rate Mobil Tua Sekali</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="discountRateVeryOldCar" size="2" maxlength="4" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Discount Rate Niaga</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="discountRateNiaga" size="2" maxlength="4" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																
+																<tr> 
+																	<td align="right">Life Insurance Limitation</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:textarea property="lifeInsuranceLimitation" styleClass="selectBox" /></td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Other Charges Limitation</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="otherChargesLimitation" size="2" maxlength="4" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Insurance Year Rate Depreciation</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:textarea property="insuranceYearDepreciation" styleClass="selectBox" />&nbsp;%</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Insurance Param Year</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="insuranceParamYear" size="2" maxlength="4" styleClass="selectBox" />&nbsp;</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Insurance Tlo Param Year</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="insuranceTloParamYear" size="2" maxlength="4" styleClass="selectBox" />&nbsp;</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Old Insurance Param Year</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="oldInsuranceParamYear" size="2" maxlength="4" styleClass="selectBox" />&nbsp;</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Refund Admin Dealer per Year</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="refundAdmDealer" size="20"  styleClass="selectBox" />&nbsp;</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Validasi Pokok Hutang</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="validasiPokokHutang" size="20"  styleClass="selectBox" />&nbsp;</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Rate Badan Usaha Npwp</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="rateBadanUsahaNpwp" size="20"  styleClass="selectBox" />&nbsp;</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Rate Badan Usaha Tidak Npwp</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="rateBadanUsahaTidakNpwp" size="20"  styleClass="selectBox" />&nbsp;</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Rate Perorangan Npwp</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="ratePeroranganNpwp" size="20"  styleClass="selectBox" />&nbsp;</td>
+																</tr>
+																
+																<tr> 
+																	<td align="right">Rate Perorangan Tidak Npwp</td>
+																	<td align="center">:</td>
+																	<td align="left"><html:text property="ratePeroranganTidakNpwp" size="20"  styleClass="selectBox" />&nbsp;</td>
+																</tr>
+																
+																</table>
+															</td>
+														</tr>
+														<tr>
+															<td>&nbsp;</td>
+														</tr>
+														<tr>
+															<td align="center">
+																<html:submit styleClass="button" onclick="this.form.subaction.value='SAVEALL';return valid();"><bean:message key="submit.link"/></html:submit>
+																<html:cancel styleClass="button" onclick="bCancel=true;"><bean:message key="cancel.link"/></html:cancel>
+															</td>
+														</tr>
+														
+													</table> 
+    												</td>
+													<td  style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+												</tr>
+						          					
+												<!-- Content Search ENd -->
+												<tr>
+										            <td width="1%"><html:img page="/images/round3.gif"/></td>
+										           	<td class="smalltext" style="border-bottom:solid 1px #6b6b71; ">&nbsp;</td>
+										            <td width="1%"><html:img page="/images/round2.gif"/></td>
+										         </tr>
+											</table>
+										</td>
+									</tr>		
+									</html:form>							
+									<!-- Main End -->
+									
+    						</table>
+    					  </div>
+    				   </td>
+    				</tr>
+  				</table>
+  			
+  		<!-- Content End -->
+  	</logic:notPresent>
+    
+	</td>
+  </tr>
+  <tr>
+  	<td style="background-image:url(<html:rewrite page="/images/list1.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_footer.gif"/>); background-repeat:repeat-x; " height="57" align="left" valign="top">
+    <!-- footer start -->
+		<tiles:insert template='/common/footer.jsp'/>
+    <!-- footer end -->
+    </td>
+  </tr>
+</body>
+</html>
+
+<script language="javascript">
+
+function valid(){
+	if(document.forms[0].cfReceivableAccountId.value==''){
+		alert('CF Receivable Account is required');
+		document.forms[0].cfReceivableAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].otherPayableCfAccountId.value==''){
+		alert('Other Payable CF Account is required');
+		document.forms[0].otherPayableCfAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].otherPayablePremiAsuransiAccountId.value==''){
+		alert('Other Payable Premi Asuransi Account is required');
+		document.forms[0].otherPayablePremiAsuransiAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].otherPayableRefundDealerAccountId.value==''){
+		alert('Other Payable Refund Dealer Account is required');
+		document.forms[0].otherPayableRefundDealerAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].cfIncomeInstallmentAccountId.value==''){
+		alert('CF Income Installment Account is required');
+		document.forms[0].cfIncomeInstallmentAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].cfIncomeInsuranceAccountId.value==''){
+		alert('CF Income Insurance Account is required');
+		document.forms[0].cfIncomeInsuranceAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].cfIncomeInsuranceRiskAccountId.value==''){
+		alert('CF Income Insurance Risk Account is required');
+		document.forms[0].cfIncomeInsuranceRiskAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].cfIncomePenaltyAccountId.value==''){
+		alert('CF Income Penalty Account is required');
+		document.forms[0].cfIncomePenaltyAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].cfAdministrationAccountId.value==''){
+		alert('CF Administration Account is required');
+		document.forms[0].cfAdministrationAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].otherIncomeCfAccountId.value==''){
+		alert('Other Income CF Account is required');
+		document.forms[0].otherIncomeCfAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].assetForFutureSaleAccountId.value==''){
+		alert('Unit Titipan Nasabah Account is required');
+		document.forms[0].assetForFutureSaleAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].otherPayableCfReferralFeeAccountId.value==''){
+		alert('Other Payable CF (Referral Fee) Account is required');
+		document.forms[0].otherPayableCfReferralFeeAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].otherIncomeCfDdAccountId.value==''){
+		alert('Other Income CF (DD) Account is required');
+		document.forms[0].otherIncomeCfDdAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].otherIncomeCfWoAccountId.value==''){
+		alert('Other Income CF (WO) Account is required');
+		document.forms[0].otherIncomeCfWoAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].otherIncomeCfAffsAccountId.value==''){
+		alert('Other Income CF (UTN) Account is required');
+		document.forms[0].otherIncomeCfAffsAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].otherIncomeCfReferralFeeAccountId.value==''){
+		alert('Other Income CF (Referral Fee) Account is required');
+		document.forms[0].otherIncomeCfReferralFeeAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].badDebtExpenseAccountId.value==''){
+		alert('Bad Debt Expense Account is required');
+		document.forms[0].badDebtExpenseAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].biayaPenangananKasusCfAccountId.value==''){
+		alert('Biaya Penanganan Kasus CF Account is required');
+		document.forms[0].biayaPenangananKasusCfAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].otherOperatingExpenseCfAccountId.value==''){
+		alert('Other Operating Expense (CF) Account is required');
+		document.forms[0].otherOperatingExpenseCfAccountId.focus();
+		return false;
+	}
+	
+	if(document.forms[0].insentiveAccountId.value==''){
+		alert('Insentive Account is required');
+		document.forms[0].insentiveAccountId.focus();
+		return false;
+	}
+}
+
+</script>

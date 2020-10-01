@@ -1,0 +1,428 @@
+<%@ page contentType="text/html;charset=iso-8859-1" language="java" %>
+<% response.setHeader("Pragma", "No-cache");
+response.setDateHeader("Expires", 0);
+response.setHeader("Cache-Control", "no-cache");%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title><bean:message key="page.index.title"/></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="<html:rewrite page="/js/simas.css"/>" rel="stylesheet" type="text/css">
+</head>
+
+<body style="margin:0px;" >
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_header.gif"/>); background-repeat:repeat-x; " height="94" valign="top" align="left">
+    
+    <!-- header start -->
+    
+<tiles:insert template='/common/header.jsp'/>
+    
+    <!-- header end -->
+    
+    </td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/list.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/bg_body.gif"/>); background-repeat:repeat-x; background-position:bottom; " height="627" bgcolor="#fbfdff" align="left" valign="top">
+    
+<!-- content -->    
+      <table width="900" border="0" cellspacing="0" cellpadding="5" style="margin-left:10px; ">
+        <tr>
+	        <td align="left" class="text03"><b><logic:present name="viewName"><bean:write name="viewName"/></logic:present></b></td>
+	      </tr>
+        <TR>
+          <TD align=middle width="100%">
+          
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td width="1%"><html:img page="/images/round.gif"/></td>
+			            <td width="98%" class="smalltext" style="border-top:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td width="1%"><html:img page="/images/round1.gif"/></td>
+			          </tr>
+			          <tr>
+			            <td style="border-left:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td valign="top">
+			
+			<!-- CONTENT START -->
+	      <table width="100%" border="0" cellspacing="2" cellpadding="0" class="text04">
+    			<tr valign="top"><td><html:errors/></td></tr>
+    			<tr valign="top"><td>&nbsp;</td></tr>
+    			<html:form action="/user/save">
+					<html:hidden property="userId"/>
+					<html:hidden property="isResign"/>
+					<logic:equal name="userForm" property="userId" value="0">
+						<html:hidden property="isActive"/>
+					</logic:equal>
+					<logic:greaterThan name="userForm" property="userId" value="0">
+						<html:hidden property="userPass"/>
+					</logic:greaterThan>
+          <logic:notPresent name="disable" scope="request">
+          <tr> 
+            <td align="center"> 
+              <table width="100%" border="0" cellspacing="1" cellpadding="0">
+                <tr valign="top"> 
+                  <td width="30%" align="left"><bean:message key="page.organization.title"/></td>
+                  <td>:</td>
+                  <td width="65%" align="left">
+                  	<html:select property="organizationId" styleClass="selectBox">
+											<html:options collection="organizationLst" property="id" labelProperty="name" />
+                  	</html:select>
+                  </td>
+                </tr>
+                 
+                <tr valign="top"> 
+                  <td width="30%" align="left"><bean:message key="page.role.title"/></td>
+                  <td>:</td>
+                  <td width="65%" align="left">
+                  	<html:select property="roleId" multiple="true" style="width:240px; height:120px;" styleClass="selectBox">
+											<html:options collection="roleLst" property="id" labelProperty="roleName" />
+                  	</html:select>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.name.title"/></td>
+                  <td>:</td>
+                  <td width="65%" align="left"><html:text property="name" size="40" maxlength="255" styleClass="textbox"/></td>
+                </tr>
+                <logic:equal name="userForm" property="userId" value="0">
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.userName.title"/></td>
+                  <td>:</td>
+                  <td width="65%" align="left"><html:text property="userName" size="40" maxlength="32" styleClass="textbox" styleId="userName" onkeyup="javascript:checkCharacter(this);"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.userPass.title"/></td>
+                  <td>:</td>
+                  <td width="65%" align="left"><html:password property="userPass" size="40" maxlength="64" styleClass="textbox" onchange="encryptChecker2();"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="isSupervisor"/></td>
+                  <td>:</td>
+                  <td width="65%" align="left"><html:checkbox property="isSupervisor" value="Y" styleClass="textbox"/>&nbsp;<bean:message key="page.yes.title"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.isSso.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:checkbox property="isSso" value="Y" styleClass="textbox"/>&nbsp;<bean:message key="page.yes.title"/></td>
+                </tr>
+                </logic:equal>
+                <logic:greaterThan name="userForm" property="userId" value="0">
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.userName.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:text property="userName" size="40" readonly="true" styleClass="textbox"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.userPass.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:password property="confirmUserPass" size="40" styleClass="textbox" onchange="encryptChecker();"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.isActive.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:checkbox property="isActive" value="Y" styleClass="textbox"/>&nbsp;<bean:message key="page.yes.title"/>
+                  <logic:equal name="userForm" property="isResign" value="true">
+                		<font color="red"><b> Note: Marketing sudah resign.</b></font>
+                  </logic:equal>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="isSupervisor"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:checkbox property="isSupervisor" value="Y" styleClass="textbox"/>&nbsp;<bean:message key="page.yes.title"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.isSso.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left">
+                  	<html:checkbox property="isSso" value="Y" styleClass="textbox"/>&nbsp;<bean:message key="page.yes.title"/><br>
+                  	<i>Not valid when user type is administrator</i>
+                  </td>
+                </tr>
+                </logic:greaterThan>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.userType.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left">
+                  	<html:select property="userType" styleClass="selectBox">
+											<html:option value="administrator"><bean:message key="page.administrator.title"/></html:option>
+											<html:option value="user"><bean:message key="page.user.title"/></html:option>
+                  	</html:select>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.email.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:text property="email" size="40" maxlength="255" styleClass="textbox"/></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          </logic:notPresent>
+          <logic:present name="disable" scope="request">
+          <tr> 
+            <td align="center"> 
+              <table width="100%" border="0" cellspacing="1" cellpadding="0" class=abuabu>
+                <tr valign="top"> 
+                  <td width="30%" align="left"><bean:message key="page.organization.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left">
+                  	<html:select property="organizationId" disabled="true">
+											<html:options collection="organizationLst" property="id" labelProperty="name" />
+                  	</html:select>
+                  </td>
+                </tr>
+                
+                <tr valign="top"> 
+                  <td width="30%" align="left"><bean:message key="page.role.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left">
+                  	<html:select property="roleId" multiple="true" style="width:240px; height:120px;" styleClass="textbox" disabled="true">
+											<html:options collection="roleLst" property="id" labelProperty="roleName" />
+                  	</html:select>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.name.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:text property="name" size="40" styleClass="textbox"/></td>
+                </tr>
+                <logic:equal name="userForm" property="userId" value="0">
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.userName.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:text property="userName" size="40" styleClass="textbox" readonly="true" styleId="userName" onkeyup="javascript:checkCharacter(this);"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.userPass.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:password property="userPass" size="40" styleClass="textbox" onchange="encryptChecker2();"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="isSupervisor"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:checkbox property="isSupervisor" value="Y" styleClass="textbox" disabled="true"/>&nbsp;<bean:message key="page.yes.title"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.isSso.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:checkbox property="isSso" value="Y" styleClass="textbox" disabled="true"/>&nbsp;<bean:message key="page.yes.title"/></td>
+                </tr>
+                </logic:equal>
+                <logic:greaterThan name="userForm" property="userId" value="0">
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.userName.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:text property="userName" size="40" readonly="true" styleClass="textbox" onkeyup="javascript:checkCharacter(this);"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.userPass.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:password property="confirmUserPass" size="40" styleClass="textbox" onchange="encryptChecker();"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.isActive.title"/></td>
+                  <td width="5%">:</td> 
+                  <td width="65%" align="left"><html:checkbox property="isActive" value="Y" styleClass="textbox" disabled="true"/>&nbsp;<bean:message key="page.yes.title"/>
+                  <logic:equal name="userForm" property="isResign" value="true">
+                		<font color="red"><b> Note: Marketing sudah resign.</b></font>
+                  </logic:equal>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="isSupervisor"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:checkbox property="isSupervisor" value="Y" styleClass="textbox" disabled="true"/>&nbsp;<bean:message key="page.yes.title"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.isSso.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left">
+                  	<html:checkbox property="isSso" value="Y" styleClass="textbox" disabled="true"/>&nbsp;<bean:message key="page.yes.title"/><br>
+                  	<i>Not valid when user type is administrator</i>
+                  </td>
+                </tr>
+                </logic:greaterThan>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.userType.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left">
+                  	<html:select property="userType" styleClass="textbox" disabled="true">
+						<html:option value="administrator"><bean:message key="page.administrator.title"/></html:option>
+						<html:option value="user"><bean:message key="page.user.title"/></html:option>
+                  	</html:select>
+                  </td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.email.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><html:text property="email" size="40" styleClass="textbox"/></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          </logic:present>
+          <tr>
+			  <td>
+				  <table width="100%">
+					<tr valign="top"><td>&nbsp;</td></tr>
+				  </table>
+			   </td>
+		  </tr>
+		  <tr>
+			  <td align="center">
+					<html:submit styleId="btnSubmit" styleClass="button" onclick="return valid();"/>
+					<html:cancel styleClass="button"/>
+			  </td>
+		  </tr>
+          </html:form>
+        </table> 
+		  </td>
+			   <td  style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+		  </tr>
+		  <tr>
+	            <td width="1%"><html:img page="/images/round3.gif"/></td>
+             	<td class="smalltext" style="border-bottom:solid 1px #6b6b71; ">&nbsp;</td>
+	            <td width="1%"><html:img page="/images/round2.gif"/></td>
+          </tr>
+			</table>
+			<!-- CONTENT END -->
+			</TD>
+        </TR>
+      </TABLE>
+    </td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/list1.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_footer.gif"/>); background-repeat:repeat-x; " height="57" align="left" valign="top">
+    
+    <!-- footer start -->
+	<tiles:insert template='/common/footer.jsp'/>
+    
+    <!-- footer end -->
+    
+    </td>
+  </tr>
+</table>
+</body>
+
+<script language="javascript">
+var mikExp = /[$\\@\\\#%\^\!\&\*\(\)\[\]\:\;\?\<\>\+\""\''\_\-\{\}\`\~\=\|\,\/\s]/;
+var mixExp2=/^\d*\.?((25)|(50)|(5)|(75)|(0)|(00))?$/; 
+
+function checkCharacter(val){
+	var strPass = val.value;
+	var strLength = strPass.length;
+	var lchar = val.value.charAt((strLength) - 1);
+	if (lchar.search(mikExp) != -1) {
+		var tst = val.value.substring(0, (strLength) - 1);
+		val.value = tst;
+	}
+}
+
+function checkDisable(){
+	document.forms[0].roleId.disabled=false;
+}
+
+function valid(){
+	checkDisable();
+	if(document.forms[0].userName.value=="") {
+		alert('Username is required');
+		document.forms[0].userName.focus();
+		return false;
+	}
+	if(document.forms[0].userPass.value=="") {
+		alert('Password is required');
+		document.forms[0].userPass.focus();
+		return false;
+	}
+}
+
+function encryptChecker(){
+	if(document.forms[0].confirmUserPass.value != null)
+		{
+			var pass = document.forms[0].confirmUserPass.value;
+			var checker = pass.includes("SMMF");
+			if(checker == true)
+			{
+				document.forms[0].confirmUserPass.value="";
+				alert('mohon tidak menggunakan kata SMMF pada password!');
+			}
+		}
+}
+
+function encryptChecker2(){
+	if(document.forms[0].userPass.value != null)
+	{
+		var pass = document.forms[0].userPass.value;
+		var checker = pass.includes("SMMF");
+		if(checker == true)
+		{
+			document.forms[0].userPass.value="";
+			alert('mohon tidak menggunakan kata SMMF pada password!');
+		}
+	}
+}
+
+/*  function doanothercheck(){
+	
+	if (document.forms[0].userName.value.length < 1) {
+		alert("Please enter something.");
+		return false;
+	} else if (document.forms[0].userName.value.search(mikExp)!=-1) {
+		alert("maaf, karakter berikut \n\r\n\r@ $ % ^ & * # , ( ) [ ] \\ { + } ` ~ =  | - _ dan SPASI \n\r\n\ tidak boleh digunakan!\n");
+		document.forms[0].userName.select();
+		document.forms[0].userName.focus();
+		return false;
+	} else {
+		if(document.getElementById('hiddenNumeric').value=="T"){
+			var sn = document.forms[0].userName.value;
+			var sub = sn.substring(0,1);
+			var userIdCheck = document.forms[0].userId.value;
+			if (userIdCheck==0) {
+				if (isNaN(sn)) {
+					alert("Harap Masukan Username dengan format NIK");
+					document.getElementById('submit').disabled = true;
+					return false;
+				}
+				if (isNaN(sub)){
+					alert("Harap Masukan Username dengan format NIK");
+					document.getElementById('submit').disabled = true;
+					return false;
+				}
+			}
+				    
+			if(sn.length < 6 || sn.length > 8){
+				alert("Username minimal 6 digit dan maksimal 8 digit");			
+				return false;
+			}
+		
+		}else{
+				var s = document.forms[0].userName.value;
+				var s_pos = s.charAt(0);
+				if (s_pos.search(mixExp2)!=-1) {
+					alert("maaf, digit angka [0-9] dan karakter \". , \" \n\r\n\ tidak boleh digunakan di awal username!\n");
+					document.forms[0].userName.select();
+					document.forms[0].userName.focus();
+					return false;
+				}
+			}
+	}
+}   */
+</script>
+</html>
+
+

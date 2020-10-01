@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="UserLogging"
+		table="user_logging"
+		batch-size="100"
+	>
+	
+		<id
+			name="Id"
+			type="long"
+			column="user_logging_id"
+		>
+		<generator class="sequence">
+				<param name="sequence">USER_LOGGING_SEQ</param>
+			</generator>
+		</id>
+
+		<property
+			name="UserName"
+			column="user_name"
+			type="string"
+			not-null="true"
+			length="128"
+		/>
+		<property
+			name="Ip"
+			column="ip"
+			type="string"
+			not-null="false"
+			length="20"
+		/>
+		<property
+			name="ComputerName"
+			column="computer_name"
+			type="string"
+			not-null="false"
+			length="128"
+		/>
+		<property
+			name="Hostname"
+			column="hostname"
+			type="string"
+			not-null="false"
+			length="128"
+		/>
+		<property
+			name="TrustedIp"
+			column="is_trusted_ip"
+			type="true_false"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="TrustedAction"
+			column="is_trusted_action"
+			type="true_false"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="AccessDate"
+			column="access_date"
+			type="date"
+			not-null="false"
+			length="12"
+		/>
+		<property
+			name="AccessTime"
+			column="access_time"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="Action"
+			column="action"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="Parameter"
+			column="parameter"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="ViewId"
+			column="view_id"
+			type="java.lang.Long"
+			not-null="false"
+		/>
+	</class>	
+</hibernate-mapping>

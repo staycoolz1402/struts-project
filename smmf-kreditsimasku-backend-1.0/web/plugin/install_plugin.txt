@@ -1,0 +1,21 @@
+The applet must be signed, to be allowed to access to files on the client side. The best way is to sign the applet 
+with a real way.
+  Here is an explanation on how to sign the with a 'test' certificate. You _must_ do that after each modification of 
+the jar package.
+    - Generate Private/Public key set.
+       keytool -genkey -alias "jupload" -validity 3600 -dname "CN=JUpload, OU=Testing/Demo, O=JUpload.SourceForge.net, L=SourceForge, S=SourceForge, C=SG"
+    - List key set.
+       keytool -list
+    - Sign the Applet with the private key.
+       jarsigner wjhk.jupload.jar jupload
+    - Verify the jar file have being sign properly.
+       jarsigner -verify wjhk.jupload.jar
+
+Another, interesting, way to sign the applet is provided by Martin Westin in this thread:
+https://sourceforge.net/forum/forum.php?thread_id=2991519&forum_id=199106
+
+
+keytool -genkey -alias "scanner" -validity 3600 -dname "CN=Scanner, OU=Testing/Demo, O=Scanner, L=SourceForge, S=SourceForge, C=SG"
+keytool -list
+jarsigner scanner.jar scanner
+jarsigner -verify scanner.jar

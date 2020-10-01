@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="View"
+		table="views"
+		batch-size="10000"
+	>
+	
+		<id
+			name="Id"
+			type="long"
+			column="view_id"
+		>
+		<generator class="sequence">
+				<param name="sequence">VIEWS_SEQ</param>
+			</generator>
+		</id>
+
+		<property
+			name="ViewName"
+			column="view_name"
+			type="string"
+			not-null="false"
+			length="255"
+		/>
+		<property
+			name="Link"
+			column="link"
+			type="string"
+			not-null="false"
+			length="255"
+		/>
+		<property
+			name="View"
+			column="is_view"
+			type="yes_no"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="TrustedAction"
+			column="is_trusted_action"
+			type="true_false"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+			length="255"
+		/>
+		
+		<many-to-one
+			name="Parent"
+			column="parent_id"
+			class="View"
+			not-null="false"
+			lazy="false"
+		/>
+
+		<set name="Views" inverse="true" lazy="false" batch-size="1000" >
+			<key column="parent_id"/>
+			<one-to-many class="View"/>
+		</set>
+		
+		<property
+			name="CreateBy"
+			column="create_by"
+			type="string"
+			not-null="false"
+			length="255"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="ChangeBy"
+			column="change_by"
+			type="string"
+			not-null="false"
+			length="255"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		
+		<property
+            name="ParentViewName" type="string"
+            formula="(select coalesce(vpp.view_name,'')||case when vpp.view_id is not null then ' :: ' else '' end||coalesce(vp.view_name,'')||case when vp.view_id is not null then ' :: ' else '' end ||v.view_name
+                        from views v
+                        left join views vp on vp.view_id = v.parent_id
+                        left join views vpp on vpp.view_id = vp.parent_id
+                        where v.view_id = view_id)"
+        />
+
+	</class>	
+</hibernate-mapping>

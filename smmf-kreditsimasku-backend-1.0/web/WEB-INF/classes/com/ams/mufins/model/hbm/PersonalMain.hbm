@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+  
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+	   	name="PersonalMain"
+		table="personal_main"
+		batch-size="100"
+	>
+	
+		<meta attribute="sync-DAO">true</meta>
+	
+		<id
+			name="Id"
+			
+			type="long"
+			column="personal_id"
+		>
+		<generator class="sequence">
+			<param name="sequence">PERSONAL_MAIN_SEQ</param>
+		</generator>
+		</id>
+		
+		<property
+			name="CustomerId"
+			column="customer_id"
+			type="long"
+			not-null="true"
+		
+		/>
+
+
+		<property 
+			name="FullName" 
+			column="full_name" 
+			type="string" 
+		/>
+
+		<property 
+			name="Gender" 
+			column="gender" 
+			type="string" 
+		/>
+
+		<property 
+			name="PlaceOfBirth" 
+			column="place_of_birth" 
+			type="string" 
+		/>
+
+		<property 
+			name="DateOfBirth" 
+			column="date_of_birth" 
+			type="date" 
+		/>
+
+		<property 
+			name="MotherMaidenName" 
+			column="mother_maiden_name" 
+			type="string" 
+		/>
+
+		<property 
+			name="MarriageStatusId" 
+			column="marriage_status_id" 
+			type="long" 
+		/>
+
+		<property 
+			name="EducationId" 
+			column="education_id" 
+			type="long" 
+		/>
+
+		<property 
+			name="IdNumber" 
+			column="id_number" 
+			type="string" 
+		/>
+
+		<property 
+			name="PhoneNumber" 
+			column="phone_number" 
+			type="string" 
+		/>
+
+		<property 
+			name="Handphone" 
+			column="handphone" 
+			type="string" 
+		/>
+
+		<property 
+			name="Address" 
+			column="address" 
+			type="string" 
+		/>
+
+		<property 
+			name="Rt" 
+			column="rt" 
+			type="string" 
+		/>
+
+		<property 
+			name="Rw" 
+			column="rw" 
+			type="string" 
+		/>
+
+		<property 
+			name="PostalCodeId" 
+			column="postal_code_id" 
+			type="long" 
+		/>
+
+		<property 
+			name="Province" 
+			column="province" 
+			type="string" 
+		/>
+
+		<property 
+			name="City" 
+			column="city" 
+			type="string" 
+		/>
+
+		<property 
+			name="Subdistrict" 
+			column="subdistrict" 
+			type="string" 
+		/>
+
+		<property 
+			name="Village" 
+			column="village" 
+			type="string" 
+		/>
+
+		<property 
+			name="PostalCode" 
+			column="postal_code" 
+			type="string" 
+		/>
+
+		<property 
+			name="LetterAddress" 
+			column="letter_address" 
+			type="string" 
+		/>
+
+		<property 
+			name="LetterRt" 
+			column="letter_rt" 
+			type="string" 
+		/>
+
+		<property 
+			name="LetterRw" 
+			column="letter_rw" 
+			type="string" 
+		/>
+
+		<property 
+			name="LetterPostalCodeId" 
+			column="letter_postal_code_id" 
+			type="long" 
+		/>
+
+		<property 
+			name="LetterProvince" 
+			column="letter_province" 
+			type="string" 
+		/>
+
+		<property 
+			name="LetterCity" 
+			column="letter_city" 
+			type="string" 
+		/>
+
+		<property 
+			name="LetterSubdistrict" 
+			column="letter_subdistrict" 
+			type="string" 
+		/>
+
+		<property 
+			name="LetterVillage" 
+			column="letter_village" 
+			type="string" 
+		/>
+
+		<property 
+			name="LetterPostalCode" 
+			column="letter_postal_code" 
+			type="string" 
+		/>
+
+		<property 
+			name="IssueDate" 
+			column="issue_date" 
+			type="date" 
+		/>
+
+		<property 
+			name="Email" 
+			column="email" 
+			type="string" 
+		/>
+
+		<property 
+			name="OwnershipId" 
+			column="ownership_id" 
+			type="long" 
+		/>
+		
+		<property
+			name="Version"
+			column="version"
+			type="java.lang.Integer"
+		/>
+		
+		<property 
+			name="CreateBy" 
+			column="create_by" 
+			type="string" 
+		/>
+
+		<property 
+			name="CreateOn" 
+			column="create_on" 
+			type="timestamp" 
+		/>
+
+		<property 
+			name="ChangeBy" 
+			column="change_by" 
+			type="string" 
+		/>
+
+		<property 
+			name="ChangeOn" 
+			column="change_on" 
+			type="timestamp" 
+		/>
+
+
+	</class>	
+</hibernate-mapping>

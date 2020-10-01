@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="LogSms"
+		table="log_sms"
+		batch-size="100"
+	>
+		<meta attribute="sync-DAO">true</meta>
+		<id
+			name="Id"
+			type="long"
+			column="log_sms_id"
+		>
+		<generator class="sequence">
+			<param name="sequence">LOG_SMS_SEQ</param>
+		</generator>
+		</id>
+		<property
+			name="PersonalDetailId"
+			column="personal_detail_id"
+			type="long"
+			not-null="true"
+		/>
+		<property
+			name="Name"
+			column="name"
+			type="string"
+		/>
+		<property
+			name="Phone"
+			column="phone"
+			type="string"
+		/>
+		<property
+			name="Content"
+			column="content"
+			type="string"
+		/>
+		<property
+			name="Time"
+			column="time"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="TypeId"
+			column="type_id"
+			type="long"
+			not-null="true"
+		/>
+		<property
+			name="CreateBy"
+			column="create_by"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="ChangeBy"
+			column="change_by"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+		/>
+	</class>	
+</hibernate-mapping>

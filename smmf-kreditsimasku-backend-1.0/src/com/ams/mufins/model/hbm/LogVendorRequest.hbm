@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="LogVendorRequest"
+		table="log_vendor_request"
+		batch-size="100"
+	>
+		
+		<meta attribute="sync-DAO">true</meta>
+	
+		<id
+			name="Id"
+			type="long"
+			column="log_vendor_request_id"
+		>
+		<generator class="sequence">
+			<param name="sequence">log_vendor_request_seq</param>
+		</generator>
+		</id>
+		<property
+			name="VendorId"
+			column="vendor_id"
+			type="long"
+			not-null="true"
+		/>
+		
+		<property
+			name="CustomerId"
+			column="customer_id"
+			type="long"
+			not-null="true"
+		/>
+		
+		<property
+			name="Request"
+			column="request"
+			type="string"
+		/>
+		
+		<property
+			name="Response"
+			column="response"
+			type="string"
+		/>
+		
+		<property
+			name="Status"
+			column="status"
+			type="string"
+		/>
+		
+		<property
+			name="SendOn"
+			column="send_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		
+		<property
+			name="ReplyOn"
+			column="reply_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		
+		<property
+			name="CreateBy"
+			column="create_by"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		
+		<property
+			name="ChangeBy"
+			column="change_by"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		
+	</class>	
+</hibernate-mapping>

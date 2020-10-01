@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ams.mufins.model">
+	<joined-subclass
+		name="OrganizationSetup"
+		table="organization_setup"
+		extends="Organization"
+		batch-size="10000"
+	> 
+		<key column="organization_id"/>
+		
+		<property
+			name="SetupDate"
+			column="setup_date"
+			type="date"
+			not-null="true"
+			length="10"
+		/>
+		<property
+			name="NumberOfDigit"
+			column="number_of_digit"
+			type="int"
+			not-null="true"
+			length="1"
+		/>
+		<property
+			name="SodLimit"
+			column="sod_limit"
+			type="int"
+			not-null="false"
+			length="20"
+		/>			
+		<property
+			name="defaultUserPassDuration"
+			column="default_user_pass_duration"
+			type="int"
+			not-null="false"
+			length="5"
+		/>
+		<property
+			name="userPassHistory"
+			column="user_pass_history"
+			type="int"
+			not-null="false"
+			length="5"
+		/>
+		<property
+			name="minUserPassLength"
+			column="min_user_pass_length"
+			type="int"
+			not-null="false"
+			length="5"
+		/>
+		<property
+			name="TimeoutAdmin"
+			column="timeout_admin"
+			type="int"
+			not-null="false"
+		/>
+		<property
+			name="TimeoutUser"
+			column="timeout_user"
+			type="int"
+			not-null="false"
+		/>
+		<property
+			name="TimeoutServer"
+			column="timeout_server"
+			type="int"
+			not-null="false"
+		/>
+		<property
+			name="MaximumLoginAttempt"
+			column="max_login_attempt"
+			type="int"
+			not-null="false"
+		/>
+	</joined-subclass>
+</hibernate-mapping>

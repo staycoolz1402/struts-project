@@ -1,0 +1,369 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+  
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="ApplicationOnline"
+		table="application_online"
+		batch-size="100"
+	>
+	
+		<meta attribute="sync-DAO">true</meta>
+	
+		<id
+			name="Id"
+			type="long"
+			column="application_online_id"
+		>
+		<generator class="sequence">
+			<param name="sequence">APPLICATION_ONLINE_SEQ</param>
+		</generator>
+		</id>
+		
+		<property
+			name="PersonalId"
+			column="personal_id"
+			type="long"
+			not-null="true"
+		/>
+		
+		<property
+			name="CoreApplicationId"
+			column="core_application_id"
+			type="long"
+		/>
+		
+		<property
+			name="ApplicationDate"
+			column="application_date"
+			type="date"
+		/>
+		
+		<property
+			name="Product"
+			column="product"
+			type="string"
+		/>
+		
+		<property
+			name="LeaseBack"
+			column="lease_back"
+			type="character"
+		/>
+		
+		<property
+			name="CustBranchId"
+			column="cust_branch_id"
+			type="long"
+		/>
+		
+		<property
+			name="VehicleMerkId"
+			column="vehicle_merk_id"
+			type="long"
+		/>
+		
+		<property
+			name="VehicleTypeId"
+			column="vehicle_type_id"
+			type="long"
+		/>
+		
+		<property
+			name="VehicleCollateralReferenceId"
+			column="vehicle_collateral_reference_id"
+			type="long"
+		/>
+		
+		<property
+			name="VehicleYear"
+			column="vehicle_year"
+			type="string"
+		/>
+		
+		<property
+			name="VehiclePrice"
+			column="vehicle_price"
+			type="double"
+		/>
+		
+		<property
+			name="VehicleDp"
+			column="vehicle_dp"
+			type="double"
+		/>
+		
+		<property
+			name="Tenor"
+			column="tenor"
+			type="long"
+		/>
+		
+		<property
+			name="PromoCode"
+			column="promo_code"
+			type="string"
+		/>
+		
+		<property
+			name="Category"
+			column="category"
+			type="string"
+		/>
+		
+		<property
+			name="PoliceNumber"
+			column="police_number"
+			type="string"
+		/>
+		
+		<property
+			name="MachineNumber"
+			column="machine_number"
+			type="string"
+		/>
+		
+		<property
+			name="ChassisNumber"
+			column="chassis_number"
+			type="string"
+		/>
+		
+		<property
+			name="BpkbNumber"
+			column="bpkb_number"
+			type="string"
+		/>
+		
+		<property
+			name="BpkbName"
+			column="bpkb_name"
+			type="string"
+		/>
+		
+		<property
+			name="BpkbDate"
+			column="bpkb_date"
+			type="date"
+		/>
+		
+		<property
+			name="StnkNumber"
+			column="stnk_number"
+			type="string"
+		/>
+		
+		<property
+			name="StnkName"
+			column="stnk_name"
+			type="string"
+		/>
+		
+		<property
+			name="StnkDate"
+			column="stnk_date"
+			type="date"
+		/>
+		
+		<property 
+			name="VehicleColour" 
+			column="vehicle_colour" 
+			type="string" 
+		/>
+		
+		<property 
+			name="IsSentPersonal" 
+			column="is_sent_personal" 
+			type="string" 
+		/>
+		
+		<property 
+			name="VehicleStatus" 
+			column="vehicle_status" 
+			type="string" 
+		/>
+		
+		<property 
+			name="InterestEffective" 
+			column="interest_effective" 
+			type="double" 
+		/>
+		
+		<property 
+			name="SurveyAmount" 
+			column="survey_amount" 
+			type="double" 
+		/>
+		
+		<property 
+			name="FiduciaAmount" 
+			column="fiducia_amount" 
+			type="double" 
+		/>
+		
+		<property 
+			name="FinanceAmount" 
+			column="finance_amount" 
+			type="double" 
+		/>
+		
+		<property 
+			name="Rental" 
+			column="rental" 
+			type="double" 
+		/>
+		
+		<property 
+			name="ProvisiAmount" 
+			column="provisi_amount" 
+			type="double" 
+		/>
+		
+		<property 
+			name="AdminAmount" 
+			column="admin_amount" 
+			type="double" 
+		/>
+		
+		<property 
+			name="LifeInsuranceAmount" 
+			column="life_insurance_amount" 
+			type="double" 
+		/>
+		
+		<property 
+			name="InsuranceType" 
+			column="insurance_type" 
+			type="string" 
+		/>
+		
+		<property 
+			name="InsuranceRegion" 
+			column="insurance_region" 
+			type="long" 
+		/>
+		
+		<property 
+			name="ReferalCode" 
+			column="referal_code" 
+			type="string" 
+		/>
+		
+		<property 
+			name="ReferalType" 
+			column="referal_type" 
+			type="string" 
+		/>
+		
+		<property 
+			name="AdminRefund" 
+			column="admin_refund" 
+			type="double" 
+		/>
+		
+		<property 
+			name="InterestRefund" 
+			column="interest_refund" 
+			type="double" 
+		/>
+		
+		<property 
+			name="InsuranceRefund" 
+			column="insurance_refund" 
+			type="double" 
+		/>
+		
+		<property 
+			name="TotalRefund" 
+			column="total_refund" 
+			type="double" 
+		/>
+		
+		<property 
+			name="InterestFlat" 
+			column="interest_flat" 
+			type="double" 
+		/>
+		
+		<property 
+			name="InsuranceRate" 
+			column="insurance_rate" 
+			type="double" 
+		/>
+		
+		<property 
+			name="InsuranceAmount" 
+			column="insurance_amount" 
+			type="double" 
+		/>
+		
+		<property 
+			name="PembayaranPertama" 
+			column="pembayaran_pertama" 
+			type="double" 
+		/>
+		
+		<property 
+			name="Status" 
+			column="status" 
+			type="string" 
+		/>
+		
+		<property 
+			name="StatusReason" 
+			column="status_reason" 
+			type="string" 
+		/>
+		
+		<property 
+			name="PullOn" 
+			column="pull_on" 
+			type="timestamp" 
+		/>
+		
+		<property
+			name="DealerId"
+			column="dealer_id"
+			type="long"
+		/>
+		
+		<property
+			name="SumberAplikasi"
+			column="sumber_aplikasi"
+			type="string"
+		/>
+		
+		<property
+			name="Version"
+			column="version"
+			type="java.lang.Integer"
+		/>
+		
+		<property 
+			name="CreateBy" 
+			column="create_by" 
+			type="string" 
+		/>
+		
+		<property 
+			name="CreateOn" 
+			column="create_on" 
+			type="timestamp" 
+		/>
+		
+		<property 
+			name="ChangeBy" 
+			column="change_by" 
+			type="string" 
+		/>
+		
+		<property 
+			name="ChangeOn" 
+			column="change_on" 
+			type="timestamp" 
+		/>
+		
+	</class>	
+</hibernate-mapping>

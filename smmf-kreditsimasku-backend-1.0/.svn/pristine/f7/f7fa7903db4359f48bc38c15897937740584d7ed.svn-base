@@ -1,0 +1,143 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% response.setHeader("Pragma", "No-cache");
+response.setDateHeader("Expires", 0);
+response.setHeader("Cache-Control", "no-cache");%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><bean:message key="page.index.title"/></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="<html:rewrite page="/js/simas.css"/>" rel="stylesheet" type="text/css">
+</head>
+
+<body style="margin:0px;" >
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_header.gif"/>); background-repeat:repeat-x; " height="94" valign="top" align="left">
+    
+    <!-- header start -->
+    
+<tiles:insert template='/common/header.jsp'/>
+    
+    <!-- header end -->
+    
+    </td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/list.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/bg_body.gif"/>); background-repeat:repeat-x; background-position:bottom; " height="627" bgcolor="#fbfdff" align="left" valign="top">
+    
+	<!-- content -->    
+      <table width="900" border="0" cellspacing="0" cellpadding="5" style="margin-left:10px; ">
+        <tr>
+	       <td align="left" class="text03" width="45%"><b><logic:present name="viewName"><bean:write name="viewName"/></logic:present></b></td>
+	      </tr>
+        <TR>
+          <TD align="middle" width="100%">
+          
+          <table width="95%" border="0" cellspacing="0" cellpadding="0" class="text04">
+			          <tr>
+			            <td width="1%"><html:img page="/images/round.gif"/></td>
+			            <td width="98%" class="smalltext" style="border-top:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td width="1%"><html:img page="/images/round1.gif"/></td>
+			          </tr>
+			          <tr>
+			            <td style="border-left:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td valign="top">
+			
+						  <!-- CONTENT START -->
+					      <table width="75%" border="0" cellspacing="2" cellpadding="0">
+					      	<tr valign="top"><td><html:errors/></td></tr>
+				    		<tr valign="top"><td>&nbsp;</td></tr>								        			
+						          <tr> 
+						            <td align="center"> 
+						              <table width="100%" border="0" cellspacing="1" cellpadding="0" class=abuabu>
+									
+									 <tr> 
+						                	<td width="30%" align="left"><bean:message key="page.nameMerchant.title"/></td>
+						                	<td width="5%">:</td>
+						                	<td width="65%" align="left"><logic:present name="merchantDetail" property="name"><bean:write name="merchantDetail" property="name" scope="request"/></logic:present></td>
+						                </tr>
+						               <tr> 
+						                	<td width="30%" align="left"><bean:message key="page.code.title"/></td>
+						                	<td width="5%">:</td>
+						                	<td width="65%" align="left"><logic:present name="merchantDetail" property="code"><bean:write name="merchantDetail" property="code" scope="request"/></logic:present></td>
+						                </tr>
+						                <tr> 
+						                	<td width="30%" align="left"><bean:message key="page.parentMerchantName.title"/></td>
+						                	<td width="5%">:</td>
+						                	<td width="65%" align="left"><logic:present name="merchantDetail" property="parentMerchant"><bean:write name="merchantDetail" property="parentMerchant" scope="request"/></logic:present></td>
+						                </tr>
+						                <tr> 
+						                	<td width="30%" align="left"><bean:message key="page.openingDate.title"/></td>
+						                	<td width="5%">:</td>
+						                	<td width="65%" align="left"><logic:present name="merchantDetail" property="formatedOpeningDate"><bean:write name="merchantDetail" property="formatedOpeningDate" scope="request"/></logic:present></td>
+						                </tr>
+						                <tr> 
+						                	<td width="30%" align="left"><bean:message key="page.closingDate.title"/></td>
+						                	<td width="5%">:</td>
+						                	<td width="65%" align="left"><logic:present name="merchantDetail" property="formatedOpeningDate"><bean:write name="merchantDetail" property="formatedClosingDate" scope="request"/></logic:present></td>
+						                </tr>
+						                <tr>
+											<td>&nbsp;</td>
+										</tr>
+									  <tr>
+										   <td>&nbsp;</td>
+									  </tr>			
+				    		   <td colspan="5" align="center">
+								<input class="button" type="button" name="back" onclick="javascript:confirm_back();" value="<bean:message key="back.link"/>"/>
+							  </td>
+				              </table> 	              
+				             
+				            </td>
+				          </tr>
+						          
+			        	</table> 
+							<!-- CONTENT END -->        
+      					</td>
+	  					<td  style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+					</tr>
+					
+					<tr>
+				        <td width="1%"><html:img page="/images/round3.gif"/></td>
+				       	<td class="smalltext" style="border-bottom:solid 1px #6b6b71; ">&nbsp;</td>
+				        <td width="1%"><html:img page="/images/round2.gif"/></td>
+				    </tr>
+			   </table>									
+		     </TD>
+	      </TR>
+        </TABLE>	
+     </td>
+   </tr>
+   <tr>
+         <td style="background-image:url(<html:rewrite page="/images/list1.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+   </tr>
+   <tr>
+	    <td style="background-image: url(<html:rewrite page="/images/bg_footer.gif"/>); background-repeat:repeat-x; " height="57" align="left" valign="top">
+	    
+	    <!-- footer start -->
+		<tiles:insert template='/common/footer.jsp'/>    
+	    <!-- footer end -->
+	    
+	    </td>
+    </tr>
+</table>
+</body>
+</html>
+
+<script type="text/javascript">
+function confirm_back() {
+	var valid=true;
+	if (valid) {
+		window.location.href=('<html:rewrite page="/merchant/list.do"/>');
+	}
+}
+</script>

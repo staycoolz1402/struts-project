@@ -1,0 +1,316 @@
+<% response.setHeader("Pragma", "No-cache");
+response.setDateHeader("Expires", 0);
+response.setHeader("Cache-Control", "no-cache");%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+<%
+	int sequence = 0;
+%>
+
+<%@ page import="com.ams.mufins.model.*, com.mpe.common.*" %>
+<% Users users = (Users)session.getAttribute(CommonConstants.USER); %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title><bean:message key="page.index.title"/></title>
+	<link href="<html:rewrite page="/js/simas.css"/>" rel="stylesheet" type="text/css">
+</head>
+
+<body style="margin:0px;" >
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_header.gif"/>); background-repeat:repeat-x; " height="94" valign="top" align="left">
+        <!-- header start -->
+    	<tiles:insert template='/common/header.jsp'/>
+        <!-- header end -->
+    </td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/list.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/bg_body.gif"/>); background-repeat:repeat-x; background-position:bottom; " height="627" bgcolor="#fbfdff" align="left" valign="top">
+		<logic:present name="warning" scope="request">
+			<tr>
+				<td align="center"><font size="6" color="red">
+				<bean:write name="warning"/>
+				</font></td> 
+			</tr>
+  		</logic:present>
+  	<logic:notPresent name="warning" scope="request">
+  		<!-- Content Start -->
+  			<html:form action="/consumerFinanceSetup/list" onsubmit="gowait(this);">
+  				<table width="900" border="0" cellspacing="0" cellpadding="5" style="margin-left:10px; margin-right:10px; ">
+  					
+  					<!-- Loading + Judul Halaman Start -->
+  					<tr>
+	       				<td align="left" class="text03" width="20%"><b><logic:present name="viewName"><bean:write name="viewName"/></logic:present></b></td>
+	       				<td align="left">         
+	     					<div  id="wait" style="visibility:hidden;">
+			  					<table width="100%" height="10px" border="0" valign="top"> 
+		       						<tr valign="top"><td align="center" valign="top"><b><i><bean:message key="pleaseWait"/></i></b></td></tr>
+		        					<tr valign="top">
+		           						<td align="center" valign="top">
+		             					<img src="<html:rewrite page="/images/progressbar.gif"/>" name="progressbar" id="progressbar">
+		          						</td>
+		        					</tr>
+		        				</table>
+							</div>
+						</td>
+	      			</tr>
+	      			<!-- Loading + Judul Halaman End -->
+	      			
+	      			<tr>
+          				<td align=left width="100%" colspan="2">
+          				  <div id="main">
+	      					<table width="100%" border="0" cellspacing="2" cellpadding="0" class="text04">
+	      						<tr valign="top"><td><html:errors/></td></tr>
+								<logic:messagesNotPresent>
+    								<tr valign="top"><td>&nbsp;</td></tr>
+									<html:hidden property="start"/>
+									<html:hidden property="count"/>
+									<html:hidden property="orderBy"/>
+									<html:hidden property="ascDesc"/>
+									<html:hidden property="subaction"/>
+									<html:hidden property="city"/>
+									<!-- Kotak Search Start -->
+    								<tr>
+	      								<td>
+											<table width="900" border="0" cellspacing="0" cellpadding="0">
+			          							<tr>
+										            <td width="1%"><html:img page="/images/round.gif"/></td>
+										            <td width="98%" class="smalltext" style="border-top:solid 1px #6b6b71; ">&nbsp;</td>
+										            <td width="1%"><html:img page="/images/round1.gif"/></td>
+			          							</tr>
+			          								<!-- Content Search Start -->
+			          								<tr>
+			            								<td style="border-left:solid 1px #6b6b71; ">&nbsp;</td>
+			            								<td valign="top">
+			                								<table width="100%">
+			                									
+    															
+									    						<tr>
+									    							<td>&nbsp;</td><td>&nbsp;</td><td align="left"><html:submit styleClass="Button" onclick="this.form.city.value='okerio';this.form.subaction.value='search';resetPage();"><bean:message key="search.link"/></html:submit></td>
+									    						</tr>
+    														</table>
+    													</td>
+														<td  style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+													</tr>
+			          								
+										        	<!-- Content Search ENd -->
+												<tr>
+										            <td width="1%"><html:img page="/images/round3.gif"/></td>
+										           	<td class="smalltext" style="border-bottom:solid 1px #6b6b71; ">&nbsp;</td>
+										            <td width="1%"><html:img page="/images/round2.gif"/></td>
+										         </tr>
+											</table>
+										</td>
+									</tr>
+									
+									<!-- Kotak Search End -->
+									
+									<tr><td>&nbsp;</td></tr>
+									
+									<!-- Main Start --> 
+									<tr>
+	      								<td>
+											<table width="900" border="0" cellspacing="0" cellpadding="0">
+			          							<tr>
+										            <td width="1%"><html:img page="/images/round.gif"/></td>
+										            <td width="98%" class="smalltext" style="border-top:solid 1px #6b6b71; ">&nbsp;</td>
+										            <td width="1%"><html:img page="/images/round1.gif"/></td>
+			          							</tr>
+			          							<!-- Content List Start -->
+			          							<tr>
+			            							<td style="border-left:solid 1px #6b6b71; ">&nbsp;</td>
+			            							<td valign="top">
+			                							<table width="100%">
+			                								<!-- Paging Start -->
+			                								<tr>
+												    			<td>
+												    				<table width="100%" class="text04">
+												    					<tr>
+												    						<td align="left"><bean:write name="PAGER" scope="request" filter="false"/></td>
+												    						<td align="center">Goto page : <html:text property="gotoPage" size="4" styleClass="textbox" onchange="gotoPager();"/>&nbsp;</td>
+												    						<td align="right"><bean:write name="PAGERITEM" scope="request" filter="false"/></td>
+												    					</tr>
+												    				</table>
+												    			</td>
+												    		</tr>
+												    		<!-- Paging End -->
+    														<!-- LIST -->
+    														<tr> 
+													            <td align="center"> 
+													              <table border="0" cellspacing=0 cellpadding=0 width="100%" class="text04">
+													                <tr align="center"> 
+													                  <td width="1%" align="right"><html:img page="/images/round_table.gif"/></td>
+													                  <td bgcolor="#1e272d">&nbsp;</td>
+													                  <td width="10%" nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding">&nbsp;</td>
+													                  <td width="1%" align="left"><html:img page="/images/round_table1.gif"/></td>
+													                </tr>
+													                <%
+																		int i = 0;
+																		try {
+																		i = Integer.parseInt(request.getParameter("start"));
+																		}catch(Exception ex){
+																		i = 0;
+																		}
+																	%>
+																	<logic:present name="consumerFinanceList">
+																	<logic:iterate id="consumerFinanceList" name="consumerFinanceList" type="com.ams.mufins.model.ConsumerFinanceSetup">
+																	<% 
+																		sequence++;
+																		String bgcolor = "#FFFFFF";
+																		if(sequence%2 == 0){
+																			bgcolor = "#f9f3da";
+																		}
+																	 %>
+																	 <tr bgcolor="<% out.print(bgcolor); %>">
+													                  <td NOWRAP align="left" class=" borderLeft padding"></td>
+													                  <td NOWRAP align="left" class=" borderLeft padding"><%=++i%>.</td>
+													                  <td NOWRAP align="left" class=" borderLeft padding">
+													                  <html:link page="/consumerFinanceSetup/detail.do" paramId="consumerFinanceSetupId" paramName="consumerFinanceList" paramProperty="id"><html:img page="/images/detail.gif" border="0" title="Detail"/></html:link>&nbsp;
+																	  <html:link page="/consumerFinanceSetup/edit.do"  paramId="consumerFinanceSetupId" paramName="consumerFinanceList" paramProperty="id"><html:img page="/images/edit.gif" border="0" title="Edit"/></html:link>
+													                  </td>
+													                  <td NOWRAP align="left" class=" borderLeft padding"></td>
+													                </tr>
+													                </logic:iterate>
+                               										 </logic:present>
+                               										 <tr>
+												                      <td width="1%" class="smalltext" align="right"><html:img page="/images/round_table2.gif"/></td>
+												                      <td bgcolor="#1e272d"></td>
+												                      <td bgcolor="#1e272d" class="borderLeft"></td>
+												                      <td width="1%" align="left"><html:img page="/images/round_table3.gif"/></td>
+												                    </tr>
+													              </table>
+													             </td>
+													         </tr>
+    														<!-- LIST END -->
+									    					<!-- Paging Start -->
+			                								<tr>
+												    			<td>
+												    				<table width="100%" class="text04">
+												    					<tr>
+												    						<td align="left"><bean:write name="PAGER" scope="request" filter="false"/></td>
+												    						<td align="center">Goto page : <html:text property="gotoPage2" size="4" styleClass="textbox" onchange="gotoPager2();"/>&nbsp;</td>
+												    						<td align="right"><bean:write name="PAGERITEM" scope="request" filter="false"/></td>
+												    					</tr>
+												    				</table>
+												    			</td>
+												    		</tr>
+												    		<!-- Paging End -->
+									    					<tr>
+									    						<td align="center">
+    															<input class="Button" type="button" name="create" onClick="window.location.href=('<html:rewrite page="/consumerFinanceSetup/create.do"/>');" value="<bean:message key="create.link"/>">
+    															</td>
+									    					</tr>
+    													</table>
+    												</td>
+													<td  style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+												</tr>
+			          							<!-- Content List End -->
+			          							<tr>
+										            <td width="1%"><html:img page="/images/round3.gif"/></td>
+										           	<td class="smalltext" style="border-bottom:solid 1px #6b6b71; ">&nbsp;</td>
+										            <td width="1%"><html:img page="/images/round2.gif"/></td>
+										         </tr>
+											</table>
+										</td>
+									</tr>									
+									<!-- Main End -->
+									
+    							</logic:messagesNotPresent>
+    						</table>
+    					  </div>
+    				   </td>
+    				</tr>
+  				</table>
+  			</html:form>
+  		<!-- Content End -->
+  	</logic:notPresent>
+    
+	</td>
+  </tr>
+  <tr>
+  	<td style="background-image:url(<html:rewrite page="/images/list1.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_footer.gif"/>); background-repeat:repeat-x; " height="57" align="left" valign="top">
+    <!-- footer start -->
+		<tiles:insert template='/common/footer.jsp'/>
+    <!-- footer end -->
+    </td>
+  </tr>
+</body>
+</html>
+
+<script language="javascript">
+function page(start,count) {
+	document.forms[0].gotoPage.value = '';
+	document.forms[0].gotoPage2.value = '';
+	document.forms[0].start.value = start;
+	document.forms[0].count.value = count;
+	document.forms[0].submit();
+};
+
+function gotoPager() {
+	if (document.forms[0].gotoPage.value >= 1) {
+		if (document.forms[0].count.value == '' || document.forms[0].count.value == 0) document.forms[0].count.value = 50; 
+		var a = (document.forms[0].gotoPage.value - 1) * document.forms[0].count.value;
+		document.forms[0].start.value = a;
+		document.forms[0].gotoPage2.value = document.forms[0].gotoPage.value;
+		document.forms[0].submit();
+	}
+};
+
+function gotoPager2() {
+	if (document.forms[0].gotoPage2.value >= 1) {
+		if (document.forms[0].count.value == '' || document.forms[0].count.value == 0) document.forms[0].count.value = 50; 
+		var a = (document.forms[0].gotoPage2.value - 1) * document.forms[0].count.value;
+		document.forms[0].start.value = a;
+		document.forms[0].gotoPage.value = document.forms[0].gotoPage2.value;
+		document.forms[0].submit();
+	}
+};
+
+function sort(orderBy) {
+	document.forms[0].orderBy.value = orderBy;
+	if (document.forms[0].ascDesc.value=='') {
+		document.forms[0].ascDesc.value='desc';
+	} else if (document.forms[0].ascDesc.value=='desc') {
+		document.forms[0].ascDesc.value='asc';
+	} else {
+		document.forms[0].ascDesc.value='desc';
+	}
+	document.forms[0].submit();
+};
+
+function resetPage() {
+	document.forms[0].gotoPage.value = '';
+	document.forms[0].gotoPage2.value = '';
+	document.forms[0].start.value = '';
+	document.forms[0].count.value = '';
+};
+</script>
+
+<script type="text/javascript">
+ function gowait(form) {
+ 	var t;
+ 	t = true;
+ 	//eval(t = validateRopForm(form));
+ 	if (t) {
+ 		document.getElementById("main").style.visibility="hidden";
+   document.getElementById("wait").style.visibility="visible";
+   window.setTimeout('showProgress()', 400);
+ 	}
+ }
+ function showProgress(){ 
+   var wg = document.getElementById("progressbar");
+   wg.src=wg.src;
+ }
+ 
+</script>

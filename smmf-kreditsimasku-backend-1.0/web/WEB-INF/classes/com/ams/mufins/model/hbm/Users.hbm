@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="Users"
+		table="users"
+		batch-size="1000"
+	>
+		
+		<id
+			name="Id"
+			type="long"
+			column="user_id"
+		>
+		<generator class="sequence">
+				<param name="sequence">USERS_SEQ</param>
+			</generator>
+		</id>
+		
+		<property
+			name="UserName"
+			column="user_name"
+			type="string"
+			not-null="true"
+			length="32"
+			unique="true"
+		/>
+		<property
+			name="UserPass"
+			column="user_pass"
+			type="string"
+			not-null="true"
+			length="64"
+		/>
+		<property
+			name="Active"
+			column="is_active"
+			type="true_false"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="Supervisor"
+			column="is_supervisor"
+			type="true_false"
+			not-null="false"
+			length="1"
+		/>
+		<property
+			name="Sso"
+			column="is_sso"
+			type="true_false"
+			not-null="false"
+			length="1"
+		/>
+		
+		<!--
+		<property
+			name="Login"
+			column="is_login"
+			type="true_false"
+			not-null="false"
+			length="1"
+		/>
+		-->
+		
+		<property
+			name="UserType"
+			column="user_type"
+			type="string"
+			not-null="false"
+			length="16"
+		/>
+		<property
+			name="Ip"
+			column="ip"
+			type="string"
+			not-null="false"
+			length="16"
+		/>
+		<property
+			name="Rsa"
+			column="rsa"
+			type="string"
+			not-null="false"
+			length="64"
+		/>
+		<property
+			name="Printer"
+			column="printer"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<!--buat data users-->
+		<property
+			name="Name"
+			column="name"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="Address"
+			column="address"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="City"
+			column="city"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="PhoneNumber"
+			column="phone_number"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="Handphone"
+			column="handphone"
+			type="string"
+			not-null="false"
+			length="32"
+		/>
+		<property
+			name="Email"
+			column="email"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="OrganizationId"
+			column="organization_id"
+			type="long"
+			not-null="true"
+		/>
+		<property
+			name="InsuranceVendorId"
+			column="insurance_vendor_id"
+			type="java.lang.Long"
+			not-null="false"			
+		/>
+		
+		<property
+			name="salesCategory"
+			column="sales_category"
+			type="string"
+			not-null="false"
+			length="30"
+		/>
+	
+		<property
+			name="LastLoginTime"
+			column="last_login_time"
+			type="timestamp"
+			not-null="false"
+		/>
+		
+		<property
+			name="EmployeeId"
+			column="employee_id"
+			type="java.lang.Long"
+			not-null="false"			
+		/>
+		
+		<many-to-one
+			name="Parent"
+			column="parent_id"
+			class="Users"
+			not-null="false"
+			lazy="false"
+		/>
+	
+		<set name="Roles" table="user_role" lazy="false" batch-size="100" order-by="role_id ASC" >
+			<key column="user_id"/>
+			<many-to-many column="role_id" class="Role"/>
+		</set>
+		
+		<property
+			name="CreateBy"
+			column="create_by"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="ChangeBy"
+			column="change_by"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="LoginAttemptCounter"
+			column="login_attempt_counter"
+			type="java.lang.Integer"
+			not-null="false"
+		/>
+
+	</class>	
+</hibernate-mapping>

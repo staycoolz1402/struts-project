@@ -1,0 +1,307 @@
+<%@ page contentType="text/html;charset=iso-8859-1" language="java" %>
+<% response.setHeader("Pragma", "No-cache");
+response.setDateHeader("Expires", 0);
+response.setHeader("Cache-Control", "no-cache");%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+<%@ page import="javax.servlet.http.HttpServletRequest" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title><bean:message key="page.index.title"/></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<link href="<html:rewrite page="/js/bb.css"/>" rel="stylesheet" type="text/css">
+	<style type="text/css">
+<!--
+.style1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #030a6c;
+	text-decoration:none;
+}
+.style1 a:link, .style1 a:visited, .style1 a:active {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #030a6c;
+	text-decoration:none;
+}
+.style1 a:hover{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #08a2ce;
+	text-decoration:underline;
+}
+
+-->
+    </style>
+</head>
+<body bgcolor="#e7e7e7" text="#000000" topmargin="0" leftmargin="0">
+
+	
+    
+<!-- content -->    
+      <logic:notPresent scope="session" name="user">
+      <TABLE height=50 cellSpacing=1 cellPadding=1 border=0 width="100%" valign="top">
+        
+        <TR>
+          <TD align=middle width="80%"> 
+            <html:form action="/logon" >
+						<TABLE cellSpacing=0 cellPadding=0 width="92%" valign="top" border=0 height="400">
+						  <TR valign="top">
+						    <TD><html:errors/>
+						    <% if(request.getParameter("error")!=null) { %>
+						    <%= request.getParameter("error")%>
+						    <% } %>
+						    </TD>
+						  </TR>
+						  						  
+						  <TR valign="top">
+						    <TD>
+						      <TABLE width="100%" border=0>
+						        <TR valign="top">
+						          <TD class="style1" align="left"><bean:message key="page.userName.title"/>&nbsp;:&nbsp;</TD></TR>
+						        <TR>
+						          <TD  align="left"><html:text property="userName" styleId="userName" styleClass="style1" size="20"/>
+						          </TD></TR>
+						        <TR>
+						          <TD class="style1" align="left"><bean:message key="page.userPass.title"/>&nbsp;:&nbsp;</TD></TR>
+						        <TR>
+						          <TD  align="left"><html:password property="userPass" size="20" styleClass="style1"/></TD></TR>
+						        <TR>
+						          <TD  align="left">&nbsp;<html:submit>LOGIN</html:submit>
+						          </TD>
+						        </TR>
+					     	  </TABLE>
+						    </TD>
+						  </TR>
+						</TABLE>
+			</html:form>
+            
+          </TD>
+        </TR>
+      </TABLE>
+
+</logic:notPresent>
+      <logic:present scope="session" name="user">
+      <TABLE height=50 cellSpacing=1 cellPadding=1 border=0 width="100%" valign="top">
+        <TR>
+          <TD align=middle width="100%"> 
+						<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0 height="100%">
+						  <TR valign="top">
+						    <TD>Welcome <b><bean:write name="user" property="userName"/></b>&nbsp;|&nbsp;<html:link page="/logoff.do"><b>Logoff</b></html:link><html:errors/>&nbsp;</TD>
+						  </TR>
+						  
+						  <tr>
+						  	<td>
+						  	
+						  		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+										<tr valign="top">
+											<td width="100%" align="left">
+												<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<!-- CF APPLICATION LIST -->
+													<logic:notEmpty name="roleGroupList">
+													<tr valign="top">			
+											            <td  align="center"><font  size="2"><b>CF APPLICATION LIST</b></font></td>
+						                            </tr>
+													<logic:iterate id="roleGroup" name="roleGroupList" type="com.ams.mufins.model.Lookup" offset="0" length="1">
+													<tr valign="top">
+														<td>
+															<table border="0" cellspacing=1 cellpadding=0 bgcolor="#cccccc" width="100%">
+																<tr align="center"> 
+																	<td class=titleField colspan="4"><!--<bean:write name="roleGroup" property="name" />--> CC3</td>
+																</tr>
+																<tr align="center"> 
+																	<td class=titleField><bean:message key="number"/></td>
+																	<td class=titleField>Date</td>
+																	<!-- <td class=titleField><bean:message key="personal" />&nbsp;/&nbsp;<bean:message key="corporate" /></td>
+																	 -->
+																	<td class=titleField><bean:message key="task" /></td>
+																</tr>
+																<logic:iterate id="cfApplicationReport" name="list_0" type="com.ams.mufins.model.CfApplicationReport">
+																<tr bgcolor="#FFFFFF" align="center"> 
+																	<td align="left">
+																		<html:link page="/cfApplication/process.do" paramId="cfApplicationId" paramName="cfApplicationReport" paramProperty="cfApplicationId">
+																		<bean:write name="cfApplicationReport" property="number" />
+																		</html:link>
+																	</td>
+																	<td align="left"><bean:write name="cfApplicationReport" property="formatedApplicationDate" /></td>
+																	<!-- <td align="left"><bean:write name="cfApplicationReport" property="personal" /><bean:write name="cfApplicationReport" property="corporate" /></td>
+																	 -->
+																	<td align="left"><bean:write name="cfApplicationReport" property="task" /></td>
+																</tr>
+																</logic:iterate>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td>&nbsp;</td>
+													</tr>
+													</logic:iterate>
+													<logic:iterate id="roleGroup" name="roleGroupList" type="com.ams.mufins.model.Lookup" offset="1" length="1">
+													<tr valign="top">
+														<td>
+															<table border="0" cellspacing=1 cellpadding=0 bgcolor="#cccccc" width="100%">
+																<tr align="center"> 
+																	<td class=titleField colspan="4"><bean:write name="roleGroup" property="name" /></td>
+																</tr>
+																<tr align="center"> 
+																	<td class=titleField><bean:message key="number"/></td>
+																	<td class=titleField><bean:message key="applicationDate" /></td>
+																	<!-- <td class=titleField><bean:message key="personal" />&nbsp;/&nbsp;<bean:message key="corporate" /></td>
+																	 -->
+																	<td class=titleField><bean:message key="task" /></td>
+																</tr>
+																<logic:iterate id="cfApplicationReport" name="list_1" type="com.ams.mufins.model.CfApplicationReport">
+																<tr bgcolor="#FFFFFF" align="center"> 
+																	<td align="left">
+																		<html:link page="/cfApplication/process.do" paramId="cfApplicationId" paramName="cfApplicationReport" paramProperty="cfApplicationId">
+																		<bean:write name="cfApplicationReport" property="number" />
+																		</html:link>
+																	</td>
+																	<td align="left"><bean:write name="cfApplicationReport" property="formatedApplicationDate" /></td>
+																	<!-- <td align="left"><bean:write name="cfApplicationReport" property="personal" /><bean:write name="cfApplicationReport" property="corporate" /></td>
+																	 -->
+																	<td align="left"><bean:write name="cfApplicationReport" property="task" /></td>
+																</tr>
+																</logic:iterate>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td>&nbsp;</td>
+													</tr>
+													</logic:iterate>
+													<logic:iterate id="roleGroup" name="roleGroupList" type="com.ams.mufins.model.Lookup" offset="2" length="1">
+													<tr valign="top">
+														<td>
+															<table border="0" cellspacing=1 cellpadding=0 bgcolor="#cccccc" width="100%">
+																<tr align="center"> 
+																	<td class=titleField colspan="4"><bean:write name="roleGroup" property="name" /></td>
+																</tr>
+																<tr align="center"> 
+																	<td class=titleField><bean:message key="number"/></td>
+																	<td class=titleField><bean:message key="applicationDate" /></td>
+																	<!-- <td class=titleField><bean:message key="personal" />&nbsp;/&nbsp;<bean:message key="corporate" /></td>
+																	 -->
+																	<td class=titleField><bean:message key="task" /></td>
+																</tr>
+																<logic:iterate id="cfApplicationReport" name="list_2" type="com.ams.mufins.model.CfApplicationReport">
+																<tr bgcolor="#FFFFFF" align="center"> 
+																	<td align="left">
+																		<html:link page="/cfApplication/process.do" paramId="cfApplicationId" paramName="cfApplicationReport" paramProperty="cfApplicationId">
+																		<bean:write name="cfApplicationReport" property="number" />
+																		</html:link>
+																	</td>
+																	<td align="left"><bean:write name="cfApplicationReport" property="formatedApplicationDate" /></td>
+																	<!-- <td align="left"><bean:write name="cfApplicationReport" property="personal" /><bean:write name="cfApplicationReport" property="corporate" /></td>
+																	-->
+																	<td align="left"><bean:write name="cfApplicationReport" property="task" /></td>
+																</tr>
+																</logic:iterate>
+															</table>
+														</td>
+													</tr>
+													
+													</logic:iterate>
+													<logic:iterate id="roleGroup" name="roleGroupList" type="com.ams.mufins.model.Lookup" offset="3" length="1">
+													<tr valign="top">
+														<td>
+															<table border="0" cellspacing=1 cellpadding=0 bgcolor="#cccccc" width="100%">
+																<tr align="center"> 
+																	<td class=titleField colspan="4"><bean:write name="roleGroup" property="name" /></td>
+																</tr>
+																<tr align="center"> 
+																	<td class=titleField><bean:message key="number"/></td>
+																	<td class=titleField><bean:message key="applicationDate" /></td>
+																	<!-- <td class=titleField><bean:message key="personal" />&nbsp;/&nbsp;<bean:message key="corporate" /></td>
+																	 -->
+																	<td class=titleField><bean:message key="task" /></td>
+																</tr>
+																<logic:iterate id="cfApplicationReport" name="list_3" type="com.ams.mufins.model.CfApplicationReport">
+																<tr bgcolor="#FFFFFF" align="center"> 
+																	<td align="left">
+																		<html:link page="/cfApplication/process.do" paramId="cfApplicationId" paramName="cfApplicationReport" paramProperty="cfApplicationId">
+																		<bean:write name="cfApplicationReport" property="number" />
+																		</html:link>
+																	</td>
+																	<td align="left"><bean:write name="cfApplicationReport" property="formatedApplicationDate" /></td>
+																	<!-- <td align="left"><bean:write name="cfApplicationReport" property="personal" /><bean:write name="cfApplicationReport" property="corporate" /></td>
+																	 -->
+																	<td align="left"><bean:write name="cfApplicationReport" property="task" /></td>
+																</tr>
+																</logic:iterate>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td>&nbsp;</td>
+													</tr>
+													
+													</logic:iterate>
+													
+													<!-- TERMINATION APPROVAL LIST -->
+													
+													 <logic:present name="viewTermination">
+													 <tr valign="top">			
+											            <td  align="center"><b>TERMINATION APPROVAL LIST</b></td>
+						                            </tr>
+													<tr valign="top">
+														<td>
+														<table border="0" cellspacing=1 cellpadding=2 bgcolor="#cccccc" width="100%">
+											                <tr align="center"> 
+											                  <td class=titleField><bean:message key="ppk"/></td>
+											                  <td class=titleField><bean:message key="terminationDate"/></td>
+											                </tr>
+											
+											          			<logic:present name="terminationList">
+										                <logic:iterate id="termination" name="terminationList" type="com.ams.mufins.model.TempModel">
+																	<tr bgcolor="#FFFFFF">
+									                					<td>
+									                					<a href="<html:rewrite page="/terminationApproval/detail.do"/>?terminationId=<bean:write name="termination" property="id" scope="page"/>&caller=home">
+								                                        		<html:img page="/images/detail.gif" border="0" title="Detail"/>
+							                                        	</a>
+									                					</td>
+									                					<td><bean:write name="termination" property="formatedDate1" scope="page"/></td>
+									                				</tr>
+											                </logic:iterate>
+											                </logic:present>
+										              </table>
+													
+													</logic:present>
+													
+													</logic:notEmpty>
+													<br>
+															<table>
+															<tr>
+																<td>
+																	<b><br>
+																  	<a href="<html:rewrite page="/logoff.do"/>" >
+																			Logoff
+																	</a>&nbsp;</b>
+																</td>
+															  </tr>  
+														  </table>
+												</table>
+											</td>
+											
+										</tr>
+							  </table>
+									
+						  	</td>
+						  </tr>
+						  
+						  
+						  						  
+						</TABLE>
+          </TD>
+        </TR>
+      </TABLE>
+      </logic:present>
+            
+<!-- end content-->   
+</BODY>
+</html>

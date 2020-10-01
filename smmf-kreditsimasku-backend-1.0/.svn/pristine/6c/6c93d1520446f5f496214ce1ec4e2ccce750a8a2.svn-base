@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="PersonalDetail"
+		table="personal_detail"
+		batch-size="100"
+	>
+		
+		<meta attribute="sync-DAO">true</meta>
+		<cache usage="read-only "/>
+		
+		<id
+			name="Id"
+			type="long"
+			column="personal_detail_id"
+		>
+			<generator class="sequence">
+				<param name="sequence">PERSONAL_DETAIL_SEQ</param>
+			</generator>
+		</id>
+		<property
+			name="PersonalId"
+			column="personal_id"
+			type="long"
+			not-null="true"
+		/>
+		<property
+			name="Phone"
+			column="phone"
+			type="string"
+			length="20"
+		/>
+		<property
+			name="DeviceId"
+			column="device_id"
+			type="string"
+		/>
+		<property
+			name="status"
+			column="status"
+			type="string"
+		/>
+		<property
+			name="ScoreKpiMonth"
+			column="score_kpi_month"
+			type="double"
+		/>
+		<property
+			name="ScoreKpiDay"
+			column="score_kpi_day"
+			type="double"
+		/>
+		<property
+			name="reason"
+			column="reason"
+			type="string"
+			length="255"
+		/>
+		<property
+			name="ScoreEngineOn"
+			column="score_engine_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="ScoreEngineEntry"
+			column="score_engine_entry"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="CreateBy"
+			column="create_by"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="ChangeBy"
+			column="change_by"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+		/>
+	</class>	
+</hibernate-mapping>

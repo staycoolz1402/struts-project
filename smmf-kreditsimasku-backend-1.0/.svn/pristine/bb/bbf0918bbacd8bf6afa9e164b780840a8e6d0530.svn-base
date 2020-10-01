@@ -1,0 +1,1841 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE form-validation PUBLIC
+          "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1.3//EN"
+          "http://jakarta.apache.org/commons/dtds/validator_1_1_3.dtd">
+
+<form-validation>
+
+<!--
+     This is a minimal Validator form file with a couple of examples.
+-->
+
+    <global>
+	    <constant>
+	      <constant-name>telephone</constant-name>
+	      <constant-value>^[\\+\\-]?[0-9]*.[0-9]*$</constant-value>
+	    </constant>
+	    <constant>
+	      <constant-name>postalCode</constant-name>
+	      <constant-value>^\d{5}\d*$</constant-value>
+	    </constant>
+    </global>
+
+	<formset>
+      <form name="refinanceBankForm">
+    	<field property="name" depends="required">
+        	<arg key="name"/>
+        </field>
+        <field property="city" depends="required">
+        	<arg key="city"/>
+        </field>
+        <field property="telephone" depends="required">
+        	<arg key="telephone"/>
+        </field>
+        <field property="numberOfDigit" depends="required,short">
+        	<arg key="numberOfDigit"/>
+        </field>
+        <field property="outstandingPercentage" depends="required,float,floatRange">
+        	<arg0 key="outstandingPercentage"/>
+        	<arg1 name="floatRange" key="${var:min}" resource="false"/>
+        	<arg2 name="floatRange" key="${var:max}" resource="false"/>
+        	<var>
+        		<var-name>min</var-name>
+        		<var-value>0</var-value>
+        	</var>
+        	<var>
+        		<var-name>max</var-name>
+        		<var-value>100</var-value>
+        	</var>
+        </field>
+      </form>
+
+            <form name="refinanceBankSetupForm">
+    	<field property="refinanceBankId" depends="required">
+        	<arg key="refinanceBank"/>
+        </field>
+        <field property="category" depends="required">
+        	<arg key="category"/>
+        </field>
+        <field property="script" depends="required">
+        	<arg key="script"/>
+        </field>
+      </form>
+
+      <form name="refinanceBatchAccountForm">
+    	<field property="refinanceBankId" depends="required">
+        	<arg key="refinanceBank"/>
+        </field>
+        <field property="batchCode" depends="required">
+        	<arg key="batchCode"/>
+        </field>
+        <field property="drawdownDate" depends="required,date">
+        	<arg key="drawdownDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+      </form>
+
+      <form name="refinanceInterestForm">
+    	<field property="refinanceBankId" depends="required">
+        	<arg key="refinanceBank"/>
+        </field>
+        <field property="minimumMonth" depends="required,short">
+        	<arg key="minimumMonth"/>
+        </field>
+        <field property="maximumMonth" depends="required,short">
+        	<arg key="maximumMonth"/>
+        </field>
+        <field property="interest" depends="required,float,floatRange">
+        	<arg0 key="interest"/>
+        	<arg1 name="floatRange" key="${var:min}" resource="false"/>
+        	<arg2 name="floatRange" key="${var:max}" resource="false"/>
+        	<var>
+        		<var-name>min</var-name>
+        		<var-value>0</var-value>
+        	</var>
+        	<var>
+        		<var-name>max</var-name>
+        		<var-value>100</var-value>
+        	</var>
+        </field>
+      </form>
+
+      <form name="preRefinanceForm">
+      	<field property="refinanceBankId" depends="required">
+        	<arg key="refinanceBank"/>
+        </field>
+    	<field property="fromCfApplicationDrawdownDate" depends="required,date">
+        	<arg key="fromCfApplicationDrawdownDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        <field property="toCfApplicationDrawdownDate" depends="required,date">
+        	<arg key="toCfApplicationDrawdownDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        <field property="refinanceDrawdownDate" depends="required,date">
+        	<arg key="refinanceDrawdownDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        <field property="percentage" depends="required,float,floatRange">
+        	<arg0 key="outstandingPercentage"/>
+        	<arg1 name="floatRange" key="${var:min}" resource="false"/>
+        	<arg2 name="floatRange" key="${var:max}" resource="false"/>
+        	<var>
+        		<var-name>min</var-name>
+        		<var-value>0.01</var-value>
+        	</var>
+        	<var>
+        		<var-name>max</var-name>
+        		<var-value>100.00</var-value>
+        	</var>
+        </field>
+      </form>
+
+      <form name="refinanceRentalForm">
+        <field property="branchId" depends="required">
+        	<arg key="branch"/>
+        </field>
+      	<field property="refinanceBankId" depends="required">
+        	<arg key="refinanceBank"/>
+        </field>
+        <field property="refinanceBatchAccountId" depends="required">
+        	<arg key="refinanceBatchAccount"/>
+        </field>
+    	<field property="drawdownDate" depends="required">
+        	<arg key="drawdownDate"/>
+        </field>
+		<field property="bankAccountId" depends="required">
+        	<arg key="bankAccount"/>
+        </field>
+        <field property="provisiInterest" depends="required,float,floatRange">
+        	<arg key="provisiInterest"/>
+        	<arg1 name="floatRange" key="${var:min}" resource="false"/>
+        	<arg2 name="floatRange" key="${var:max}" resource="false"/>
+        	<var>
+        		<var-name>min</var-name>
+        		<var-value>0</var-value>
+        	</var>
+        	<var>
+        		<var-name>max</var-name>
+        		<var-value>100</var-value>
+        	</var>
+        </field>
+      </form>
+
+      <form name="refinanceRentalViewReportForm">
+        <field property="branchId" depends="required">
+        	<arg key="branch"/>
+        </field>
+      	<field property="refinanceBankId" depends="required">
+        	<arg key="refinanceBank"/>
+        </field>
+        <field property="cfApplicationId" depends="required">
+        	<arg key="cfApplication"/>
+        </field>
+      </form>
+
+      <form name="refinanceRentalDailyReportForm">
+        <field property="branchId" depends="required">
+        	<arg key="branch"/>
+        </field>
+      	<field property="refinanceBankId" depends="required">
+        	<arg key="refinanceBank"/>
+        </field>
+        <field property="cfApplicationId" depends="required">
+        	<arg key="cfApplication"/>
+        </field>
+      </form>
+
+      <form name="refinancePaymentDailyReportForm">
+        <field property="paymentDate" depends="required,date">
+        	<arg key="paymentDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        <field property="lookupId" depends="required">
+        	<arg key="paymentMethod"/>
+        </field>
+        <field property="bankAccountId" depends="required">
+        	<arg key="bankAccount"/>
+        </field>
+      </form>
+
+      <form name="refinanceReportDailyForm">
+        <field property="paymentDate" depends="required,date">
+        	<arg key="paymentDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        <field property="lookupId" depends="required">
+        	<arg key="paymentMethod"/>
+        </field>
+        <field property="bankAccountId" depends="required">
+        	<arg key="bankAccount"/>
+        </field>
+      </form>
+
+      <form name="refinancePaymentForm">
+      	<field property="branchId" depends="required">
+        	<arg key="branch"/>
+        </field>
+      	<field property="refinanceBankId" depends="required">
+        	<arg key="refinanceBank"/>
+        </field>
+    	<field property="periode" depends="required">
+        	<arg key="periode"/>
+        </field>
+        <field property="paymentDate" depends="required">
+        	<arg key="paymentDate"/>
+        </field>
+        <field property="principle" depends="required,float">
+        	<arg key="principle"/>
+        </field>
+        <field property="interest" depends="required,float">
+        	<arg key="interest"/>
+        </field>
+        <field property="payment" depends="required,float">
+        	<arg key="payment"/>
+        </field>
+         <field property="lookupId" depends="required">
+        	<arg key="paymentMethod"/>
+        </field>
+      </form>
+
+       <form name="refinanceTerminationForm">
+        <field property="branchId" depends="required">
+        	<arg key="branch"/>
+        </field>
+      	<field property="refinanceBankId" depends="required">
+        	<arg key="refinanceBank"/>
+        </field>
+      </form>
+
+      <form name="refinanceReportForm">
+      	<field property="refinanceBankId" depends="required">
+        	<arg key="refinanceBank"/>
+        </field>
+        <field property="date" depends="required,date">
+        	<arg key="date"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+      </form>
+
+    	<form name="userForm">
+    		<field property="userName" depends="required,minlength">
+        	<arg key="page.userName.title"/>
+        	<arg name="minlength" key="${var:minlength}" resource="false" position="1"/>
+	        <var>
+	          <var-name>minlength</var-name>
+	          <var-value>5</var-value>
+	        </var>
+        </field>
+        <field property="userPass" depends="required,minlength">
+        	<arg key="page.userPass.title"/>
+        	<arg name="minlength" key="${var:minlength}" resource="false" position="1"/>
+        	<var>
+	          <var-name>minlength</var-name>
+	          <var-value>5</var-value>
+	        </var>
+        </field>
+        <field property="roleId" depends="required">
+        	<arg key="page.role.title"/>
+        </field>
+        <field property="organizationId" depends="required">
+        	<arg key="page.organization.title"/>
+        </field>
+      </form>
+
+      <form name="roleForm">
+    		<field property="name" depends="required">
+        	<arg key="page.name.title"/>
+        </field>
+      </form>
+      <form name="viewForm">
+    		<field property="name" depends="required">
+        	<arg key="page.name.title"/>
+        </field>
+      </form>
+      <form name="departmentForm">
+    		<field property="name" depends="required">
+        	<arg key="page.name.title"/>
+        </field>
+      </form>
+      <form name="shipForm">
+        <field property="code" depends="required">
+        	<arg key="page.code.title"/>
+        </field>
+        <field property="name" depends="required">
+        	<arg key="page.name.title"/>
+        </field>
+        <field property="status" depends="required">
+        	<arg key="page.status.title"/>
+        </field>
+      </form>
+      <form name="chartGroupForm">
+        <field property="groups" depends="required">
+        	<arg key="page.groups.title"/>
+        </field>
+        <field property="name" depends="required">
+        	<arg key="page.name.title"/>
+        </field>
+      </form>
+      <form name="chartOfAccountForm">
+        <!--<field property="type" depends="required">
+        	<arg key="page.type.title"/>
+        </field>-->
+
+         <field property="number" depends="required,maxlength">
+        	<arg key="page.number.title"/>
+        	<arg name="maxlength" key="8" resource="false" position="1"/>
+        	<var>
+	          <var-name>maxlength</var-name>
+	          <var-value>8</var-value>
+	        </var>
+        </field>
+        <field property="name" depends="required">
+        	<arg key="page.name.title"/>
+        </field>
+         <field property="level" depends="required">
+        	<arg key="page.level.title"/>
+        </field>
+      </form>
+
+      <form name="firstBalanceForm">
+      	<field property="chartOfAccountId" depends="required">
+      		<arg key="page.chartOfAccount.title"/>
+      	</field>
+      	<field property="amount" depends="required,double">
+      		<arg key="page.amount.title"/>
+      	</field>
+      </form>
+
+      <form name="journalTypeForm">
+        <field property="code" depends="required">
+        	<arg key="page.code.title"/>
+        </field>
+        <field property="name" depends="required">
+        	<arg key="page.name.title"/>
+        </field>
+      </form>
+      <form name="journalForm">
+        <field property="journalDate" depends="required,date">
+        	<arg key="page.journalDate.title"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        <field property="journalTypeId" depends="required">
+        	<arg key="page.journalType.title"/>
+        </field>
+          <field property="reference" depends="required">
+        	<arg key="page.reference.title"/>
+        </field>
+        <field property="description" depends="required">
+        	<arg key="page.description.title"/>
+        </field>
+      </form>
+
+      <form name="currencyExchangeRateTypeForm">
+				<field property="name" depends="required">
+					<arg key="page.name.title"/>
+				</field>
+      </form>
+
+      <form name="bankForm">
+        <field property="name" depends="required">
+        	<arg key="page.name.title"/>
+        </field>
+        <field property="email" depends="email">
+				 	<arg key="page.email.title"/>
+        </field>
+        <field property="postalCode" depends="integer">
+				   <arg key="postalCode"/>
+        </field>
+         <field property="address" depends="required">
+				   <arg key="address"/>
+        </field>
+      </form>
+      <form name="bankAccountForm">
+        <field property="name" depends="required">
+        	<arg key="page.ownerName.title"/>
+        </field>
+        <field property="number" depends="required">
+        	<arg key="page.number.title"/>
+        </field>
+        <field property="currencyId" depends="required">
+        	<arg key="page.currency.title"/>
+        </field>
+        <field property="chartOfAccountId" depends="required">
+        	<arg key="page.chartOfAccount.title"/>
+        </field>
+      </form>
+
+      <form name="bankTransactionForm">
+        <field property="transactionDate" depends="required,date">
+        	<arg key="page.transactionDate.title"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        <field property="currencyId" depends="required">
+        	<arg key="page.currency.title"/>
+        </field>
+        <field property="amount" depends="required,double">
+        	<arg key="page.amount.title"/>
+        </field>
+        <field property="fromTo" depends="required">
+        	<arg key="page.fromTo.title"/>
+        </field>
+        <field property="bankAccountId" depends="required">
+        	<arg key="page.bankAccount.title"/>
+        </field>
+        <field property="costGroupId" depends="required">
+        	<arg key="page.costGroup.title"/>
+        </field>
+      </form>
+
+      <form name="bankReconcileForm">
+      	<field property="reconcileDate" depends="required,date">
+					<arg key="page.reconcileDate.title"/>
+					<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+      	<field property="beginningBalance" depends="required,double">
+					<arg key="page.beginningBalance.title"/>
+        </field>
+
+      </form>
+
+      <form name="statusForm">
+        <field property="type" depends="required">
+        	<arg key="type"/>
+        </field>
+        <field property="code" depends="required">
+        	<arg key="code"/>
+        </field>
+        <field property="name" depends="required">
+        	<arg key="name"/>
+        </field>
+
+      </form>
+      <form name="lookupForm">
+        <field property="category" depends="required">
+        	<arg key="category"/>
+        </field>
+        <field property="code" depends="required">
+        	<arg key="code"/>
+        </field>
+        <field property="shortName" depends="required">
+        	<arg key="shortName"/>
+        </field>
+        <field property="name" depends="required">
+        	<arg key="name"/>
+        </field>
+
+      </form>
+      <form name="insuranceVendorForm">
+        <field property="name" depends="required">
+        	<arg key="name"/>
+        </field>
+        <field property="city" depends="required">
+        	<arg key="city"/>
+        </field>
+        <field property="postalCode" depends="required">
+        	<arg key="postalCode"/>
+        </field>
+        <field property="telephone" depends="required">
+        	<arg key="telephone"/>
+        </field>
+        <field property="fax" depends="required">
+        	<arg key="fax"/>
+        </field>
+        <field property="email" depends="required">
+        	<arg key="email"/>
+        </field>
+
+      </form>
+      <form name="insuranceRefundProcentSetupForm">
+        <field property="fromOtr" depends="required,float">
+        	<arg key="fromOtr"/>
+        </field>
+        <field property="toOtr" depends="required,float">
+        	<arg key="toOtr"/>
+        </field>
+        <field property="amount" depends="required,float,floatRange">
+        	<arg key="amount"/>
+        	<arg1 name="floatRange" key="${var:min}" resource="false"/>
+        	<arg2 name="floatRange" key="${var:max}" resource="false"/>
+        	<var>
+        		<var-name>min</var-name>
+        		<var-value>0</var-value>
+        	</var>
+        	<var>
+        		<var-name>max</var-name>
+        		<var-value>100</var-value>
+        	</var>
+        </field>
+        <field property="insuranceRefundTypeId" depends="required">
+        	<arg key="insuranceRefundType"/>
+        </field>
+      </form>
+      <form name="dealerForm">
+        <field property="name" depends="required">
+        	<arg key="name"/>
+        </field>
+        <field property="city" depends="required">
+        	<arg key="city"/>
+        </field>
+        <field property="postalCode" depends="required">
+        	<arg key="postalCode"/>
+        </field>
+        <field property="telephone" depends="required">
+        	<arg key="telephone"/>
+        </field>
+        <!--<field property="fax" depends="required">
+        	<arg key="fax"/>
+        </field>
+        <field property="email" depends="required">
+        	<arg key="email"/>
+        </field>-->
+
+      </form>
+      <form name="branchForm">
+        <field property="name" depends="required">
+        	<arg key="name"/>
+        </field>
+        <field property="city" depends="required">
+        	<arg key="city"/>
+        </field>
+        <field property="postalCode" depends="required">
+        	<arg key="postalCode"/>
+        </field>
+        <field property="telephone" depends="required">
+        	<arg key="telephone"/>
+        </field>
+        <field property="fax" depends="required">
+        	<arg key="fax"/>
+        </field>
+        <field property="email" depends="required">
+        	<arg key="email"/>
+        </field>
+        <field property="ddCode" depends="required">
+        	<arg key="ddCode"/>
+        </field>
+        <field property="polisCode" depends="required">
+        	<arg key="polisCode"/>
+        </field>
+        <field property="approvelLevel1" depends="required,double">
+        	<arg key="approvelLevel1"/>
+        </field>
+        <field property="approvelLevel2" depends="required,double">
+        	<arg key="approvelLevel2"/>
+        </field>
+        <field property="sinarMasEmail" depends="required">
+        	<arg key="sinarMasEmail"/>
+        </field>
+        <field property="depkeuLokCode" depends="required">
+        	<arg key="depkeuLokCode"/>
+        </field>
+        <field property="branchClassId" depends="required">
+        	<arg key="branchClass"/>
+        </field>
+
+      </form>
+      <form name="degreeForm">
+        <field property="code" depends="required">
+        	<arg key="code"/>
+        </field>
+        <field property="name" depends="required">
+        	<arg key="name"/>
+        </field>
+      </form>
+
+      <form name="commisionSchemaForm">
+        <field property="name" depends="required,mask">
+        	<arg key="name"/>
+        	<var>
+						<var-name>mask</var-name>
+						<var-value>^[a-zA-Z][a-zA-Z.,' ]*$</var-value>
+        	</var>
+        </field>
+        <field property="branchClass" depends="required">
+					<arg key="branchClass"/>
+        </field>
+        <field property="cfApplicationFrom" depends="required,integer">
+					<arg key="cfApplicationFrom"/>
+        </field>
+        <field property="cfApplicationTo" depends="required,integer">
+					<arg key="cfApplicationTo"/>
+        </field>
+        <field property="incentiveAmount" depends="double">
+					<arg key="incentiveAmount"/>
+        </field>
+        <field property="additionalIncentiveAmount" depends="double">
+					<arg key="additionalIncentiveAmount"/>
+        </field>
+        <field property="minimumAverageAmount" depends="double">
+					<arg key="minimumAverageAmount"/>
+        </field>
+        <field property="incentiveReduction" depends="double">
+					<arg key="incentiveReduction"/>
+        </field>
+      </form>
+
+      <form name="workflowForm">
+        <field property="code" depends="required">
+        	<arg key="code"/>
+        </field>
+        <field property="name" depends="required">
+        	<arg key="name"/>
+        </field>
+
+      </form>
+      <form name="processForm">
+        <field property="name" depends="required">
+        	<arg key="name"/>
+        </field>
+
+      </form>
+      <form name="routingForm">
+        <field property="name" depends="required">
+        	<arg key="name"/>
+        </field>
+
+      </form>
+      <form name="personalForm">
+        <field property="fullName" depends="required,mask">
+					<msg name="mask" key="errors.name"/>
+        	<arg key="fullName"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^[a-zA-Z][a-zA-Z ]*$</var-value>
+        	</var>
+        </field>
+        <!--<field property="preferredName" depends="required,mask">
+        	<msg name="mask" key="preferredName"/>
+        	<arg key="preferredName"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^[a-zA-Z][a-zA-Z.' ]*$</var-value>
+        	</var>
+        </field>
+        <field property="formerName" depends="mask">
+        	<msg name="mask" key="formerName"/>
+        	<arg key="formerName"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^[a-zA-Z][a-zA-Z.' ]*$</var-value>
+        	</var>
+        </field>-->
+        <field property="placeOfBirth" depends="required">
+        	<arg key="placeOfBirth"/>
+        </field>
+        
+        <field property="dateOfBirth" depends="required,date">
+        	<arg key="dateOfBirth"/>
+        	<var>
+						<var-name>datePatternStrict</var-name>
+						<var-value>dd/MM/yyyy</var-value>
+					</var>
+        </field>
+        <field property="motherMaidenName" depends="required,mask">
+        	<msg name="mask" key="errors.name"/>
+        	<arg key="motherMaidenName"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^[a-zA-Z][a-zA-Z ]*$</var-value>
+        	</var>
+        </field>
+        <!--<field property="personalOpeningDate" depends="required,date">
+        	<arg key="personalOpeningDate"/>
+        	<var>
+						<var-name>datePatternStrict</var-name>
+						<var-value>dd/MM/yyyy</var-value>
+					</var>
+        </field>-->
+        <field property="idNumber" depends="required">
+        	<arg key="idNumber"/>
+        </field>
+        <field property="idExpiredDate" depends="required,date">
+        	<arg key="idExpiredDate"/>
+        	<var>
+						<var-name>datePatternStrict</var-name>
+						<var-value>dd/MM/yyyy</var-value>
+					</var>
+        </field>
+        <field property="numberOfDependent" depends="required,integer">
+        	<arg key="numberOfDependent"/>
+        </field>
+        <field property="spouseFullName" depends="mask">
+        	<msg name="mask" key="errors.name"/>
+        	<arg key="spouseFullName"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^[a-zA-Z][a-zA-Z ]*$</var-value>
+        	</var>
+        </field>
+        <field property="spouseCompanyName" depends="mask">
+        	<msg name="mask" key="errors.companyname"/>
+        	<arg key="spouseCompanyName"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^[a-zA-Z][a-zA-Z0-9.,'/ ]*$</var-value>
+        	</var>
+        </field>
+        <field property="spouseDateOfBirth" depends="date">
+        	<arg key="spouseDateOfBirth"/>
+        	<var>
+						<var-name>datePatternStrict</var-name>
+						<var-value>dd/MM/yyyy</var-value>
+					</var>
+        </field>
+        <field property="spouseCompanyRt" depends="integer">
+        	<arg key="spouseCompanyRt"/>
+        </field>
+        <field property="spouseCompanyRw" depends="integer">
+        	<arg key="spouseCompanyRw"/>
+        </field>
+        <field property="spouseCompanyPostalCode" depends="integer">
+        	<arg key="spouseCompanyPostalCode"/>
+        </field>
+        <field property="spouseJobLength" depends="integer">
+        	<arg key="spouseJobLength"/>
+        </field>
+        <field property="address1" depends="required">
+        	<arg key="address1"/>
+        </field>
+        <field property="rt" depends="required">
+        	<arg key="rt"/>
+        </field>
+        <field property="rw" depends="required">
+        	<arg key="rw"/>
+        </field>
+        <field property="kelurahan" depends="required">
+        	<arg key="kelurahan"/>
+        </field>
+        <field property="kecamatan" depends="required">
+        	<arg key="kecamatan"/>
+        </field>
+        <field property="city" depends="required">
+        	<arg key="city"/>
+        </field>
+        <field property="postalCode" depends="required,integer">
+        	<arg key="postalCode"/>
+        </field>
+        <field property="phoneNumber1" depends="mask">
+        	<arg key="phoneNumber1"/>
+        	<msg name="mask" key="error.invalid.phonenumber"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^(0)[0-9]{2,3}(-)[0-9]{5,8}$</var-value>
+        	</var>
+        </field>
+        <field property="phoneNumber2" depends="mask">
+        	<arg key="phoneNumber2"/>
+        	<msg name="mask" key="error.invalid.phonenumber"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^(0)[0-9]{2,3}(-)[0-9]{5,8}$</var-value>
+        	</var>
+        </field>
+        <field property="handphone1" depends="mask">
+            <msg name="mask" key="error.invalid.handphone"/>
+            <arg key="handphone1"/>
+            <var>
+                <var-name>mask</var-name>
+ 				<var-value>^(0)(8)[0-9]{2}(-)[0-9]{6,9}$</var-value>
+            </var>
+        </field> 	
+        <field property="handphone2" depends="mask">
+            <msg name="mask" key="error.invalid.handphone"/>
+            <arg key="handphone2"/>
+            <var>
+                <var-name>mask</var-name>
+ 				<var-value>^(0)(8)[0-9]{2}(-)[0-9]{6,9}$</var-value>
+            </var>
+        </field> 	
+        <field property="email" depends="email">
+        	<arg key="email"/>
+        </field>
+        <field property="letterAddress1" depends="required">
+        	<arg key="letterAddress1"/>
+        </field>
+        <field property="letterRt" depends="required">
+        	<arg key="letterRt"/>
+        </field>
+        <field property="letterRw" depends="required">
+        	<arg key="letterRw"/>
+        </field>
+        <field property="letterKelurahan" depends="required">
+        	<arg key="letterKelurahan"/>
+        </field>
+        <field property="letterKecamatan" depends="required">
+        	<arg key="letterKecamatan"/>
+        </field>
+        <field property="letterCity" depends="required">
+        	<arg key="letterCity"/>
+        </field>
+        <field property="letterPostalCode" depends="required,integer">
+        	<arg key="letterPostalCode"/>
+        </field>
+        <field property="spouseCompanyPhoneNumber1" depends="mask">
+        	<arg key="spouseCompanyPhoneNumber1"/>
+        	<msg name="mask" key="error.invalid.phonenumber"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^(0)[0-9]{2,3}(-)[0-9]{5,8}$</var-value>
+        	</var>
+        </field>
+        <field property="spouseCompanyPhoneNumber2" depends="mask">
+        	<arg key="spouseCompanyPhoneNumber1"/>
+        	<msg name="mask" key="error.invalid.phonenumber"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^(0)[0-9]{2,3}(-)[0-9]{5,8}$</var-value>
+        	</var>
+        </field>
+        <field property="spouseHandphone1" depends="mask">
+            <msg name="mask" key="error.invalid.handphone"/>
+            <arg key="spouseHandphone1"/>
+            <var>
+                <var-name>mask</var-name>
+ 				<var-value>^(0)(8)[0-9]{2}(-)[0-9]{6,9}$</var-value>
+            </var>
+        </field> 
+        <field property="spouseHandphone2" depends="mask">
+            <msg name="mask" key="error.invalid.handphone"/>
+            <arg key="spouseHandphone2"/>
+            <var>
+                <var-name>mask</var-name>
+ 				<var-value>^(0)(8)[0-9]{2}(-)[0-9]{6,9}$</var-value>
+            </var>
+        </field> 	
+        <field property="companyName" depends="required,mask">
+        	<msg name="mask" key="errors.companyname"/>
+        	<arg key="companyName"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^[a-zA-Z][a-zA-Z0-9.,'/ ]*$</var-value>
+        	</var>
+        </field>
+        <field property="companyAddress1" depends="required">
+        	<arg key="companyAddress1"/>
+        </field>
+        <field property="companyRt" depends="required,integer">
+        	<arg key="companyRt"/>
+        </field>
+        <field property="companyRw" depends="required,integer">
+        	<arg key="companyRw"/>
+        </field>
+        <field property="companyKelurahan" depends="required">
+        	<arg key="companyKelurahan"/>
+        </field>
+        <field property="companyKecamatan" depends="required">
+        	<arg key="companyKecamatan"/>
+        </field>
+        <field property="companyCity" depends="required">
+        	<arg key="companyCity"/>
+        </field>
+        <field property="companyPostalCode" depends="required,integer">
+        	<arg key="companyPostalCode"/>
+        </field>
+        <field property="companyPhoneNumber1" depends="required,mask">
+        	<arg key="companyPhoneNumber1"/>
+        	<msg name="mask" key="error.invalid.phonenumberhandphone"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^(0)[0-9]{2,3}(-)[0-9]{5,9}$</var-value>
+        	</var>
+        </field>
+        <field property="companyPhoneNumber2" depends="mask">
+        	<arg key="companyPhoneNumber2"/>
+        	<msg name="mask" key="error.invalid.phonenumber"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^(0)[0-9]{2,3}(-)[0-9]{5,8}$</var-value>
+        	</var>
+        </field>
+        <field property="companyPhoneExt1" depends="required,integer">
+        	<arg key="companyPhoneExt1"/>
+        </field>
+        <field property="companyPhoneExt2" depends="integer">
+        	<arg key="companyPhoneExt2"/>
+        </field>
+        <field property="jobRank" depends="required">
+        	<arg key="jobRank"/>
+        </field>
+        <field property="jobLength" depends="required,integer">
+        	<arg key="jobLength"/>
+        </field>
+        <!--<field property="documentNumber" depends="required">
+        	<arg key="documentNumber"/>
+        </field>
+        <field property="documentExpiredDate" depends="required,date">
+        	<arg key="documentExpiredDate"/>
+        	<var>
+						<var-name>datePatternStrict</var-name>
+						<var-value>dd/MM/yyyy</var-value>
+					</var>
+        </field>-->
+      </form>
+
+      <form name="personalBlacklistForm">
+
+		<field property="fullName" depends="required,mask">
+			<msg name="mask" key="fullName"/>
+        	<arg key="fullName"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^[a-zA-Z][a-zA-Z.,' ]*$</var-value>
+        	</var>
+        </field>
+        <field property="dateOfBirth" depends="required,date">
+        	<arg key="dateOfBirth"/>
+        	<var>
+				<var-name>datePatternStrict</var-name>
+				<var-value>dd/MM/yyyy</var-value>
+			</var>
+        </field>
+        <field property="address1" depends="required">
+        	<arg key="address1"/>
+        </field>
+        <field property="rt" depends="required">
+        	<arg key="rt"/>
+        </field>
+        <field property="rw" depends="required">
+        	<arg key="rw"/>
+        </field>
+        <field property="kelurahan" depends="required">
+        	<arg key="kelurahan"/>
+        </field>
+        <field property="kecamatan" depends="required">
+        	<arg key="kecamatan"/>
+        </field>
+        <field property="city" depends="required">
+        	<arg key="city"/>
+        </field>
+        <field property="postalCode" depends="required,integer">
+        	<arg key="postalCode"/>
+        </field>
+        <field property="phoneNumber1" depends="required">
+        	<arg key="phoneNumber1"/>
+        </field>
+        <field property="email" depends="email">
+        	<arg key="email"/>
+        </field>
+        <field property="letterAddress1" depends="required">
+        	<arg key="letterAddress1"/>
+        </field>
+        <field property="letterRt" depends="required">
+        	<arg key="letterRt"/>
+        </field>
+        <field property="letterRw" depends="required">
+        	<arg key="letterRw"/>
+        </field>
+        <field property="letterKelurahan" depends="required">
+        	<arg key="letterKelurahan"/>
+        </field>
+        <field property="letterKecamatan" depends="required">
+        	<arg key="letterKecamatan"/>
+        </field>
+        <field property="letterCity" depends="required">
+        	<arg key="letterCity"/>
+        </field>
+        <field property="letterPostalCode" depends="required,integer">
+        	<arg key="letterPostalCode"/>
+        </field>
+
+      </form>
+
+
+      <form name="corporateForm">
+      	<field property="name" depends="required,mask">
+        	<msg name="mask" key="name"/>
+        	<arg key="name"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^[a-zA-Z][a-zA-Z.,' ]*$</var-value>
+        	</var>
+        </field>
+        <field property="abbreviatedName" depends="required,mask">
+        	<msg name="mask" key="abbreviatedName"/>
+        	<arg key="abbreviatedName"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^[a-zA-Z][a-zA-Z.,' ]*$</var-value>
+        	</var>
+        </field>
+      	<field property="registrationDate" depends="required,date">
+					<arg key="registrationDate"/>
+					<var>
+						<var-name>datePatternStrict</var-name>
+						<var-value>dd/MM/yyyy</var-value>
+					</var>
+        </field>
+
+        <field property="address1" depends="required">
+					<arg key="address1"/>
+				</field>
+        <field property="rt" depends="required">
+					<arg key="rt"/>
+				</field>
+				<field property="rw" depends="required">
+							<arg key="rw"/>
+				</field>
+				<field property="kelurahan" depends="required">
+							<arg key="kelurahan"/>
+				</field>
+				<field property="kecamatan" depends="required">
+							<arg key="kecamatan"/>
+				</field>
+				<field property="city" depends="required">
+							<arg key="city"/>
+				</field>
+				<field property="postalCode" depends="required,integer">
+							<arg key="postalCode"/>
+				</field>
+
+        <field property="documentNumber" depends="required">
+					<arg key="documentNumber"/>
+				</field>
+				<field property="documentExpiredDate" depends="required,date">
+					<arg key="documentExpiredDate"/>
+					<var>
+						<var-name>datePatternStrict</var-name>
+						<var-value>dd/MM/yyyy</var-value>
+					</var>
+        </field>
+      </form>
+
+      <form name="corporateBlacklistForm">
+      	<field property="name" depends="required,mask">
+        	<msg name="mask" key="name"/>
+        	<arg key="name"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^[a-zA-Z][a-zA-Z.,' ]*$</var-value>
+        	</var>
+        </field>
+        <field property="abbreviatedName" depends="required,mask">
+        	<msg name="mask" key="abbreviatedName"/>
+        	<arg key="abbreviatedName"/>
+        	<var>
+        		<var-name>mask</var-name>
+        		<var-value>^[a-zA-Z][a-zA-Z.,' ]*$</var-value>
+        	</var>
+        </field>
+      	<field property="registrationDate" depends="required,date">
+					<arg key="registrationDate"/>
+					<var>
+						<var-name>datePatternStrict</var-name>
+						<var-value>dd/MM/yyyy</var-value>
+					</var>
+        </field>
+
+        <field property="address1" depends="required">
+					<arg key="address1"/>
+				</field>
+        <field property="rt" depends="required">
+					<arg key="rt"/>
+				</field>
+				<field property="rw" depends="required">
+							<arg key="rw"/>
+				</field>
+				<field property="kelurahan" depends="required">
+							<arg key="kelurahan"/>
+				</field>
+				<field property="kecamatan" depends="required">
+							<arg key="kecamatan"/>
+				</field>
+				<field property="city" depends="required">
+							<arg key="city"/>
+				</field>
+				<field property="postalCode" depends="required,integer">
+							<arg key="postalCode"/>
+				</field>
+
+        <field property="documentNumber" depends="required">
+					<arg key="documentNumber"/>
+				</field>
+				<field property="documentExpiredDate" depends="required,date">
+					<arg key="documentExpiredDate"/>
+					<var>
+						<var-name>datePatternStrict</var-name>
+						<var-value>dd/MM/yyyy</var-value>
+					</var>
+        </field>
+
+        <field property="blacklistDate" depends="required,date">
+					<arg key="blacklistDate"/>
+					<var>
+						<var-name>datePatternStrict</var-name>
+						<var-value>dd/MM/yyyy</var-value>
+					</var>
+        </field>
+      </form>
+
+      
+      <form name="vehicleCollateralReferenceForm">
+     	   <field property="merkId" depends="required">
+        	<arg key="merk"/>
+        </field>
+        <field property="typeId" depends="required">
+        	<arg key="type"/>
+        </field>
+	  <field property="categoryId" depends="required">
+        	<arg key="category"/>
+        </field>
+	   <field property="name" depends="required">
+        	<arg key="name"/>
+        </field>
+      </form>
+      <form name="cfApplicationForm">
+       <!--  <field property="isCorporate" depends="required">
+        	<arg key="isCorporate"/>
+        </field> -->
+        <field property="corporatePersonalNumber" depends="required">
+        	<arg key="corporatePersonalNumber"/>
+        </field>
+
+        <field property="branchId" depends="required">
+        	<arg key="branch"/>
+        </field>
+        <field property="currencyId" depends="required">
+        	<arg key="currency"/>
+        </field>
+        <!--<field property="marketingId" depends="required">
+        	<arg key="marketing"/>
+        </field>-->
+        <field property="applicationDate" depends="required,date">
+        	<arg key="applicationDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+      </form>
+      
+      <form name="atmPinMailerForm">
+        <field property="branchId" depends="required">
+        	<arg key="branch"/>
+        </field>
+      </form>
+
+      <form name="vehicleCollateralForm">
+      	<field property="vehicleCollateralReferenceId" depends="required">
+        	<arg key="type"/>
+        </field>
+      	<field property="status" depends="required">
+        	<arg key="status"/>
+        </field>
+        <field property="year" depends="required,integer">
+        	<arg key="year"/>
+        </field>
+        <field property="colour" depends="required">
+        	<arg key="colour"/>
+        </field>
+        <field property="policeNumber" depends="required">
+        	<arg key="policeNumber"/>
+        </field>
+        <field property="machineNumber" depends="required">
+        	<arg key="machineNumber"/>
+        </field>
+        <field property="chassisNumber" depends="required">
+        	<arg key="chassisNumber"/>
+        </field>
+        <field property="bpkbNumber" depends="required">
+        	<arg key="bpkbNumber"/>
+        </field>
+        <field property="bpkbDate" depends="required,date">
+        	<arg key="bpkbDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        <field property="stnk" depends="required">
+        	<arg key="stnk"/>
+        </field>
+        <field property="bpkbName" depends="required">
+        	<arg key="bpkbName"/>
+        </field>
+        <field property="validPeriode" depends="required,date">
+        	<arg key="validPeriode"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        <field property="dealerId" depends="required">
+        	<arg key="dealer"/>
+        </field>
+        <field property="fakturNumber" depends="required">
+        	<arg key="fakturNumber"/>
+        </field>
+        <field property="bpkbCheckDate" depends="date">
+        	<arg key="bpkbCheckDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+      </form>
+      <form name="vehicleCfApplicationCollateralForm">
+        <field property="otr" depends="required">
+        	<arg key="otr"/>
+        </field>
+        <field property="financeAmount" depends="required">
+        	<arg key="financeAmount"/>
+        </field>
+        <field property="tenor" depends="required">
+        	<arg key="tenor"/>
+        </field>
+        <field property="interestEffective" depends="required">
+        	<arg key="interest"/>
+        </field>
+        <field property="interestFlat" depends="required">
+        	<arg key="interest"/>
+        </field>
+        <field property="rental" depends="required">
+        	<arg key="rental"/>
+        </field>
+        <field property="unearned" depends="required">
+        	<arg key="unearned"/>
+        </field>
+        <field property="insentiveSales" depends="required">
+        	<arg key="insentiveSales"/>
+        </field>
+        <field property="insurancePremi" depends="required">
+        	<arg key="insurancePremi"/>
+        </field>
+        <field property="insuranceNominal" depends="required">
+        	<arg key="insuranceNominal"/>
+        </field>
+        <field property="tjhAmount" depends="required">
+        	<arg key="tjhAmount"/>
+        </field>
+        <field property="insuranceRefund" depends="required">
+        	<arg key="insuranceRefund"/>
+        </field>
+        <field property="insuranceRefundNominal" depends="required">
+        	<arg key="insuranceRefundNominal"/>
+        </field>
+        <field property="interestRefund" depends="required">
+        	<arg key="interestRefund"/>
+        </field>
+        <field property="interestRefundNominal" depends="required">
+        	<arg key="interestRefundNominal"/>
+        </field>
+
+      </form>
+
+      <form name="electronicCollateralForm">
+        <field property="merk" depends="required">
+        	<arg key="merk"/>
+        </field>
+        <field property="type" depends="required">
+        	<arg key="type"/>
+        </field>
+        <field property="category" depends="required">
+        	<arg key="category"/>
+        </field>
+        <field property="colour" depends="required">
+        	<arg key="colour"/>
+        </field>
+        <field property="warrantyPeriode" depends="required,integer">
+        	<arg key="warrantyPeriode"/>
+        </field>
+      </form>
+      <form name="electronicCfApplicationCollateralForm">
+        <field property="financeAmount" depends="required">
+        	<arg key="financeAmount"/>
+        </field>
+        <field property="tenor" depends="required">
+        	<arg key="tenor"/>
+        </field>
+      </form>
+      <form name="electronicCfApplicationForm">
+        <field property="transactionAmount" depends="required,double">
+        	<arg key="transactionAmount"/>
+        </field>
+        <field property="dP" depends="required">
+        	<arg key="dP"/>
+        </field>
+        <field property="insuranceCredit" depends="required,double">
+        	<arg key="insuranceCredit"/>
+        </field>
+         <field property="financeAmount" depends="required,double">
+        	<arg key="financeAmount"/>
+        </field>
+         <field property="tenor" depends="required,integer">
+        	<arg key="tenor"/>
+        </field>
+          <field property="interest" depends="required,double">
+        	<arg key="interestType"/>
+        </field>
+         <field property="interestType" depends="required">
+        	<arg key="interestType"/>
+        </field>
+         <field property="rentalType" depends="required">
+        	<arg key="rentalType"/>
+        </field>
+         <field property="rental" depends="required,double">
+        	<arg key="rental"/>
+        </field>
+        <field property="unearned" depends="required,double">
+        	<arg key="unearned"/>
+        </field>
+         <field property="insuranceType" depends="required">
+        	<arg key="insuranceType"/>
+        </field>
+          <field property="insurancePremi" depends="required,double">
+        	<arg key="insurancePremi"/>
+        </field>
+        <field property="paymentType" depends="required">
+        	<arg key="paymentType"/>
+        </field>
+         <field property="insuranceNominal" depends="required,double">
+        	<arg key="insuranceNominal"/>
+        </field>
+      </form>
+
+      <form name="documentCollateralForm">
+        <field property="registrationNumber" depends="required">
+        	<arg key="registrationNumber"/>
+        </field>
+        <field property="validPeriode" depends="required,integer">
+        	<arg key="validPeriode"/>
+        </field>
+        <field property="documentTypeId" depends="required">
+        	<arg key="documentType"/>
+        </field>
+         <field property="publisher" depends="required">
+        	<arg key="publisher"/>
+        </field>
+        <field property="publisherDate" depends="required,date">
+        	<arg key="publisherDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+         <field property="value" depends="required,double">
+        	<arg key="value"/>
+        </field>
+      </form>
+      <form name="documentCfApplicationForm">
+        <field property="transactionAmount" depends="required,double">
+        	<arg key="transactionAmount"/>
+        </field>
+        <field property="dP" depends="required">
+        	<arg key="dP"/>
+        </field>
+        <field property="insuranceCredit" depends="required,double">
+        	<arg key="insuranceCredit"/>
+        </field>
+         <field property="financeAmount" depends="required,double">
+        	<arg key="financeAmount"/>
+        </field>
+         <field property="tenor" depends="required,integer">
+        	<arg key="tenor"/>
+        </field>
+          <field property="interest" depends="required,double">
+        	<arg key="interestType"/>
+        </field>
+         <field property="interestType" depends="required">
+        	<arg key="interestType"/>
+        </field>
+         <field property="rentalType" depends="required">
+        	<arg key="rentalType"/>
+        </field>
+         <field property="rental" depends="required,double">
+        	<arg key="rental"/>
+        </field>
+        <field property="unearned" depends="required,double">
+        	<arg key="unearned"/>
+        </field>
+         <field property="insuranceType" depends="required">
+        	<arg key="insuranceType"/>
+        </field>
+          <field property="insurancePremi" depends="required,double">
+        	<arg key="insurancePremi"/>
+        </field>
+        <field property="paymentType" depends="required">
+        	<arg key="paymentType"/>
+        </field>
+         <field property="insuranceNominal" depends="required,double">
+        	<arg key="insuranceNominal"/>
+        </field>
+        <field property="paymentDate" depends="required,date">
+        	<arg key="paymentDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+
+      </form>
+      <form name="othersCollateralForm">
+        <field property="note" depends="required">
+        	<arg key="note"/>
+        </field>
+
+      </form>
+      <form name="othersCfApplicationCollateralForm">
+        <field property="financeAmount" depends="required">
+        	<arg key="financeAmount"/>
+        </field>
+        <field property="tenor" depends="required">
+        	<arg key="tenor"/>
+        </field>
+      </form>
+
+      <form name="custodianForm">
+      	<field property="bpkbCheckDate" depends="required,date">
+        	<arg key="bpkbCheckDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        <field property="custodianDate" depends="required,date">
+        	<arg key="custodianDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+      </form>
+
+      <form name="customerHandleForm">
+      	<field property="cfApplicationNumber" depends="required">
+        	<arg key="cfApplication"/>
+        </field>
+        <field property="customerHandleDate" depends="required,date">
+        	<arg key="customerHandleDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        <field property="appointmentDate" depends="required,date">
+        	<arg key="appointmentDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+      </form>
+
+      <form name="surveyorCfApplicationForm">
+        <field property="surveyPlace" depends="required">
+        	<arg key="surveyPlace"/>
+        </field>
+         <field property="surveyTime" depends="required">
+        	<arg key="surveyTime"/>
+        </field>
+        <field property="surveyDate" depends="required,date">
+        	<arg key="surveyDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        <field property="contactPerson" depends="required">
+        	<arg key="contactPerson"/>
+        </field>
+        <field property="jobDescription" depends="required">
+        	<arg key="jobDescription"/>
+        </field>
+        <field property="homeStatusId" depends="required">
+        	<arg key="homeStatus"/>
+        </field>
+        <field property="environmentId" depends="required">
+        	<arg key="environment"/>
+        </field>
+         <field property="buildingId" depends="required">
+        	<arg key="building"/>
+        </field>
+         <field property="furnitureId" depends="required">
+        	<arg key="furniture"/>
+        </field>
+        <field property="description" depends="required">
+        	<arg key="description"/>
+        </field>
+        <field property="stayLength" depends="required,integer">
+        	<arg key="stayLength"/>
+        </field>
+        <field property="siteArea" depends="required,integer">
+        	<arg key="siteArea"/>
+        </field>
+         <field property="buildingArea" depends="required,integer">
+        	<arg key="buildingArea"/>
+        </field>
+             <field property="floor" depends="required,integer">
+        	<arg key="floor"/>
+        </field>
+        <field property="surveyCharacter" depends="required">
+        	<arg key="character"/>
+        </field>
+         <field property="surveyCapacity" depends="required">
+        	<arg key="capacity"/>
+        </field>
+         <field property="surveyCapital" depends="required">
+        	<arg key="capital"/>
+        </field>
+         <field property="surveyCollateral" depends="required">
+        	<arg key="collateral"/>
+        </field>
+         <field property="surveyCondition" depends="required">
+        	<arg key="condition"/>
+        </field>
+      </form>
+      <form name="creditAnalystCfApplicationForm">
+        <field property="scoring" depends="required">
+        	<arg key="scoring"/>
+        </field>
+        <field property="telephoneVerificationPerson" depends="required">
+        	<arg key="telephoneVerificationPerson"/>
+        </field>
+        <field property="outstandingObligor" depends="required,double">
+        	<arg key="outstandingObligor"/>
+        </field>
+        <field property="newExposureObligor" depends="required,double">
+        	<arg key="newExposureObligor"/>
+        </field>
+        <field property="bank" depends="required">
+        	<arg key="bank"/>
+        </field>
+         <field property="accountNumber" depends="required">
+        	<arg key="accountNumber"/>
+        </field>
+        <!--
+          <field property="debitMutation" depends="required, double">
+        	<arg key="debitMutation"/>
+        </field>
+        <field property="creditMutation" depends="required, double">
+        	<arg key="creditMutation"/>
+        </field>
+        <field property="endBalance" depends="required, double">
+        	<arg key="endBalance"/>
+        </field>
+        <field property="endBalanceDate" depends="required,date">
+        	<arg key="endBalanceDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        -->
+         <field property="marketPriceNominal" depends="required, double">
+        	<arg key="marketPriceNominal"/>
+        </field>
+        <field property="marketPriceDP" depends="required, float, floatRange">
+        	<arg0 key="marketPriceDP"/>
+        	<arg1 name="floatRange" key="${var:min}" resource="false"/>
+        	<arg2 name="floatRange" key="${var:max}" resource="false"/>
+        	<var>
+        		<var-name>min</var-name>
+        		<var-value>0.1</var-value>
+        	</var>
+        	<var>
+        		<var-name>max</var-name>
+        		<var-value>100</var-value>
+        	</var>
+        </field>
+        <field property="marketPricePH" depends="required, double">
+        	<arg key="marketPricePH"/>
+        </field>
+            <field property="insurancePriceNominal" depends="required, double">
+        	<arg key="insurancePriceNominal"/>
+        </field>
+        <field property="insurancePriceDP" depends="required, float, floatRange">
+        	<arg0 key="insurancePriceDP"/>
+        	<arg1 name="floatRange" key="${var:min}" resource="false"/>
+        	<arg2 name="floatRange" key="${var:max}" resource="false"/>
+        	<var>
+        		<var-name>min</var-name>
+        		<var-value>0.1</var-value>
+        	</var>
+        	<var>
+        		<var-name>max</var-name>
+        		<var-value>100</var-value>
+        	</var>
+        </field>
+        <field property="insurancePricePH" depends="required, double">
+        	<arg key="insurancePricePH"/>
+        </field>
+       	<field property="otrPriceNominal" depends="required, double">
+        	<arg key="otrPriceNominal"/>
+        </field>
+             <field property="otrPriceDP" depends="required, double">
+        	<arg key="otrPriceDP"/>
+        </field>
+        <field property="otrPricePH" depends="required, double">
+        	<arg key="otrPricePH"/>
+        </field>
+
+
+        <field property="recomendation" depends="required">
+        	<arg key="recomendation"/>
+        </field>
+      </form>
+
+
+      <!-- validation for form kewajiban lain-->
+      <form name="kewajibanLainForm">
+        <field property="kewajibanLainDate" depends="required,date">
+        	<arg key="kewajibanLainDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+        <field property="paymentAmount" depends="required,double">
+        	<arg key="paymentAmount"/>
+        </field>
+         <field property="branchId" depends="required">
+        	<arg key="branch"/>
+        </field>
+         <field property="bankAccountId" depends="required">
+        	<arg key="bankAccount"/>
+        </field>
+
+
+      </form>
+       <!-- validation for form termination-->
+      <form name="terminationForm">
+       <field property="terminationDate" depends="required,date">
+        	<arg key="terminationDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+       </field>
+       <field property="terminationTypeId" depends="required">
+        	<arg key="terminationType"/>
+       </field>
+       <field property="bankAccountId" depends="required">
+        	<arg key="bankAccount"/>
+       </field>
+       <field property="note" depends="required">
+        	<arg key="terminateReason"/>
+       </field>
+      </form>
+       <!-- validation for form account statement-->
+      <form name="accountStatementForm">
+        <field property="statementDate" depends="required,date">
+        	<arg key="statementDate"/>
+        	<var><var-name>datePatternStrict</var-name><var-value>dd/MM/yyyy</var-value></var>
+        </field>
+         <field property="bankAccountId" depends="required">
+        	<arg key="bankAccount"/>
+        </field>
+           <field property="paymentTypeId" depends="required">
+        	<arg key="paymentType"/>
+        </field>
+
+      </form>
+
+			<form name="pdcForm">
+        <field property="warkatNumber" depends="required">
+        	<arg key="warkatNumber"/>
+        </field>
+        <field property="bankName" depends="required">
+        	<arg key="bankName"/>
+        </field>
+        <field property="nominal" depends="required">
+        	<arg key="nominal"/>
+        </field>
+        <field property="expiredDate" depends="required,date">
+        	<arg key="expiredDate"/>
+					<var>
+						<var-name>datePatternStrict</var-name>
+						<var-value>dd/MM/yyyy</var-value>
+					</var>
+        </field>
+         <field property="cfApplicationId" depends="required">
+        	<arg key="cfApplication"/>
+        </field>
+      </form>
+
+	 <form name="fixassetForm">
+	 	<field property="branchId" depends="required">
+        	<arg key="branch"/>
+        </field>
+        <field property="fixassetTypeId" depends="required">
+        	<arg key="fixassetType"/>
+        </field>
+	 	<field property="currencyId" depends="required">
+        	<arg key="currency"/>
+        </field>
+        <field property="code" depends="required">
+        	<arg key="code"/>
+        </field>
+        <field property="name" depends="required">
+        	<arg key="name"/>
+        </field>
+        <field property="bookValueAmount" depends="required,double">
+        	<arg key="bookValueAmount"/>
+        </field>
+      </form>
+
+      <form name="fixassetCategoryForm">
+        <field property="name" depends="required">
+        	<arg key="name"/>
+        </field>
+        <field property="fixassetCategoryType" depends="required">
+        	<arg key="fixassetCategoryType"/>
+        </field>
+      </form>
+
+      <form name="cashFlowForm">
+        <field property="name" depends="required">
+        	<arg key="code"/>
+        </field>
+      </form>
+
+      <form name="insuranceRefundForm">
+        <field property="premiProcent" depends="required,float,floatRange">
+        	<arg0 key="premiProcent"/>
+        	<arg1 name="floatRange" key="${var:min}" resource="false"/>
+        	<arg2 name="floatRange" key="${var:max}" resource="false"/>
+        	<var>
+        		<var-name>min</var-name>
+        		<var-value>0</var-value>
+        	</var>
+        	<var>
+        		<var-name>max</var-name>
+        		<var-value>100.00</var-value>
+        	</var>
+        </field>
+        <field property="discountProcent" depends="required,float,floatRange">
+        	<arg0 key="discountProcent"/>
+        	<arg1 name="floatRange" key="${var:min}" resource="false"/>
+        	<arg2 name="floatRange" key="${var:max}" resource="false"/>
+        	<var>
+        		<var-name>min</var-name>
+        		<var-value>0</var-value>
+        	</var>
+        	<var>
+        		<var-name>max</var-name>
+        		<var-value>100.00</var-value>
+        	</var>
+        </field>
+        <field property="receiver" depends="required">
+        	<arg key="receiver"/>
+        </field>
+        
+      </form>
+        <form name="cfTransactionForm">
+        <field property="chartOfAccountId" depends="required">
+        	<arg key="chartOfAccount"/>
+        </field>
+
+      </form>
+        <form name="holidayForm">
+         <field property="holidayDate" depends="required,date">
+        	<arg key="paymentDate"/>
+        	<var>
+				<var-name>datePatternStrict</var-name>
+				<var-value>dd/MM/yyyy</var-value>
+			</var>
+        </field>
+        <field property="note" depends="required">
+        	<arg key="note"/>
+        </field>
+
+      </form>
+
+      <form name="itemCategoryForm">
+            <field property="name" depends="required">
+                    <arg key="name"/>
+            </field>
+
+        </form>
+        
+      <form name="skalaRentalForm">
+       <field property="endBalance" depends="required">
+        	<arg key="endBalance"/>
+       </field>
+       <field property="interest" depends="required">
+        	<arg key="interest"/>
+       </field>
+       <field property="otherIncome" depends="required">
+        	<arg key="otherIncome"/>
+       </field>
+       <field property="otherIncomeAmount" depends="required">
+        	<arg key="otherIncome"/>
+       </field>
+       <field property="outstandingBalance" depends="required">
+        	<arg key="outstandingBalance"/>
+       </field>
+       <field property="principle" depends="required">
+        	<arg key="principle"/>
+       </field>
+       <field property="rate" depends="required">
+        	<arg key="rate"/>
+       </field>
+       <field property="rental" depends="required">
+        	<arg key="rental"/>
+       </field>
+       <field property="rentalRemain" depends="required">
+        	<arg key="rentalRemain"/>
+       </field>
+       <field property="unearned" depends="required">
+        	<arg key="unearned"/>
+       </field>
+      </form>
+      
+      <form name="employeeForm">
+        <field property="fullName" depends="required">
+        	<arg key="fullName"/>
+        </field>
+        <field property="gender" depends="required">
+        	<arg key="gender"/>
+        </field>
+        <field property="idCard" depends="required">
+        	<arg key="noKtp"/>
+        </field>
+        <field property="dateOfBirth" depends="required">
+        	<arg key="birthDate"/>
+        </field>
+        <field property="placeOfBirth" depends="required">
+        	<arg key="birthPlace"/>
+        </field>
+        <field property="motherMaidenName" depends="required">
+        	<arg key="motherMaidenName"/>
+        </field>
+        <field property="joinDate" depends="required">
+        	<arg key="joinDate"/>
+        </field>
+        <field property="absentPassword" depends="required">
+        	<arg key="page.userPass.title"/>
+        </field>
+        <field property="maritalStatusId" depends="required">
+        	<arg key="maritalStatus"/>
+        </field>       
+        <field property="children" depends="required">
+        	<arg key="children"/>
+        </field>
+        <field property="dependent" depends="required">
+        	<arg key="dependent"/>
+        </field>
+        <field property="npwp" depends="required,minlength,maxlength,mask">
+        	<arg0 key="npwp"/>
+       		<arg1 name="minlength" key="${var:minlength}" resource="false"/>
+       		<arg2 name="maxlength" key="${var:maxlength}" resource="false"/>
+        	<var><var-name>minlength</var-name><var-value>15</var-value></var>
+        	<var><var-name>maxlength</var-name><var-value>15</var-value></var>
+        	<var><var-name>mask</var-name><var-value>^[0-9]*$</var-value></var>
+        </field>
+      </form>
+      
+      <!--
+      <form name="purchaseRequestMailForm">
+      	<field property="subject" depends="required">
+      		<arg key="subject"/>
+      	</field>
+      	<field property="message" depends="required">
+      		<arg key="message"/>
+      	</field>
+      	<field property="timetosend" depends="required">
+      		<arg key="timetosend"/>
+      	</field>
+      </form>
+	  -->
+	  
+    </formset>
+
+</form-validation>

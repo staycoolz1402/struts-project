@@ -1,0 +1,601 @@
+<% response.setHeader("Pragma", "No-cache");
+response.setDateHeader("Expires", 0);
+response.setHeader("Cache-Control", "no-cache");%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title><bean:message key="page.index.title"/></title>
+	<link href="<html:rewrite page="/js/simas.css"/>" rel="stylesheet" type="text/css">
+</head>
+
+<body style="margin:0px;" >
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td style="background-image: url(<html:rewrite page="/images/bg_header.gif"/>); background-repeat:repeat-x; " height="94" valign="top" align="left">
+	<!-- header start -->
+	<tiles:insert template='/common/header.jsp'/>
+	<!-- header end -->
+	</td>
+</tr>
+
+<tr>
+	<td style="background-image:url(<html:rewrite page="/images/list.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+</tr>
+
+<tr>
+	<td style="background-image:url(<html:rewrite page="/images/bg_body.gif"/>); background-repeat:repeat-x; background-position:bottom; " height="627" bgcolor="#fbfdff" align="left" valign="top">
+	
+	<!-- content -->    
+	<table width="900" border="0" cellspacing="0" cellpadding="5" style="margin-left:10px; ">
+	<tr>
+		<td align="left" class="text03"><b><logic:present name="viewName"><bean:write name="viewName"/></logic:present></b></td>
+	</tr>
+	
+	<tr>
+		<td align=middle width="100%">
+		
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="1%"><html:img page="/images/round.gif"/></td>
+			<td width="98%" class="smalltext" style="border-top:solid 1px #6b6b71; ">&nbsp;</td>
+			<td width="1%"><html:img page="/images/round1.gif"/></td>
+		</tr>
+		
+		<tr>
+		<td style="border-left:solid 1px #6b6b71; ">&nbsp;</td>
+			<td valign="top">
+			
+			<!-- CONTENT START -->
+			<table width="100%" border="0" cellspacing="2" cellpadding="0">
+			<tr valign="top"><td>&nbsp;</td></tr>
+			<tr valign="top"><td><html:errors/></td></tr>
+			
+			<tr> 
+				<td>
+				 
+				<table width="100%" border="0" cellspacing="1" cellpadding="3" class="text04">
+				<tr> 
+					<td align="left">CF Receivable Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="cfReceivable"><bean:write name="consumerFinanceSetup" property="cfReceivable.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable CF Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayableCf"><bean:write name="consumerFinanceSetup" property="otherPayableCf.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable Premi Asuransi Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayablePremiAsuransi"><bean:write name="consumerFinanceSetup" property="otherPayablePremiAsuransi.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable Premi Risk Asuransi Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayablePremiRiskAsuransi"><bean:write name="consumerFinanceSetup" property="otherPayablePremiRiskAsuransi.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable Refund Dealer Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayableRefundDealer"><bean:write name="consumerFinanceSetup" property="otherPayableRefundDealer.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable Premi Asuransi (Old) Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayablePremiAsuransiOld"><bean:write name="consumerFinanceSetup" property="otherPayablePremiAsuransiOld.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable Refund ke Dealer (Old) Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayableRefundDealerOld"><bean:write name="consumerFinanceSetup" property="otherPayableRefundDealerOld.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">CF Income Insurance (Old) Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="cfIncomeInsuranceOld"><bean:write name="consumerFinanceSetup" property="cfIncomeInsuranceOld.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">CF Income Installment Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="cfIncomeInstalment"><bean:write name="consumerFinanceSetup" property="cfIncomeInstalment.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">CF Income Insurance Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="cfIncomeInsurance"><bean:write name="consumerFinanceSetup" property="cfIncomeInsurance.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">CF Income Insurance Risk Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="cfIncomeRiskInsurance"><bean:write name="consumerFinanceSetup" property="cfIncomeRiskInsurance.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">CF Income Penalty Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="cfIncomePenalty"><bean:write name="consumerFinanceSetup" property="cfIncomePenalty.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">CF Administration Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="cfAdministrasi"><bean:write name="consumerFinanceSetup" property="cfAdministrasi.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Income CF Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherIncomeCf"><bean:write name="consumerFinanceSetup" property="otherIncomeCf.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Unit Titipan Nasabah Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="assetForFutureSale"><bean:write name="consumerFinanceSetup" property="assetForFutureSale.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable CF (Referral Fee) Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayableCfReferralFee"><bean:write name="consumerFinanceSetup" property="otherPayableCfReferralFee.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Income CF (DD) Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherIncomeCfDd"><bean:write name="consumerFinanceSetup" property="otherIncomeCfDd.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Income CF (WO) Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherIncomeCfWo"><bean:write name="consumerFinanceSetup" property="otherIncomeCfWo.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Income CF (UTN) Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherIncomeCfAffs"><bean:write name="consumerFinanceSetup" property="otherIncomeCfAffs.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Income CF (Referral Fee) Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherIncomeCfReferralFee"><bean:write name="consumerFinanceSetup" property="otherIncomeCfReferralFee.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Bad Debt Expense Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="badDebtExpense"><bean:write name="consumerFinanceSetup" property="badDebtExpense.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Biaya Penanganan Kasus CF Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="biayaPenangananKasus"><bean:write name="consumerFinanceSetup" property="biayaPenangananKasus.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Operating Expense (CF) Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherOperatingExpense"><bean:write name="consumerFinanceSetup" property="otherOperatingExpense.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Insentive Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="insentive"><bean:write name="consumerFinanceSetup" property="insentive.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Life Insurance Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="cfIncomeLifeInsurance"><bean:write name="consumerFinanceSetup" property="cfIncomeLifeInsurance.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Bank Charge</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="bankCharge"><bean:write name="consumerFinanceSetup" property="bankCharge.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable Drawdown</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayableDrawdown"><bean:write name="consumerFinanceSetup" property="otherPayableDrawdown.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Bad Debt Expense - Take Away</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="badDebtExpenseTakeAway"><bean:write name="consumerFinanceSetup" property="badDebtExpenseTakeAway.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable Premi Life Insurance Channeling</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayablePremiAsuransiLifeInsuranceChanneling"><bean:write name="consumerFinanceSetup" property="otherPayablePremiAsuransiLifeInsuranceChanneling.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable Admin Motor Channeling</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayableAdminMotorChanneling"><bean:write name="consumerFinanceSetup" property="otherPayableAdminMotorChanneling.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable Channeling</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayableBalanceChanneling"><bean:write name="consumerFinanceSetup" property="otherPayableBalanceChanneling.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">CF Administrasi Channeling</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="CFAdministrasiChanneling"><bean:write name="consumerFinanceSetup" property="CFAdministrasiChanneling.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable Payment Motor Chaneling</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayablePaymentMotorChaneling"><bean:write name="consumerFinanceSetup" property="otherPayablePaymentMotorChaneling.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable Cf Motor Channeling</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayableCfMotorChanneling"><bean:write name="consumerFinanceSetup" property="otherPayableCfMotorChanneling.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Pendapatan Motor Channeling</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="pendapatanMotorChanneling"><bean:write name="consumerFinanceSetup" property="pendapatanMotorChanneling.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Kewajiban Lain Channeling</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="kewajibanLainChanneling"><bean:write name="consumerFinanceSetup" property="kewajibanLainChanneling.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Income Channeling</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherIncomeChanneling"><bean:write name="consumerFinanceSetup" property="otherIncomeChanneling.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Income CF Channeling Account</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherIncomeCfChanneling"><bean:write name="consumerFinanceSetup" property="otherIncomeCfChanneling.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable Provision</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayableProvisi"><bean:write name="consumerFinanceSetup" property="otherPayableProvisi.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Payable Balance</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherPayableBalance"><bean:write name="consumerFinanceSetup" property="otherPayableBalance.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Bank KPNO</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="bankKpno"><bean:write name="consumerFinanceSetup" property="bankKpno.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Tax Payable Art 21</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="taxPayableArt21"><bean:write name="consumerFinanceSetup" property="taxPayableArt21.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Tax Payable Art 23</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="taxPayableArt23"><bean:write name="consumerFinanceSetup" property="taxPayableArt23.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Operating EXP CF</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="otherOperatingExpCF"><bean:write name="consumerFinanceSetup" property="otherOperatingExpCF.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Bad Debt OS</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="badDebtOS"><bean:write name="consumerFinanceSetup" property="badDebtOS.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Partner Fee AP/BP</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="partnerFeeApBp"><bean:write name="consumerFinanceSetup" property="partnerFeeApBp.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Partner Fee SAS</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="partnerFeeSas"><bean:write name="consumerFinanceSetup" property="partnerFeeSas.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Fidusia Consumer Finance</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="fidusiaConsumerFinance"><bean:write name="consumerFinanceSetup" property="fidusiaConsumerFinance.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Interest Refund</td>
+					<td>:</td>
+					<td align="left"><logic:present name="consumerFinanceSetup" property="interestRefund"><bean:write name="consumerFinanceSetup" property="interestRefund.numberName" scope="request"/></logic:present></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Buy Rate</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="buyRate" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Sell Rate</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="sellRate" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Discount Rate</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="discountRate" scope="request"/></td>
+				</tr>
+				
+				
+				
+				<tr> 
+					<td align="left">Advance Flat Rate</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="advanceFlatRate" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Arrear Flat Rate</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="arrearFlatRate" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Life Insurance Rate</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="lifeInsuranceRate" scope="request"/></td>
+				</tr>
+				
+			
+				
+				<tr> 
+					<td align="left">Risk Insurance Rate</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="riskInsuranceRate" scope="request"/>&nbsp; &nbsp; Risk Insurance Amount : <bean:write name="consumerFinanceSetup" property="riskInsuranceAmount" scope="request"/></td>
+				</tr>
+				
+				
+				<tr> 
+					<td align="left">Old Rate Insurance Rate (2000 s/d 2009)</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="oldRiskInsuranceRate2" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Old Rate Insurance Rate (< 2000)</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="oldRiskInsuranceRate3" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Rate Insurance Rate Niaga</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="riskInsuranceRateNiaga" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Discount Rate Insurance Rate - Leaseback</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="discountRiskInsuranceRate" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Discount Rate Insurance Rate - Non Leaseback</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="discountRiskInsuranceRateNonLeaseback" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Discount Rate Mobil Tua</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="discountRateOldCar" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Discount Rate Mobil Tua Sekali</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="discountRateVeryOldCar" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Discount Rate Niaga</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="discountRateNiaga" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Other Charges Limitation</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="formatedOtherChargesLimitation" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Insurance Year Rate Depreciation</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="insuranceYearDepreciation" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Insurance Param Year</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="insuranceParamYear" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Insurance Tlo Param Year</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="insuranceTloParamYear" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Old Insurance Param Year</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="oldInsuranceParamYear" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Refund Admin Dealer per Year</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="refundAdmDealer" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Validasi Pokok Hutang</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="formatedValidasiPokokhutang" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Rate Badan Usaha Npwp</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="rateBadanUsahaNpwp" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Rate Badan Usaha Tidak Npwp</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="rateBadanUsahaTidakNpwp" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Rate Perorangan Npwp</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="ratePeroranganNpwp" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td align="left">Rate Perorangan Tidak Npwp</td>
+					<td>:</td>
+					<td align="left"><bean:write name="consumerFinanceSetup" property="ratePeroranganTidakNpwp" scope="request"/></td>
+				</tr>
+				
+				<tr> 
+					<td width="30%" align="left"><bean:message key="createBy"/></td>
+					<td width="5%" align="center">:</td>
+					<td width="65%" align="left"><bean:write name="consumerFinanceSetup" property="createBy" scope="request"/></td>
+				</tr>
+						                
+				<tr> 
+					<td width="30%" align="left"><bean:message key="createOn"/></td>
+					<td width="5%" align="center">:</td>
+					<td width="65%" align="left"><bean:write name="consumerFinanceSetup" property="formatedCreateOn" scope="request"/></td>
+				</tr>
+						                
+				<tr> 
+					<td width="30%" align="left"><bean:message key="changeBy"/></td>
+					<td width="5%" align="center">:</td>
+					<td width="65%" align="left"><bean:write name="consumerFinanceSetup" property="changeBy" scope="request"/></td>
+				</tr>
+						                
+				<tr> 
+					<td width="30%" align="left"><bean:message key="changeOn"/></td>
+					<td width="5%" align="center">:</td>
+					<td width="65%" align="left"><bean:write name="consumerFinanceSetup" property="formatedChangeOn" scope="request"/></td>
+				</tr>
+				
+				</table>
+				
+				</td>
+			</tr>
+			
+			<tr><td>&nbsp;</td></tr>
+			
+			<SCRIPT language=JavaScript>
+			function confirm_delete(id) {
+				var valid=true;
+				var str="Is this data will be deleted?\n Click OK to delete or Cancel!";
+				valid=confirm(str);
+				if (valid) {
+					window.location.href=('<html:rewrite page="/consumerFinanceSetup/delete.do"/>?consumerFinanceSetupId='+id);
+				}
+			}
+			</SCRIPT> 
+			<tr>
+				<td align="center">
+				<input class="button" type="button" name="edit" onclick="window.location.href=('<html:rewrite page="/consumerFinanceSetup/edit.do"/>?consumerFinanceSetupId=<bean:write name="consumerFinanceSetup" property="id"/>');" value="<bean:message key="edit.link"/>"/>&nbsp;&nbsp;
+				<input class="button" type="button" name="delete" onclick="javascript:confirm_delete(<bean:write name="consumerFinanceSetup" property="id"/>);" value="<bean:message key="delete.link"/>"/>&nbsp;&nbsp;
+				<input class="button" type="button" name="back" onclick="window.location.href=('<html:rewrite page="/consumerFinanceSetup/list.do"/>?start=<bean:write name="start" scope="session"/>&count=<bean:write name="count" scope="session"/>');" value="<bean:message key="back.link"/>"/>
+				</td>
+			</tr>
+			</table> 
+			<!-- CONTENT END -->
+			
+			</td>
+			<td style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+		</tr>
+		
+		
+		<tr>
+			<td width="1%"><html:img page="/images/round3.gif"/></td>
+			<td class="smalltext" style="border-bottom:solid 1px #6b6b71; ">&nbsp;</td>
+			<td width="1%"><html:img page="/images/round2.gif"/></td>
+		</tr>
+		</table>
+		
+		</td>
+	</tr>
+	</table>
+	<!-- content -->
+	</td>
+</tr>
+
+<tr>
+	<td style="background-image:url(<html:rewrite page="/images/list1.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+</tr>
+
+<tr>
+	<td style="background-image: url(<html:rewrite page="/images/bg_footer.gif"/>); background-repeat:repeat-x; " height="57" align="left" valign="top">
+	<!-- footer start -->
+	<tiles:insert template='/common/footer.jsp'/>
+	<!-- footer end -->
+	</td>
+</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,1863 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config> 
+
+    <!-- ========== Form Bean Definitions ================================== -->
+    <form-beans>
+    	<form-bean name="tabForm" type="com.ams.mufins.form.UserForm">
+    		<form-property name="windowId" type="java.lang.String" />
+    	</form-bean>
+        <form-bean name="userForm" type="com.ams.mufins.form.UserForm">
+            <form-property name="userId" type="java.lang.String" />
+            <form-property name="userPass" type="java.lang.String" />
+            <form-property name="userName" type="java.lang.String" />
+            <form-property name="oldUserName" type="java.lang.String" />
+            <form-property name="newUserName" type="java.lang.String" />
+            <form-property name="isActive" type="java.lang.String" />
+            <form-property name="isSupervisor" type="java.lang.String" />
+            <form-property name="rsa" type="java.lang.String" />
+            <form-property name="userType" type="java.lang.String" />
+            <form-property name="isSso" type="java.lang.String" />
+            <form-property name="total" type="java.lang.String" />
+            <form-property name="printer" type="java.lang.String" />
+            <form-property name="start" type="java.lang.String" />
+            <form-property name="count" type="java.lang.String" />
+            <form-property name="roleId" type="java.lang.String[]" />
+            <form-property name="changePass" type="java.lang.String" />
+            <form-property name="subaction" type="java.lang.String" />
+            <form-property name="confirmUserPass" type="java.lang.String" />
+            <form-property name="passwordnya" type="java.lang.String" />
+            <form-property name="orderBy" type="java.lang.String" />
+            <form-property name="createOn" type="java.lang.String" />
+            <form-property name="gotoPage" type="java.lang.String" />
+            <form-property name="gotoPage2" type="java.lang.String" />
+            <form-property name="ascDesc" type="java.lang.String" />
+            <form-property name="reportType" type="java.lang.String" />
+            <form-property name="organizationId" type="java.lang.String" />
+            <form-property name="branchId" type="java.lang.String" />
+             <form-property name="roleIdUser" type="java.lang.String" />
+           
+            <form-property name="radioBtn" type="java.lang.String" />
+            <form-property name="salesCategory" type="java.lang.String" />
+            <form-property name="show" type="java.lang.String" initial="Y"/> 
+           	<!-- -->
+            <form-property name="regionId" type="java.lang.String" />
+			<form-property name="smhOutletId" type="java.lang.String" />
+			<form-property name="outletId" type="java.lang.String" />
+			<form-property name="mobileOutletId" type="java.lang.String" />
+			<!-- -->
+            <form-property name="id" type="java.lang.String[]" size="50" />
+            <form-property name="active" type="java.lang.String[]" size="50" />
+            <form-property name="size" type="java.lang.String" />
+            <form-property name="oldPassword" type="java.lang.String" />
+            <form-property name="newPassword" type="java.lang.String" />
+            <form-property name="confirmNewPassword" type="java.lang.String" />
+            <form-property name="name" type="java.lang.String" />          
+            <form-property name="nik" type="java.lang.String" />
+            <form-property name="address" type="java.lang.String" />
+            <form-property name="city" type="java.lang.String" />
+            <form-property name="phoneNumber" type="java.lang.String" />
+            <form-property name="handphone" type="java.lang.String" />
+            <form-property name="branch" type="java.lang.String" />
+            <form-property name="fromDate" type="java.lang.String" />
+            <form-property name="toDate" type="java.lang.String" />
+            <form-property name="action" type="java.lang.String" />
+            <form-property name="ip" type="java.lang.String" />
+            <form-property name="computerName" type="java.lang.String" />
+            <form-property name="insuranceVendorId" type="java.lang.String" />
+            <form-property name="email" type="java.lang.String" />
+            <form-property name="email2" type="java.lang.String" />
+            <form-property name="agencyId" type="java.lang.String" />
+            <form-property name="note" type="java.lang.String" />
+            <form-property name="branchName" type="java.lang.String" />
+            <form-property name="cmo" type="java.lang.String" />
+            <form-property name="oldUserId" type="java.lang.String" />
+            <form-property name="oldBranchId" type="java.lang.String" />
+            <form-property name="agencyOrganizationId" type="java.lang.String" />
+            <form-property name="partnerType" type="java.lang.String" />
+            <form-property name="businessDesc" type="java.lang.String" />
+            <form-property name="joinDate" type="java.lang.String" />
+            <form-property name="agencyCode" type="java.lang.String" />
+            <form-property name="agencyCode2" type="java.lang.String" />
+            <form-property name="address1" type="java.lang.String" />
+            <form-property name="address2" type="java.lang.String" />
+            <form-property name="postalCode" type="java.lang.String" />
+            <form-property name="telephone1" type="java.lang.String" />
+            <form-property name="telephone2" type="java.lang.String" />
+            <form-property name="mobile1" type="java.lang.String" />
+            <form-property name="mobile2" type="java.lang.String" />
+            <form-property name="bankName" type="java.lang.String" />
+            <form-property name="accountNumber" type="java.lang.String" />
+            <form-property name="oldBankName" type="java.lang.String" />
+            <form-property name="accountName" type="java.lang.String" />
+            <form-property name="birthDate" type="java.lang.String" />
+            <form-property name="birthPlace" type="java.lang.String" />
+			<form-property name="gender" type="java.lang.String" />
+			<form-property name="identificationCardId" type="java.lang.String" />
+			<form-property name="idNumber" type="java.lang.String" />
+			<form-property name="idExpiredDate" type="java.lang.String" />
+			<form-property name="isOrigin" type="java.lang.String" />
+			<form-property name="religionId" type="java.lang.String" />
+			<form-property name="marriageStatusId" type="java.lang.String" />
+			<form-property name="educationId" type="java.lang.String" />
+			<form-property name="jobId" type="java.lang.String" />
+			<form-property name="npwp" type="java.lang.String" />
+			<form-property name="status" type="java.lang.String" />
+			<form-property name="fromJoinDate" type="java.lang.String" />
+			<form-property name="toJoinDate" type="java.lang.String" />
+			<form-property name="bankBranch" type="java.lang.String" />
+			<form-property name="isDrawdown" type="java.lang.String" />
+			<form-property name="fromApplicationDate" type="java.lang.String" />
+			<form-property name="toApplicationDate" type="java.lang.String" />
+			<form-property name="salesType" type="java.lang.String" />
+			<form-property name="kk" type="java.lang.String" />
+			<form-property name="source" type="java.lang.String" />
+			<form-property name="inputText" type="java.lang.String" />
+			<form-property name="isComplete" type="java.lang.String" />
+			<form-property name="level" type="java.lang.String" />
+			<form-property name="accessTime" type="java.lang.String" />
+			<form-property name="reportId" type="java.lang.String" />
+			<form-property name="parentAgencyId" type="java.lang.String" />
+			<form-property name="notMAS" type="java.lang.String" />
+			<form-property name="masName" type="java.lang.String" />
+			<form-property name="isTotp" type="java.lang.String" />
+			<form-property name="setParentBranch" type="java.lang.String" />
+			<form-property name="fillQuesioner" type="java.lang.String" />
+			<form-property name="choiceQuesioner" type="java.lang.String" />
+			<form-property name="hiddenPath" type="java.lang.String" />
+			<form-property name="flag" type="java.lang.String" />
+			
+            <form-property name="answer1" type="java.lang.String" />
+            <form-property name="answer2" type="java.lang.String" />
+            <form-property name="answer3" type="java.lang.String" />
+            <form-property name="answer4" type="java.lang.String" />
+            <form-property name="note1" type="java.lang.String" />
+            <form-property name="note4" type="java.lang.String" />
+            <form-property name="saranKritik" type="java.lang.String" />
+            <form-property name="viewId" type="java.lang.String" /> 
+            <form-property name="isResign" type="java.lang.String" /> 
+            
+            <form-property name="category" type="java.lang.String" />
+            <form-property name="hiddenCategoryFileId" type="java.lang.String" />
+            <form-property name="categoryFileId" type="java.lang.String" />
+            <form-property name="effectiveDate" type="java.lang.String" />
+            <form-property name="masterPrivCatFileId" type="java.lang.String" />
+            <form-property name="rolePrivCatFileId" type="java.lang.String" />
+            <form-property name="hiddenUserId" type="java.lang.String" />
+            <form-property name="usedOnTable" type="java.lang.String" />
+            <form-property name="hiddenUsedOnTable" type="java.lang.String" />
+            
+            <form-property name="hiddenNumeric" type="java.lang.String" />
+            <form-property name="hiddenRoleId" type="java.lang.String" />
+            
+            <form-property name="partnerId" type="java.lang.String" />
+            <form-property name="roleParentId" type="java.lang.String" />
+            <form-property name="parentId" type="java.lang.String" />
+            <form-property name="parentIdSub" type="java.lang.String" />
+            <form-property name="firstLoad" type="java.lang.String" />
+            <form-property name="isMapping" type="java.lang.String" />
+            <form-property name="parentName" type="java.lang.String" />
+            <form-property name="salesTypePopUpParentId" type="java.lang.String" />
+            <form-property name="branchIdSub" type="java.lang.String" />
+            <form-property name="roleParentIdSub" type="java.lang.String" />
+            <!-- -->
+            <form-property name="idCardNumber" type="java.lang.String" />
+            <form-property name="idExpiryDate" type="java.lang.String" />
+            <form-property name="motherMaidenName" type="java.lang.String" />
+            
+            <form-property name="usersEx" type="java.lang.String" />
+            <form-property name="newPartnerSimaskuList" type="java.lang.String" />
+            
+            <form-property name="masId" type="java.lang.String" />
+            <form-property name="dailyProspectPartnerId" type="java.lang.String" />
+            <form-property name="answerCategoryId" type="java.lang.String" />
+            <form-property name="followUp" type="java.lang.String" />
+            <form-property name="sasId" type="java.lang.String" />
+            <form-property name="visitDate" type="java.lang.String" />
+            <form-property name="partnerVisitId" type="java.lang.String" />
+            <form-property name="salesId" type="java.lang.String" />
+            <form-property name="salesTypeId" type="java.lang.String" />
+            <form-property name="empId" type="java.lang.String" />
+            <form-property name="userAdmin" type="java.lang.String" />
+            <form-property name="isBm" type="java.lang.String" />
+            <form-property name="apbpId" type="java.lang.String" />
+            <form-property name="apbp" type="java.lang.String" />
+            <form-property name="cfApplicationId" type="java.lang.String" />
+            <form-property name="cfApplicationNumber" type="java.lang.String" />
+            <form-property name="corporatePersonal" type="java.lang.String" />
+            <form-property name="changeRegionalForm" type="java.lang.String" />
+            <form-property name="drawdownTypeId" type="java.lang.String" />
+            <form-property name="number" type="java.lang.String" />
+            <form-property name="ppk" type="java.lang.String" />
+            <form-property name="fromDrawdownDate" type="java.lang.String" />
+            <form-property name="toDrawdownDate" type="java.lang.String" />
+            <form-property name="tanggal" type="java.lang.String" />
+            <form-property name="createBy" type="java.lang.String" />
+            <form-property name="changeBy" type="java.lang.String" />
+            <form-property name="changeOn" type="java.lang.String" />
+            <form-property name="subaction2" type="java.lang.String" />
+            <form-property name="itemId" type="java.lang.String" />
+            <form-property name="validasiNama" type="java.lang.String" />
+            <form-property name="usahaPekerjaan" type="java.lang.String" />
+            <form-property name="telepon" type="java.lang.String" />
+            <form-property name="product" type="java.lang.String" />
+            <form-property name="hasil" type="java.lang.String" />
+            <form-property name="parentAgencyIdOld" type="java.lang.String" />
+            <form-property name="branchIdOld" type="java.lang.String" />
+            <form-property name="nameOld" type="java.lang.String" />
+            <form-property name="nikOld" type="java.lang.String" />
+            <form-property name="isActiveOld" type="java.lang.String" />
+            <form-property name="agencyOrganizationIdOld" type="java.lang.String" />
+            <form-property name="noteOld" type="java.lang.String" />
+            <form-property name="birthPlaceOld" type="java.lang.String" />
+            <form-property name="birthDateOld" type="java.lang.String" />
+            <form-property name="joinDateOld" type="java.lang.String" />
+            <form-property name="partnerTypeOld" type="java.lang.String" />
+            <form-property name="businessDescOld" type="java.lang.String" />
+            <form-property name="identificationCardIdOld" type="java.lang.String" />
+            <form-property name="idNumberOld" type="java.lang.String" />
+            <form-property name="genderOld" type="java.lang.String" />
+            <form-property name="marriageStatusIdOld" type="java.lang.String" />
+            <form-property name="religionIdOld" type="java.lang.String" />
+            <form-property name="jobIdOld" type="java.lang.String" />
+            <form-property name="educationIdOld" type="java.lang.String" />
+            <form-property name="npwpOld" type="java.lang.String" />
+            <form-property name="salesTypeOld" type="java.lang.String" />
+            <form-property name="kkOld" type="java.lang.String" />
+            <form-property name="isOriginOld" type="java.lang.String" />
+            <form-property name="idExpiredDateOld" type="java.lang.String" />
+            <form-property name="employeeIdOld" type="java.lang.String" />
+            <form-property name="agentAddress1Old" type="java.lang.String" />
+            <form-property name="agentAddress2Old" type="java.lang.String" />
+            <form-property name="agentCityOld" type="java.lang.String" />
+            <form-property name="agentPostalCodeOld" type="java.lang.String" />
+            <form-property name="agentTelephone1Old" type="java.lang.String" />
+            <form-property name="agentTelephone2Old" type="java.lang.String" />
+            <form-property name="agentMobile1Old" type="java.lang.String" />
+            <form-property name="agentMobile2Old" type="java.lang.String" />
+            <form-property name="agentEmailOld" type="java.lang.String" />
+            <form-property name="agentEmail2Old" type="java.lang.String" />
+            <form-property name="salesTypeHr" type="java.lang.String" />
+            <form-property name="branchIdHr" type="java.lang.String" />
+            <form-property name="outletIdHr" type="java.lang.String" />
+            <form-property name="errorMsg" type="java.lang.String" />
+            <form-property name="answerId" type="java.lang.String" />
+            <form-property name="answerNote" type="java.lang.String" />
+            <form-property name="authenticationCode" type="java.lang.String" />
+            <form-property name="resetPasswordAgencyId" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="logonForm" type="com.ams.mufins.form.LogonForm">
+            <form-property name="name" type="java.lang.String" />
+            <form-property name="userName" type="java.lang.String" />
+            <form-property name="userPass" type="java.lang.String" />
+            <form-property name="passCode" type="java.lang.String" />
+            <form-property name="oldPassword" type="java.lang.String" />
+            <form-property name="newPassword" type="java.lang.String" />
+            <form-property name="confirmNewPassword" type="java.lang.String" />
+            <form-property name="branchId" type="java.lang.String" />
+            <form-property name="branchList" type="java.lang.String" />
+            <form-property name="passDuration" type="java.lang.String" />
+            <form-property name="subaction" type="java.lang.String" />
+            
+            <form-property name="userPassEncrypted" type="java.lang.String" />
+            <form-property name="plainText" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="viewForm" type="com.ams.mufins.form.ViewForm">
+            <form-property name="viewId" type="java.lang.String" />
+            <form-property name="parentId" type="java.lang.String" />
+            <form-property name="name" type="java.lang.String" />
+            <form-property name="path" type="java.lang.String" />
+            <form-property name="description" type="java.lang.String" />
+            <form-property name="isView" type="java.lang.String" />
+            <form-property name="start" type="java.lang.String" />
+            <form-property name="count" type="java.lang.String" />
+            <form-property name="orderBy" type="java.lang.String" />
+            <form-property name="gotoPage" type="java.lang.String" />
+            <form-property name="gotoPage2" type="java.lang.String" />
+            <form-property name="ascDesc" type="java.lang.String" />
+            <form-property name="subParentId" type="java.lang.String" />
+            <form-property name="subaction" type="java.lang.String" />
+            <form-property name="viewBlockMultipleId" type="java.lang.String" />
+            <form-property name="viewName" type="java.lang.String" />
+            <form-property name="viewLink" type="java.lang.String" />
+            <form-property name="isActive" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="roleForm" type="com.ams.mufins.form.RoleForm">
+        	<form-property name="start" type="java.lang.String" />
+            <form-property name="count" type="java.lang.String" />
+            <form-property name="roleId" type="java.lang.String" />
+            <form-property name="name" type="java.lang.String" />
+            <form-property name="roleGroupId" type="java.lang.String[]" />
+            <form-property name="productId" type="java.lang.String[]" />
+            <form-property name="description" type="java.lang.String" />
+            <form-property name="viewLstId" type="java.lang.String[]" />
+            <form-property name="viewSltdLstId" type="java.lang.String[]" />
+            <form-property name="orderBy" type="java.lang.String" />
+            <form-property name="gotoPage" type="java.lang.String" />
+            <form-property name="gotoPage2" type="java.lang.String" />
+            <form-property name="ascDesc" type="java.lang.String" />
+            <form-property name="subaction" type="java.lang.String" />
+            <form-property name="isShowBankBalance" type="java.lang.String" />
+            <form-property name="isShowApplicationStatus" type="java.lang.String" />
+            <form-property name="isShowProduct" type="java.lang.String" />
+            <form-property name="isShowCashBank" type="java.lang.String" />
+            <form-property name="isShowNewApplication" type="java.lang.String" />
+            <form-property name="isShowNewPersonalCorporate" type="java.lang.String" />
+            <form-property name="defaultUserPassDuration" type="java.lang.String" />
+            <form-property name="roleLevel" type="java.lang.String" />
+            <form-property name="isNumeric" type="java.lang.String" />
+            <form-property name="parentId" type="java.lang.String[]" />
+        </form-bean>
+        <form-bean name="organizationForm" type="com.ams.mufins.form.OrganizationForm">
+            <form-property name="start" type="java.lang.String" />
+			<form-property name="count" type="java.lang.String" />
+			<form-property name="caller" type="java.lang.String" />
+			<form-property name="subaction" type="java.lang.String" />
+			<form-property name="organizationId" type="java.lang.String" />
+			<form-property name="name" type="java.lang.String" />
+			<form-property name="address" type="java.lang.String" />
+			<form-property name="city" type="java.lang.String" />
+			<form-property name="postalCode" type="java.lang.String" />
+			<form-property name="province" type="java.lang.String" />
+			<form-property name="telephone" type="java.lang.String" />
+			<form-property name="fax" type="java.lang.String" />
+			<form-property name="email" type="java.lang.String" />
+			<form-property name="description" type="java.lang.String" />
+			<form-property name="organizationSetupId" type="java.lang.String" />
+			<form-property name="graceAmount" type="java.lang.String" />
+			<form-property name="gracePeriod" type="java.lang.String" />
+			<form-property name="setupDate" type="java.lang.String" />
+			<form-property name="periode" type="java.lang.String" />
+			<form-property name="startMonth" type="java.lang.String" />
+			<form-property name="startYear" type="java.lang.String" />
+			<form-property name="numberOfDigit" type="java.lang.String" />
+			<form-property name="posTax" type="java.lang.String" />
+			<form-property name="hasSetBudget" type="java.lang.String" />
+			<form-property name="note" type="java.lang.String" />
+			<form-property name="defaultCurrencyId" type="java.lang.String" />
+			<form-property name="hasStartTransaction" type="java.lang.String" />
+			<form-property name="postingPeriode" type="java.lang.String" />
+			<form-property name="arAccountId" type="java.lang.String" />
+			<form-property name="apAccountId" type="java.lang.String" />
+			<form-property name="prePaymentAccountId" type="java.lang.String" />
+			<form-property name="prePaymentToVendorAccountId" type="java.lang.String" />
+			<form-property name="undepositAccountId" type="java.lang.String" />
+			<form-property name="profitLossAccountId" type="java.lang.String" />
+			<form-property name="retainedAccountId" type="java.lang.String" />
+			<form-property name="inventoryAccountId" type="java.lang.String" />
+			<form-property name="salesAccountId" type="java.lang.String" />
+			<form-property name="cogsAccountId" type="java.lang.String" />
+			<form-property name="realizedCurrencyLossGainAccountId" type="java.lang.String" />
+			<form-property name="unrealizedCurrencyLossGainAccountId" type="java.lang.String" />
+			<form-property name="refundDealerAccountId" type="java.lang.String" />
+			<form-property name="refundSalesAccountId" type="java.lang.String" />
+			<form-property name="downPaymentAccountId" type="java.lang.String" />
+			<form-property name="insurancePremiAccountId" type="java.lang.String" />
+			<form-property name="administrationAccountId" type="java.lang.String" />
+			<form-property name="fixAssetAccountId" type="java.lang.String" />
+			<form-property name="accumulatedDepreciationAccountId" type="java.lang.String" />
+			<form-property name="depreciationExpenseAccountId" type="java.lang.String" />
+			<form-property name="otherLiabilitiesAccountId" type="java.lang.String" />
+			<form-property name="principleAccountId" type="java.lang.String" />
+			<form-property name="interestAccountId" type="java.lang.String" />
+			<form-property name="penaltyAccountId" type="java.lang.String" />
+			<form-property name="otherIncomeAccountId" type="java.lang.String" />
+			<form-property name="logoContentType" type="java.lang.String" />
+			<form-property name="url" type="java.lang.String" />
+			<form-property name="logo" type="org.apache.struts.upload.FormFile" />
+			<form-property name="removeLogo" type="java.lang.String" />
+			<form-property name="runningNumberId" type="java.lang.String" />
+			<form-property name="currencyExchangeType" type="java.lang.String" />
+			<form-property name="lockTransactionDate" type="java.lang.String" />
+			<form-property name="isActive" type="java.lang.String" />
+			<form-property name="themeId" type="java.lang.String" />
+			<form-property name="customerReturnAccountId" type="java.lang.String" />
+			<form-property name="stockOpnameAccountId" type="java.lang.String" />
+			<form-property name="npwp" type="java.lang.String" />
+			<form-property name="npwpDate" type="java.lang.String" />
+			<form-property name="simpleNpwpDate" type="java.lang.String" />
+			<form-property name="npwpSn" type="java.lang.String" />
+			<form-property name="approvedPerson" type="java.lang.String" />
+			<form-property name="position" type="java.lang.String" />
+			<form-property name="runningNumberTypeId" type="java.lang.String" />
+			<form-property name="prefix" type="java.lang.String" />
+			<form-property name="suffix" type="java.lang.String" />
+			<form-property name="number" type="java.lang.String" />
+			<form-property name="year" type="java.lang.String" />
+			<form-property name="terminationPenalty" type="java.lang.String" />
+			<form-property name="lateCharge" type="java.lang.String" />
+			<form-property name="orderBy" type="java.lang.String" />
+			<form-property name="gotoPage" type="java.lang.String" />
+			<form-property name="gotoPage2" type="java.lang.String" />
+			<form-property name="ascDesc" type="java.lang.String" />
+			<form-property name="currencyExchangeRateTypeId" type="java.lang.String" />
+			<form-property name="refinanceProvisiAccountId" type="java.lang.String" />
+			<form-property name="branchId" type="java.lang.String" />
+			<form-property name="branchCode" type="java.lang.String" />
+			<form-property name="cfReceivableCarAccountId" type="java.lang.String" />
+			<form-property name="cfReceivableMotorAccountId" type="java.lang.String" />
+			<form-property name="cfReceivableElectronicAccountId" type="java.lang.String" />
+			<form-property name="cfReceivableDocumentAccountId" type="java.lang.String" />
+			<form-property name="cfInsuranceAndFeeAccountId" type="java.lang.String" />
+			<form-property name="bankChargesAccountId" type="java.lang.String" />
+			<form-property name="assetForSalesAccountId" type="java.lang.String" />
+			<form-property name="writeOffAccountId" type="java.lang.String" />
+			<form-property name="refinanceTerminateInterestAccountId" type="java.lang.String" />
+			<form-property name="refinanceTerminatePenaltyAccountId" type="java.lang.String" />
+			<form-property name="fixAssetVehicleAccountId" type="java.lang.String" />
+			<form-property name="assetForFutureSalesAccountId" type="java.lang.String" />
+			<form-property name="caseHandleFeeAccountId" type="java.lang.String" />
+			<form-property name="otherOperatingExpenseAccountId" type="java.lang.String" />
+			<form-property name="otherReceivableAccountId" type="java.lang.String" />
+			<form-property name="interestExpOnShoreLoanAccountId" type="java.lang.String" />
+			<form-property name="accruedExpOnShoreLoanAccountId" type="java.lang.String" />
+			<form-property name="newVehicleBsmRate" type="java.lang.String" />
+			<form-property name="oldVehicleBsmRate" type="java.lang.String" />
+			<form-property name="rakTimeOff" type="java.lang.String" />
+			<form-property name="centuryTimeOff" type="java.lang.String" />
+			<form-property name="defaultUserPassDuration" type="java.lang.String" />
+			<form-property name="defaultUserPassHistory" type="java.lang.String" />
+			<form-property name="defaultMinUserPassLength" type="java.lang.String" />
+			<form-property name="isAlphabetUserPass" type="java.lang.String" />
+			<form-property name="isNumericUserPass" type="java.lang.String" />
+			<form-property name="isUpperCaseLetter" type="java.lang.String" />
+			<form-property name="isLocked" type="java.lang.String" />
+			<form-property name="otherIncomeDDAccountId" type="java.lang.String" />
+			<form-property name="otherIncomeWOAccountId" type="java.lang.String" />
+			<form-property name="otherIncomeAFSAccountId" type="java.lang.String" />
+			<form-property name="otherIncomeRFAccountId" type="java.lang.String" />
+			<form-property name="otherPayableCustodiAccountId" type="java.lang.String" />
+			<form-property name="otherPayablePremiAsuransiId" type="java.lang.String" />
+			<form-property name="otherPayablePremiRiskAsuransiId" type="java.lang.String" />
+			<form-property name="otherPayableCfReferralId" type="java.lang.String" />
+			<form-property name="otherIncomeCustodiAccountId" type="java.lang.String" />
+			<form-property name="biayaKasusAccountId" type="java.lang.String" />
+			<form-property name="runningNumberTypeIdEdit" type="java.lang.String" />
+			<form-property name="yearEdit" type="java.lang.String" />
+			<form-property name="branchEdit" type="java.lang.String" />
+			<form-property name="prefixEdit" type="java.lang.String" />
+			<form-property name="numberEdit" type="java.lang.String" />
+			<form-property name="suffixEdit" type="java.lang.String" />
+			<form-property name="organizationEdit" type="java.lang.String" />
+			<form-property name="subaction2" type="java.lang.String" />
+			<form-property name="paramOrganizationId" type="java.lang.String" />
+			<form-property name="paramRunningTypeId" type="java.lang.String" />
+			<form-property name="paramBranchId" type="java.lang.String" />
+			<form-property name="paramBranchCode" type="java.lang.String" />
+			<form-property name="paramYear" type="java.lang.String" />
+			<form-property name="productId" type="java.lang.String" />
+			<form-property name="consumerFinanceId" type="java.lang.String" />
+			<form-property name="buyRate" type="java.lang.String" />
+			<form-property name="sellRate" type="java.lang.String" />
+			<form-property name="discountRate" type="java.lang.String" />
+			<form-property name="discountRateOldCar" type="java.lang.String" />
+			<form-property name="discountRateVeryOldCar" type="java.lang.String" />
+			<form-property name="discountRateNiaga" type="java.lang.String" />
+			<form-property name="advanceRate" type="java.lang.String" />
+			<form-property name="arrearRate" type="java.lang.String" />
+			<form-property name="consumerFinanceSetupId" type="java.lang.String" />
+			<form-property name="cfReceivableAccountId" type="java.lang.String" />
+			<form-property name="otherPayableCfAccountId" type="java.lang.String" />
+			<form-property name="otherPayablePremiAsuransiAccountId" type="java.lang.String" />
+			<form-property name="otherPayablePremiRiskAsuransiAccountId" type="java.lang.String" />
+			<form-property name="otherPayableRefundDealerAccountId" type="java.lang.String" />
+			<form-property name="cfIncomeInstallmentAccountId" type="java.lang.String" />
+			<form-property name="cfIncomeInsuranceAccountId" type="java.lang.String" />
+			<form-property name="cfIncomeInsuranceRiskAccountId" type="java.lang.String" />
+			<form-property name="cfIncomePenaltyAccountId" type="java.lang.String" />
+			<form-property name="cfAdministrationAccountId" type="java.lang.String" />
+			<form-property name="otherIncomeCfAccountId" type="java.lang.String" />
+			<form-property name="assetForFutureSaleAccountId" type="java.lang.String" />
+			<form-property name="otherPayableCfReferralFeeAccountId" type="java.lang.String" />
+			<form-property name="otherIncomeCfDdAccountId" type="java.lang.String" />
+			<form-property name="otherIncomeCfWoAccountId" type="java.lang.String" />
+			<form-property name="otherIncomeCfAffsAccountId" type="java.lang.String" />
+			<form-property name="otherIncomeCfReferralFeeAccountId" type="java.lang.String" />
+			<form-property name="badDebtExpenseAccountId" type="java.lang.String" />
+			<form-property name="biayaPenangananKasusCfAccountId" type="java.lang.String" />
+			<form-property name="otherOperatingExpenseCfAccountId" type="java.lang.String" />
+			<form-property name="insentiveAccountId" type="java.lang.String" />
+			<form-property name="advanceFlatRate" type="java.lang.String" />
+			<form-property name="arrearFlatRate" type="java.lang.String" />
+			<form-property name="agencyOrganizationId" type="java.lang.String" />
+			<form-property name="cfIncomeLifeInsuranceAccountId" type="java.lang.String" />
+			<form-property name="lifeInsuranceRate" type="java.lang.String" />
+			<form-property name="riskInsuranceRate" type="java.lang.String" />
+			<form-property name="riskInsuranceAmount" type="java.lang.String" />
+			<form-property name="oldRiskInsuranceRate" type="java.lang.String" />
+			<form-property name="oldRiskInsuranceRate2" type="java.lang.String" />
+			<form-property name="oldRiskInsuranceRate3" type="java.lang.String" />
+			<form-property name="riskInsuranceRateNiaga" type="java.lang.String" />
+			<form-property name="discountRiskInsuranceRate" type="java.lang.String" />
+			<form-property name="sodLimit" type="java.lang.String" />
+			<form-property name="lifeInsuranceLimitation" type="java.lang.String" />
+			<form-property name="isSales" type="java.lang.String" />
+       		<form-property name="otherPayablePremiAsuransiOldId" type="java.lang.String" />
+			<form-property name="otherPayableRefundDealerOldId" type="java.lang.String" />
+			<form-property name="cfIncomeInsuranceOldId" type="java.lang.String" />
+			<form-property name="bankChargeId" type="java.lang.String" />
+			<form-property name="eodLimit" type="java.lang.String" />
+			<form-property name="drawdownTimeOff" type="java.lang.String" />
+			<form-property name="id" type="java.lang.String" />
+			<form-property name="otherPayableDrawdownId" type="java.lang.String" />
+			<form-property name="terminateArTimeOff" type="java.lang.String" />
+			<form-property name="isRunningNumberService" type="java.lang.String" />
+			<form-property name="badDebtExpenseTakeAwayId" type="java.lang.String" />
+			<form-property name="isDrawdownNumberService" type="java.lang.String" />
+			<form-property name="isPolisNumberService" type="java.lang.String" />
+			<form-property name="isAktaFiduciaNumberService" type="java.lang.String" />
+			<form-property name="drawdownCutOffPembiayaanMotor" type="java.lang.String" />
+			<form-property name="refundAdmDealer" type="java.lang.String" />
+			<form-property name="validasiPokokHutang" type="java.lang.String" />
+			<form-property name="otherPayableBalanceId" type="java.lang.String" />
+			<form-property name="otherPayableProvisiId" type="java.lang.String" />
+			<form-property name="timeoutAdmin" type="java.lang.String" />
+			<form-property name="timeoutUser" type="java.lang.String" />
+			<form-property name="timeoutSystem" type="java.lang.String" />
+			<form-property name="timeoutServer" type="java.lang.String" />
+			<form-property name="maximumUmur" type="java.lang.String" />
+			<form-property name="minimumUmur" type="java.lang.String" />
+			<form-property name="bankKpnoId" type="java.lang.String" />
+			<form-property name="otherOperatingExpCFId" type="java.lang.String" />
+			<form-property name="badDebtOSId" type="java.lang.String" />			
+			<form-property name="maxLoginAttempts" type="java.lang.String" />
+			<form-property name="drawdownAutomaticTimeOnFrom" type="java.lang.String" />
+			<form-property name="drawdownAutomaticTimeOnTo" type="java.lang.String" />
+			
+			<!-- Parameter Tax CADM -->
+			<form-property name="rateBadanUsahaNpwp" type="java.lang.String" />
+			<form-property name="rateBadanUsahaTidakNpwp" type="java.lang.String" />
+			<form-property name="ratePeroranganNpwp" type="java.lang.String" />
+			<form-property name="ratePeroranganTidakNpwp" type="java.lang.String" />
+			<form-property name="taxPayableArt21Id" type="java.lang.String" />
+			<form-property name="taxPayableArt23Id" type="java.lang.String" />
+			
+			<!-- Radius Dalam -->
+			<form-property name="radiusDalamCabang" type="java.lang.String" />
+			<form-property name="radiusLuarCabang" type="java.lang.String" />
+			<form-property name="radiusDalamOutlet" type="java.lang.String" />
+			<form-property name="radiusLuarOutlet" type="java.lang.String" />
+						
+			<!-- running number journal -->
+			<form-property name="journalYear" type="java.lang.String"/>
+            <form-property name="JournalMonth" type="java.lang.String"/>
+            <form-property name="runningNumberJournalId" type="java.lang.String"/>
+            <form-property name="journalTypeId" type="java.lang.String" />
+			
+			<!-- Running Number Fiducia -->
+			<form-property name="runningNumberFiduciaId" type="java.lang.String" />
+			<form-property name="runningNumberYear" type="java.lang.String" />
+			<form-property name="runningNumberMonth" type="java.lang.String" />
+			<form-property name="runningNumber" type="java.lang.String" />
+			<form-property name="notarisId" type="java.lang.String" />
+			<form-property name="runningNumberFiducia" type="java.lang.String" />
+			
+			<form-property name="otherChargesLimitation" type="java.lang.String" />
+			<form-property name="insuranceYearDepreciation" type="java.lang.String"/>
+			<form-property name="insuranceParamYear" type="java.lang.String"/>
+			<form-property name="insuranceTloParamYear" type="java.lang.String"/>
+			<form-property name="oldInsuranceParamYear" type="java.lang.String"/>
+			
+			<!-- parameter refinancing -->
+			<form-property name="otherPayablePremiLifeInsuranceChannelingId" type="java.lang.String" />
+			<form-property name="otherPayableAdminMotorChannelingId" type="java.lang.String" />
+			<form-property name="otherPayableChannelingId" type="java.lang.String" />
+			<form-property name="cfAdministrasiChannelingId" type="java.lang.String" />
+			
+			<form-property name="otherPayablePaymentMotorChanelingId" type="java.lang.String" />
+			<form-property name="otherPayableCfMotorChannelingId" type="java.lang.String" />
+			<form-property name="pendapatanMotorChannelingId" type="java.lang.String" />
+			
+			<form-property name="kewajibanLainChannelingId" type="java.lang.String" />
+			<form-property name="otherIncomeChannelingId" type="java.lang.String" />
+			
+			<!-- Aplikasi Pihak Ketiga - Followup status tidak bisa dihubungi -->
+			<form-property name="totalmaximumfollowup" type="java.lang.String" />
+			<form-property name="maxfollowupperday" type="java.lang.String" />
+			<form-property name="difffollowupperday" type="java.lang.String" />
+			<form-property name="isActiveUserLogging" type="java.lang.String" />
+			<form-property name="isActiveHistoryReport" type="java.lang.String" />
+			<form-property name="isBiCheckingDoneValidation" type="java.lang.String" />
+			
+			<form-property name="otherIncomeCfChannelingAccountId" type="java.lang.String" />
+			<form-property name="partnerFeeApBpId" type="java.lang.String" />
+			<form-property name="partnerFeeSasId" type="java.lang.String" />
+			<form-property name="fidusiaConsumerFinanceId" type="java.lang.String" />
+			<form-property name="interestRefundId" type="java.lang.String" />
+			<form-property name="discountRiskInsuranceRateNonLeaseback" type="java.lang.String" />
+			<form-property name="drawdownCutOffPembiayaanMotorNonLeaseback" type="java.lang.String" />
+			<form-property name="partnerFeeApBpLbId" type="java.lang.String" />
+			<form-property name="partnerFeeSasLbId" type="java.lang.String" />
+			<form-property name="fidusiaConsumerFinanceLbId" type="java.lang.String" />
+			<form-property name="maxLoginAttempt" type="java.lang.String" />
+        </form-bean>
+
+	<form-bean name="statusForm" type="com.ams.mufins.form.StatusForm">
+    		<form-property name="subaction" type="java.lang.String" />
+            <form-property name="orderBy" type="java.lang.String" />
+            <form-property name="gotoPage" type="java.lang.String" />
+            <form-property name="gotoPage2" type="java.lang.String" />
+            <form-property name="ascDesc" type="java.lang.String" />
+            <form-property name="start" type="java.lang.String" />
+            <form-property name="count" type="java.lang.String" />
+            <form-property name="createBy" type="java.lang.String" />
+            <form-property name="createOn" type="java.lang.String" />
+            <form-property name="changeBy" type="java.lang.String" />
+            <form-property name="changeOn" type="java.lang.String" />
+            <form-property name="statusId" type="java.lang.String" />
+            <form-property name="type" type="java.lang.String" />
+            <form-property name="code" type="java.lang.String" />
+            <form-property name="name" type="java.lang.String" />
+            <form-property name="description" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="lookupForm" type="com.ams.mufins.form.LookupForm">
+    		<form-property name="subaction" type="java.lang.String" />
+            <form-property name="orderBy" type="java.lang.String" />
+            <form-property name="gotoPage" type="java.lang.String" />
+            <form-property name="gotoPage2" type="java.lang.String" />
+            <form-property name="ascDesc" type="java.lang.String" />
+            <form-property name="start" type="java.lang.String" />
+            <form-property name="count" type="java.lang.String" />
+            <form-property name="createBy" type="java.lang.String" />
+            <form-property name="createOn" type="java.lang.String" />
+            <form-property name="changeBy" type="java.lang.String" />
+            <form-property name="changeOn" type="java.lang.String" />
+            <form-property name="lookupId" type="java.lang.String" />
+            <form-property name="category" type="java.lang.String" />
+            <form-property name="code" type="java.lang.String" />
+            <form-property name="shortName" type="java.lang.String" />
+            <form-property name="name" type="java.lang.String" />
+            <form-property name="description" type="java.lang.String" />
+            <form-property name="lookupRefinanceId" type="java.lang.String" />
+            <form-property name="refinanceBank" type="java.lang.String" />
+            <form-property name="refinanceBankId" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="branchClassForm" type="com.ams.mufins.form.BranchClassForm">
+    		<form-property name="subaction" type="java.lang.String" />
+            <form-property name="orderBy" type="java.lang.String" />
+            <form-property name="gotoPage" type="java.lang.String" />
+            <form-property name="gotoPage2" type="java.lang.String" />
+            <form-property name="ascDesc" type="java.lang.String" />
+            <form-property name="start" type="java.lang.String" />
+            <form-property name="count" type="java.lang.String" />
+			<form-property name="branchClassId" type="java.lang.String" />
+			<form-property name="code" type="java.lang.String" />
+			<form-property name="approvelLevel1" type="java.lang.String" />
+			<form-property name="approvelLevel2" type="java.lang.String" />
+			<form-property name="note" type="java.lang.String" />
+			<form-property name="createBy" type="java.lang.String" />
+			<form-property name="createOn" type="java.lang.String" />
+			<form-property name="changeBy" type="java.lang.String" />
+			<form-property name="changeOn" type="java.lang.String" />
+			<form-property name="organizationId" type="java.lang.String" />
+			<form-property name="approvelOtr" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="branchForm" type="com.ams.mufins.form.BranchForm">
+    		<form-property name="namesearch" type="java.lang.String" />    		
+    		<form-property name="subaction" type="java.lang.String" />
+            <form-property name="orderBy" type="java.lang.String" />
+            <form-property name="gotoPage" type="java.lang.String" />
+            <form-property name="gotoPage2" type="java.lang.String" />
+            <form-property name="ascDesc" type="java.lang.String" />
+            <form-property name="start" type="java.lang.String" />
+            <form-property name="count" type="java.lang.String" />
+			<form-property name="branchId" type="java.lang.String" />
+			<form-property name="code" type="java.lang.String" />
+			<form-property name="name" type="java.lang.String" />
+			<form-property name="address" type="java.lang.String" />
+			<form-property name="city" type="java.lang.String" />
+			<form-property name="postalCode" type="java.lang.String" />
+			<form-property name="email" type="java.lang.String" />
+			<form-property name="active" type="java.lang.String" />
+			<form-property name="note" type="java.lang.String" />
+			<form-property name="createBy" type="java.lang.String" />
+			<form-property name="createOn" type="java.lang.String" />
+			<form-property name="changeBy" type="java.lang.String" />
+			<form-property name="changeOn" type="java.lang.String" />
+			<form-property name="organizationId" type="java.lang.String" />
+			
+        </form-bean>
+       
+         
+   	</form-beans>
+        
+    <!-- ========== Global Exception Definitions ============================== -->
+    <global-exceptions />
+
+    <!-- ========== Global Forward Definitions =============================== -->
+    <global-forwards>
+        <forward name="index" path="/index.jsp" />
+        <forward name="home" path="/home.do" />
+        <forward name="error_password" path="/error_password.jsp" />
+        <forward name="error_workflow" path="/error_workflow.jsp" />
+        <forward name="no_routing_workflow" path="/no_routing_workflow.jsp" />
+        <forward name="print_journal_number" path="/print_journal_number.jsp" />
+        <forward name="print_journal_number_ppc" path="/print_journal_number_ppc.jsp" />
+		<forward name="success" path="/success.jsp"/>
+		<forward name="doubleSubmit" path="/error_double_submit.jsp" />
+		<forward name="popUpWarning" path="/popup_warning_session.jsp"/>
+		<forward name="doubleData" path="/error_double_data.jsp" />
+		<forward name="session_invalid" path="/session_invalid.jsp" />
+    	<forward name="ajaxSuccess" path="/ajax_success.jsp" />
+    </global-forwards>
+
+    <!-- ========== Action Mapping Definitions =============================== -->
+    <action-mappings>
+        <action
+            parameter="SURVEYOR_IMAGE_UPLOAD"
+            path="/surveyor/imageUpload"
+            type="com.ams.mufins.action.NonLogonAction"
+            validate="false">
+        </action>
+        <action
+            parameter="PERSONAL_DOCUMENTATION_FILE_UPLOAD"
+            path="/personal/documentationFileUpload"
+            type="com.ams.mufins.action.NonLogonAction"
+            validate="false">
+        </action>
+        <action
+            parameter="SURVEYOR_DOCUMENTATION_FILE_UPLOAD"
+            path="/surveyor/documentationFileUpload"
+            type="com.ams.mufins.action.NonLogonAction"
+            validate="false">
+        </action>
+    	
+    	<action
+            parameter="BALANCER"
+            path="/balancer"
+            type="com.ams.mufins.action.BalancerFilterAction"
+            validate="false">
+        </action>
+    	<action
+            parameter="WHO_LOGIN"
+            path="/whoLogin"
+            type="com.ams.mufins.action.NonLogonAction"
+            validate="false">
+            <forward name="success" path="/who_login.jsp" />
+        </action>
+        <action
+            parameter="WHO_LOGIN_REMOTE"
+            path="/whoLoginRemote"
+            type="com.ams.mufins.action.NonLogonAction"
+            validate="false">
+            <forward name="success" path="/who_login.jsp" />
+        </action>
+        <action
+            parameter="RELEASE"
+            path="/release"
+            type="com.ams.mufins.action.NonLogonAction"
+            validate="false">
+        </action>
+        <action
+            parameter="RELEASE_REMOTE"
+            path="/releaseRemote"
+            type="com.ams.mufins.action.NonLogonAction"
+            validate="false">
+        </action>
+         <action
+            parameter="UNLOCKUSER"
+            path="/unlockUser"
+            type="com.ams.mufins.action.NonLogonAction"
+            validate="false">
+        </action>
+        <action
+            parameter="SERVERRESPONSE"
+            path="/serverRemote"
+            type="com.ams.mufins.action.NonLogonAction"
+            validate="false">
+            <forward name="serverlist" path="/server_remote.jsp" />
+        </action>
+        <action
+            parameter="SSO_CHECK"
+            path="/ssoCheck"
+            type="com.ams.mufins.action.NonLogonAction"
+            validate="false">
+        </action>
+        <action
+            parameter="SSO_CHECK_REMOTE"
+            path="/ssoCheckRemote"
+            type="com.ams.mufins.action.NonLogonAction"
+            validate="false">
+        </action>
+    	<!-- CHART HOME -->
+        <action
+            parameter="CHANGE_LANGUAGE"
+            path="/changeLanguage"
+            type="com.ams.mufins.action.NonLogonAction"
+            scope="request"
+            validate="false">
+            <forward name="home" path="/home.do" redirect="true"/>
+        </action>
+		<action
+            attribute="logonForm"
+            input="/index2.jsp"
+            name="logonForm"
+            parameter="LOGON"
+            path="/logon"
+            scope="request"
+            type="com.ams.mufins.action.LogonAction"
+            validate="false">
+            <forward name="success" path="/index.jsp" redirect="true" />
+            <forward name="index" path="/index.jsp" redirect="true" />
+			<forward name="form" path="/jsp/user_passwordexpired.jsp" />
+        </action>
+        <action
+    		attribute="logonForm"    		
+    		name="logonForm"
+            parameter="LOGONFORM"
+            path="/logon/form"
+            type="com.ams.mufins.action.LogonAction"
+            validate="false">
+            <forward name="index" path="/index2.jsp" />
+            <forward name="index_ppc" path="/index2_ppc.jsp" />
+            <forward name="redir" path="/logon/passwordExpired.do" redirect="true"/>
+        </action>
+        <action
+    		attribute="logonForm"
+        	name="logonForm"
+            parameter="PASS_CODE_FORM"
+            path="/logon/passCodeForm"
+            type="com.ams.mufins.action.LogonAction"
+            validate="false">
+            <forward name="index" path="/index3.jsp" />
+        </action>
+        <action
+            parameter="HOME"
+            path="/home"
+            type="com.ams.mufins.action.UserAction"
+            validate="false">
+            <forward name="index2" path="/index2.jsp" />
+            <forward name="index2_ppc" path="/index2_ppc.jsp" />
+        </action>
+        <action
+            parameter="LOGOFF"
+            path="/logoff"
+            type="com.ams.mufins.action.LogonAction"
+            validate="false">
+            <forward name="index" path="/index.jsp" redirect="true" />
+            <forward name="index_ppc" path="/index_ppc.jsp" redirect="true" />
+        </action>
+      	<!--  -->
+      	 <action
+            attribute="logonForm"
+            name="logonForm"
+            parameter="PASSWORDEXPIRED"
+            path="/logon/passwordExpired"
+            scope="request"
+            type="com.ams.mufins.action.LogonAction"
+            validate="false">
+            <forward name="form" path="/jsp/user_passwordexpired.jsp" />
+        </action>
+        <action
+            attribute="logonForm"
+            input="/jsp/user_passwordexpired.jsp"
+            name="logonForm"
+            parameter="PASSWORDEXPIREDSAVE"
+            path="/logon/passwordExpiredSave"
+            scope="request"
+            type="com.ams.mufins.action.LogonAction"
+            validate="false">
+            <forward name="form1" path="/jsp/user_passwordexpired.jsp" />
+           <forward name="form2" path="/jsp/user_passwordexpired_confirm_save.jsp" />
+        </action>
+      	<!--  -->
+        <!-- User -->
+        <action
+            attribute="userForm"
+            input="/jsp/user_logging_list.jsp"
+            name="userForm"
+            parameter="LOGGING"
+            path="/user/logging"
+            scope="request"
+            type="com.ams.mufins.action.UserAction"
+            validate="false">
+            <forward name="list" path="/jsp/user_logging_list.jsp" />
+        </action>
+        <action
+            attribute="userForm"
+            input="/jsp/user_list.jsp"
+            name="userForm"
+            parameter="LIST"
+            path="/user/list"
+            scope="request"
+            type="com.ams.mufins.action.UserAction"
+            validate="false">
+            <forward name="list" path="/jsp/user_list.jsp" />
+        </action>
+        <action
+            attribute="userForm"
+            name="userForm"
+            parameter="FORM"
+            path="/user/form"
+            scope="request"
+            type="com.ams.mufins.action.UserAction"
+            validate="false">
+            <forward name="form" path="/jsp/user_form.jsp" />
+        </action>
+        <action
+            attribute="userForm"
+            input="/jsp/user_form.jsp"
+            name="userForm"
+            parameter="SAVE"
+            path="/user/save"
+            scope="request"
+            type="com.ams.mufins.action.UserAction"
+            validate="false">
+            <forward name="list_redir" path="/user/list.do" redirect="true" />
+            <forward name="form" path="/jsp/user_form.jsp"  />
+        </action>
+        <action
+            attribute="userForm"
+            name="userForm"
+            input="/jsp/email_resetpassword_form.jsp"
+            parameter="EMAILRESETPASSWORD"
+            path="/emailResetPassword"
+            type="com.ams.mufins.action.NonLogonAction"
+            validate="false">
+            <forward name="form" path="/jsp/email_resetpassword_form.jsp" />
+        </action>
+        <action
+            attribute="userForm"
+            name="userForm"
+            parameter="RESET_LOGIN_ATTEMPT"
+            path="/user/resetLoginAttempt"
+            scope="request"
+            type="com.ams.mufins.action.UserAction"
+            validate="false">
+            <forward name="list_redir" path="/user/list.do" redirect="true" />
+        </action>
+        
+        <action
+        	attribute="userForm"
+        	input="/jsp/user_password_form.jsp"
+        	name="userForm"
+        	parameter="PASSWORD_FORM"
+        	path="/user/passwordForm"
+        	scope="request"
+        	type="com.ams.mufins.action.UserAction"
+        	validate="false">
+        	<forward name="list" path="/jsp/user_list.jsp"/>
+        	<forward name="passForm" path="/jsp/user_password_form.jsp"/>
+        </action>
+        <action
+        	attribute="userForm"
+        	input="/jsp/user_password_form.jsp"
+        	name="userForm"
+        	parameter="PASSWORD_SAVE"
+        	path="/user/passwordSave"
+        	scope="request"
+        	type="com.ams.mufins.action.UserAction"
+        	validate="false">           
+        	<forward name="redir" path="/user/list.do" redirect="true"/>
+        	<forward name="form2" path="/jsp/user_password_form.jsp"/>
+        	<forward name="passForm" path="/jsp/user_password_form.jsp"/>
+        </action>
+        <action
+        	attribute="userHistoryForm"
+        	input="/jsp/user_history_list.jsp"
+        	name="userHistoryForm"
+        	parameter="LIST"
+        	path="/user/historyList"
+        	scope="request"
+        	type="com.ams.mufins.action.UserHistoryAction"
+        	validate="false">
+        	<forward name="list" path="/jsp/user_history_list.jsp"/>
+        </action>
+        
+        <action
+        	attribute="userHistoryForm"
+        	input="/jsp/user_history_detail.jsp"
+        	name="userHistoryForm"
+        	parameter="DETAIL"
+        	path="/user/historyDetail"
+        	scope="request"
+        	type="com.ams.mufins.action.UserHistoryAction"
+        	validate="false">
+        	<forward name="detail" path="/jsp/user_history_detail.jsp"/>
+        </action>
+        
+        <action
+            attribute="userForm"
+            name="userForm"
+            parameter="DETAIL"
+            path="/user/detail"
+            scope="request"
+            type="com.ams.mufins.action.UserAction"
+            validate="false">
+            <forward name="detail" path="/jsp/user_detail.jsp" />
+        </action>
+        <action
+            attribute="userForm"
+            name="userForm"
+            parameter="CHECKLISTMARKETING"
+            path="/user/checklistMarketing"
+            scope="request"
+            type="com.ams.mufins.action.UserAction"
+            validate="false">
+            <forward name="list" path="/jsp/checklist_marketing.jsp" />
+        </action>
+        <action
+            attribute="userForm"
+            input="/jsp/user_maintainance.jsp"
+            name="userForm"
+            parameter="SALESMAINTAINANCE"
+            path="/user/salesMaintainance"
+            scope="request"
+            type="com.ams.mufins.action.UserAction"
+            validate="false">
+            <forward name="list" path="/jsp/user_maintainance.jsp" />
+        </action>
+        <action
+            attribute="userForm"
+            name="userForm"
+            parameter="CHANGEPASSWORD"
+            path="/user/changePassword"
+            scope="request"
+            type="com.ams.mufins.action.UserAction"
+            validate="false">
+            <forward name="form" path="/jsp/user_changepassword.jsp" />
+        </action>
+        <action
+            attribute="userForm"
+            input="/jsp/user_changepassword.jsp"
+            name="userForm"
+            parameter="CHANGEPASSWORDSAVE"
+            path="/user/changePasswordSave"
+            scope="request"
+            type="com.ams.mufins.action.UserAction"
+            validate="false">
+            <forward name="redir" path="/home.do" redirect="true"/>
+            <forward name="form2" path="/jsp/user_passwordexpired_confirm_save.jsp" />
+        </action>
+        
+        <!-- UserBranch -->
+        <action
+            attribute="userForm"
+            name="userForm"
+            input="/jsp/userbranch_list.jsp"
+            parameter="LIST"
+            path="/userBranch/list"
+            scope="request"
+            type="com.ams.mufins.action.UserBranchAction"
+            validate="false">
+            <forward name="list" path="/jsp/userbranch_list.jsp" />
+        </action>
+        <action
+            attribute="userForm"
+            name="userForm"
+            parameter="FORM"
+            path="/userBranch/form"
+            scope="request"
+            type="com.ams.mufins.action.UserBranchAction"
+            validate="false">
+            <forward name="form" path="/jsp/userbranch_form.jsp" />
+        </action>
+        <action
+            attribute="userForm"
+            input="/jsp/userbranch_form.jsp"
+            name="userForm"
+            parameter="SAVE"
+            path="/userBranch/save"
+            scope="request"
+            type="com.ams.mufins.action.UserBranchAction"
+            validate="false">
+            <forward name="list_redir" path="/userBranch/list.do" redirect="true" />
+            <forward name="form" path="/jsp/userbranch_form.jsp" />
+        </action>
+        <action
+            attribute="userForm"
+            name="userForm"
+            parameter="DETAIL"
+            path="/userBranch/detail"
+            scope="request"
+            type="com.ams.mufins.action.UserBranchAction"
+            validate="false">
+           <forward name="detail" path="/jsp/userbranch_detail.jsp" />
+        </action>
+
+        <!-- User -->
+		
+		<!-- View -->
+        <action
+            attribute="viewForm"
+            input="/jsp/view_list.jsp"
+            name="viewForm"
+            parameter="LIST"
+            path="/view/list"
+            scope="request"
+            type="com.ams.mufins.action.ViewAction"
+            validate="false">
+            <forward name="list" path="/jsp/view_list.jsp" />
+        </action>
+        <action
+            attribute="viewForm"
+            name="viewForm"
+            parameter="FORM"
+            path="/view/form"
+            scope="request"
+            type="com.ams.mufins.action.ViewAction"
+            validate="false">
+            <forward name="form" path="/jsp/view_form.jsp" />
+        </action>
+        <action
+            attribute="viewForm"
+            input="/jsp/view_form.jsp"
+            name="viewForm"
+            parameter="SAVE"
+            path="/view/save"
+            scope="request"
+            type="com.ams.mufins.action.ViewAction"
+            validate="false">
+            <forward name="list_redir" path="/view/list.do" redirect="true" />
+            <forward name="form_redir" path="/view/form.do" redirect="true" />
+        </action>
+        <action
+            attribute="viewForm"
+            name="viewForm"
+            parameter="DETAIL"
+            path="/view/detail"
+            scope="request"
+            type="com.ams.mufins.action.ViewAction"
+            validate="false">
+            <forward name="detail" path="/jsp/view_detail.jsp" />
+        </action>
+        <action
+        	attribute="viewForm"
+        	input="/jsp/view_detail.jsp"
+            name="viewForm"
+            parameter="DELETE"
+            path="/view/delete"
+            type="com.ams.mufins.action.ViewAction"
+            validate="false">
+            <forward name="list_redir" path="/view/list.do" redirect="true" />
+        </action>
+        <!-- View -->
+        <!-- Role -->
+        <action
+            attribute="roleForm"
+            input="/jsp/role_list.jsp"
+            name="roleForm"
+            parameter="LIST"
+            path="/role/list"
+            scope="request"
+            type="com.ams.mufins.action.RoleAction"
+            validate="false">
+            <forward name="list" path="/jsp/role_list.jsp" />
+        </action>
+        <action
+            attribute="roleForm"
+            name="roleForm"
+            parameter="FORM"
+            path="/role/form"
+            scope="request"
+            type="com.ams.mufins.action.RoleAction"
+            validate="false">
+            <forward name="form" path="/jsp/role_form.jsp" />
+        </action>
+        <action
+            attribute="roleForm"
+            input="/jsp/role_form.jsp"
+            name="roleForm"
+            parameter="SAVE"
+            path="/role/save"
+            scope="request"
+            type="com.ams.mufins.action.RoleAction"
+            validate="false">
+            <forward name="list_redir" path="/role/list.do" redirect="true" />
+        </action>
+        <action
+            attribute="roleForm"
+            name="roleForm"
+            parameter="DETAIL"
+            path="/role/detail"
+            scope="request"
+            type="com.ams.mufins.action.RoleAction"
+            validate="false">
+            <forward name="detail" path="/jsp/role_detail.jsp" />
+        </action>
+        <!-- Role -->
+        <!-- Organization -->
+        <action
+            attribute="organizationForm"
+            input="/jsp/organization_list.jsp"
+            name="organizationForm"
+            parameter="LIST"
+            path="/organization/list"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+            <forward name="list" path="/jsp/organization_list.jsp" />
+        </action>
+        <action
+            attribute="organizationForm"
+            name="organizationForm"
+            parameter="FORM"
+            path="/organization/form"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+            <forward name="form" path="/jsp/organization_form.jsp" />
+        </action>
+        <action
+            attribute="organizationForm"
+            input="/jsp/organization_form.jsp"
+            name="organizationForm"
+            parameter="SAVE"
+            path="/organization/save"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+            <forward name="list_redir" path="/organization/list.do" redirect="true" />
+            <forward name="form_redir" path="/organizationSetup/form.do" redirect="true" />
+        </action>
+        <action
+            attribute="organizationForm"
+            name="organizationForm"
+            parameter="DETAIL"
+            path="/organization/detail"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+            <forward name="detail" path="/jsp/organization_detail.jsp" />
+        </action>
+        <action
+            attribute="organizationForm"
+            name="organizationForm"
+            parameter="DELETE"
+            path="/organization/delete"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+            <forward name="list_redir" path="/organization/list.do" redirect="true" />
+        </action>
+        <action
+            attribute="organizationForm"
+            name="organizationForm"
+            parameter="SHOWIMAGE"
+            path="/organization/showImage"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+        </action>
+        <action
+            attribute="organizationForm"
+            name="organizationForm"
+            parameter="ORGANIZATIONSETUPFORM"
+            path="/organizationSetup/form"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+            <forward name="form" path="/jsp/organizationsetup_form.jsp" />
+        </action>
+
+        <action
+            attribute="organizationForm"
+            input="/jsp/organizationsetup_form.jsp"
+            name="organizationForm"
+            parameter="ORGANIZATIONSETUPSAVE"
+            path="/organizationSetup/save"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+            <forward name="list_redir" path="/organization/list.do" redirect="true" />
+            <forward name="form_redir" path="/runningNumber/form.do" redirect="true" />
+        </action>
+        
+        <action
+            attribute="organizationForm"
+            name="organizationForm"
+            parameter="FINANCESETUPFORM"
+            path="/financeSetup/form"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+            <forward name="form" path="/jsp/financesetup_form.jsp" />
+        </action>
+        <action
+            attribute="organizationForm"
+            name="organizationForm"
+            parameter="FINANCESETUPSAVE"
+            path="/financeSetup/save"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+            <forward name="form" path="/jsp/financesetup_form.jsp" />
+            <forward name="form_redir" path="/financeSetup/form.do" redirect="true" />
+        </action>
+        
+        <action
+            attribute="organizationForm"
+            name="organizationForm"
+            parameter="ACCOUNTINGSETUPFORM"
+            path="/accountingSetup/form"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+            <forward name="form" path="/jsp/accountingsetup_form.jsp" />
+        </action>
+        <action
+            attribute="organizationForm"
+            name="organizationForm"
+            parameter="ACCOUNTINGSETUPSAVE"
+            path="/accountingSetup/save"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+            <forward name="form" path="/jsp/accountingsetup_form.jsp" />
+            <forward name="form_redir" path="/accountingSetup/form.do" redirect="true" />
+        </action>
+        
+        <action
+            attribute="organizationForm"
+            name="organizationForm"
+            parameter="RUNNINGNUMBERFORM"
+            path="/runningNumber/form"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+            <forward name="form" path="/jsp/runningnumber_form.jsp" />
+        </action>
+        <action
+            attribute="organizationForm"
+            input="/jsp/runningnumber_form.jsp"
+            name="organizationForm"
+            parameter="RUNNINGNUMBERSAVE"
+            path="/runningNumber/save"
+            scope="request"
+            type="com.ams.mufins.action.OrganizationAction"
+            validate="false">
+            <forward name="list_redir" path="/organization/list.do" redirect="true" />
+            <forward name="form_redir" path="/runningNumber/form.do" redirect="true" />
+        </action>
+        <!-- Organization -->
+
+        <!-- Lookup -->
+        <action
+            attribute="lookupForm"
+            input="/jsp/lookup_list.jsp"
+            name="lookupForm"
+            parameter="LIST"
+            path="/lookup/list"
+            scope="request"
+            type="com.ams.mufins.action.LookupAction"
+            validate="false">
+            <forward name="list" path="/jsp/lookup_list.jsp" />
+        </action>
+        <action
+            attribute="lookupForm"
+            name="lookupForm"
+            parameter="CREATE"
+            path="/lookup/create"
+            scope="request"
+            type="com.ams.mufins.action.LookupAction"
+            validate="false">
+            <forward name="create" path="/jsp/lookup_create.jsp" />
+        </action>
+        <action
+            attribute="lookupForm"
+            input="/jsp/lookup_create.jsp"
+            name="lookupForm"
+            parameter="INSERT"
+            path="/lookup/insert"
+            scope="request"
+            type="com.ams.mufins.action.LookupAction"
+            validate="false">
+            <forward name="list_redir" path="/lookup/list.do" redirect="true" />
+            <forward name="create" path="/jsp/lookup_create.jsp" />
+        </action>
+        <action
+            attribute="lookupForm"
+            name="lookupForm"
+            parameter="EDIT"
+            path="/lookup/edit"
+            scope="request"
+            type="com.ams.mufins.action.LookupAction"
+            validate="false">
+            <forward name="edit" path="/jsp/lookup_edit.jsp" />
+        </action>
+        <action
+            attribute="lookupForm"
+            input="/jsp/lookup_edit.jsp"
+            name="lookupForm"
+            parameter="UPDATE"
+            path="/lookup/update"
+            scope="request"
+            type="com.ams.mufins.action.LookupAction"
+            validate="false">
+            <forward name="list_redir" path="/lookup/list.do" redirect="true" />
+            <forward name="edit" path="/jsp/lookup_edit.jsp" />
+        </action>
+        <action
+            attribute="lookupForm"
+            name="lookupForm"
+            parameter="DETAIL"
+            path="/lookup/detail"
+            scope="request"
+            type="com.ams.mufins.action.LookupAction"
+            validate="false">
+            <forward name="detail" path="/jsp/lookup_detail.jsp" />
+        </action>
+        <!-- Lookup -->
+        <!-- Branch Class -->
+        <action
+            attribute="branchClassForm"
+            input="/jsp/branchclass_list.jsp"
+            name="branchClassForm"
+            parameter="LIST"
+            path="/branchClass/list"
+            scope="request"
+            type="com.ams.mufins.action.BranchClassAction"
+            validate="false">
+            <forward name="list" path="/jsp/branchclass_list.jsp" />
+        </action>
+        <action
+            attribute="branchClassForm"
+            name="branchClassForm"
+            parameter="FORM"
+            path="/branchClass/form"
+            scope="request"
+            type="com.ams.mufins.action.BranchClassAction"
+            validate="false">
+            <forward name="form" path="/jsp/branchclass_form.jsp" />
+        </action>
+        <action
+            attribute="branchClassForm"
+            input="/jsp/branchclass_form.jsp"
+            name="branchClassForm"
+            parameter="SAVE"
+            path="/branchClass/save"
+            scope="request"
+            type="com.ams.mufins.action.BranchClassAction"
+            validate="false">
+            <forward name="list_redir" path="/branchClass/list.do" redirect="true" />
+        </action>
+        <action
+            attribute="branchClassForm"
+            name="branchClassForm"
+            parameter="DETAIL"
+            path="/branchClass/detail"
+            scope="request"
+            type="com.ams.mufins.action.BranchClassAction"
+            validate="false">
+            <forward name="detail" path="/jsp/branchclass_detail.jsp" />
+        </action>
+        <action
+        	attribute="branchClassForm"
+        	input="/jsp/branchclass_detail.jsp"
+            name="branchClassForm"
+            parameter="DELETE"
+            path="/branchClass/delete"
+            type="com.ams.mufins.action.BranchClassAction"
+            validate="false">
+            <forward name="list_redir" path="/branchClass/list.do" redirect="true" />
+        </action>
+        <!-- Branch Class -->
+        <!-- Branch -->
+        <action
+            attribute="branchForm"
+            input="/jsp/branch_list.jsp"
+            name="branchForm"
+            parameter="LIST"
+            path="/branch/list"
+            scope="request"
+            type="com.ams.mufins.action.BranchAction"
+            validate="false">
+            <forward name="list" path="/jsp/branch_list.jsp" />
+        </action>
+        <action
+            attribute="branchForm"
+            name="branchForm"
+            parameter="CREATE"
+            path="/branch/create"
+            scope="request"
+            type="com.ams.mufins.action.BranchAction"
+            validate="false">
+            <forward name="create" path="/jsp/branch_create.jsp" />
+        </action>
+        <action
+            attribute="branchForm"
+            input="/jsp/branch_create.jsp"
+            name="branchForm"
+            parameter="INSERT"
+            path="/branch/insert"
+            scope="request"
+            type="com.ams.mufins.action.BranchAction"
+            validate="false">
+            <forward name="list_redir" path="/branch/list.do" redirect="true" />
+            <forward name="create" path="/jsp/branch_create.jsp" />
+        </action>
+        <action
+            attribute="branchForm"
+            name="branchForm"
+            parameter="EDIT"
+            path="/branch/edit"
+            scope="request"
+            type="com.ams.mufins.action.BranchAction"
+            validate="false">
+            <forward name="edit" path="/jsp/branch_edit.jsp" />
+        </action>
+        <action
+            attribute="branchForm"
+            input="/jsp/branch_edit.jsp"
+            name="branchForm"
+            parameter="UPDATE"
+            path="/branch/update"
+            scope="request"
+            type="com.ams.mufins.action.BranchAction"
+            validate="false">
+            <forward name="list_redir" path="/branch/list.do" redirect="true" />
+            <forward name="edit" path="/jsp/branch_edit.jsp" />
+        </action>
+        <action
+            attribute="branchForm"
+            name="branchForm"
+            parameter="DETAIL"
+            path="/branch/detail"
+            scope="request"
+            type="com.ams.mufins.action.BranchAction"
+            validate="false">
+            <forward name="detail" path="/jsp/branch_detail.jsp" />
+            <forward name="list_redir" path="/branch/list.do" redirect="true" />
+        </action>
+        <action
+            attribute="branchForm"
+            input="/jsp/branch_detail.jsp"
+            name="branchForm"
+            parameter="BACK"
+            path="/branch/back"
+            scope="request"
+            type="com.ams.mufins.action.BranchAction"
+            validate="false">
+            <forward name="list_redir" path="/branch/list.do" redirect="true" />
+            <forward name="detail" path="/jsp/branch_detail.jsp" />
+        </action>
+        <!-- Branch -->
+        
+        <!-- Status -->
+        <action
+            attribute="statusForm"
+            input="/jsp/status_list.jsp"
+            name="statusForm"
+            parameter="LIST"
+            path="/status/list"
+            scope="request"
+            type="com.ams.mufins.action.StatusAction"
+            validate="false">
+            <forward name="list" path="/jsp/status_list.jsp" />
+        </action>
+        <action
+            attribute="statusForm"
+            name="statusForm"
+            parameter="CREATE"
+            path="/status/create"
+            scope="request"
+            type="com.ams.mufins.action.StatusAction"
+            validate="false">
+            <forward name="create" path="/jsp/status_create.jsp" />
+        </action>
+        <action
+            attribute="statusForm"
+            input="/jsp/status_create.jsp"
+            name="statusForm"
+            parameter="INSERT"
+            path="/status/insert"
+            scope="request"
+            type="com.ams.mufins.action.StatusAction"
+            validate="false">
+            <forward name="list_redir" path="/status/list.do" redirect="true" />
+            <forward name="create" path="/jsp/status_create.jsp" />
+        </action>
+        <action
+            attribute="statusForm"
+            name="statusForm"
+            parameter="EDIT"
+            path="/status/edit"
+            scope="request"
+            type="com.ams.mufins.action.StatusAction"
+            validate="false">
+            <forward name="edit" path="/jsp/status_edit.jsp" />
+        </action>
+        <action
+            attribute="statusForm"
+            input="/jsp/status_edit.jsp"
+            name="statusForm"
+            parameter="UPDATE"
+            path="/status/update"
+            scope="request"
+            type="com.ams.mufins.action.StatusAction"
+            validate="false">
+            <forward name="list_redir" path="/status/list.do" redirect="true" />
+            <forward name="edit" path="/jsp/status_edit.jsp" />
+        </action>
+        <action
+            attribute="statusForm"
+            name="statusForm"
+            parameter="DETAIL"
+            path="/status/detail"
+            scope="request"
+            type="com.ams.mufins.action.StatusAction"
+            validate="false">
+            <forward name="detail" path="/jsp/status_detail.jsp" />
+        </action>
+        <!-- Status -->
+        
+        <action 
+			path="/api/getLogin"
+			type="com.ams.mufins.webservice.GetLogin"
+			parameter="GETLOGIN"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getRegister"
+			type="com.ams.mufins.webservice.GetRegister"
+			parameter="GETREGISTER"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getRelease"
+			type="com.ams.mufins.webservice.GetRelease"
+			parameter="GETRELEASE"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getChangePassword"
+			type="com.ams.mufins.webservice.GetChangePassword"
+			parameter="GETCHANGEPASSWORD"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getResetPassword"
+			type="com.ams.mufins.webservice.GetResetPassword"
+			parameter="GETRESETPASSWORD"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getParameterPinjaman"
+			type="com.ams.mufins.webservice.GetParameterPinjaman"
+			parameter="GETPARAMETERPINJAMAN"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getParameterPinjamanExtended"
+			type="com.ams.mufins.webservice.GetParameterPinjamanExtended"
+			parameter="GETPARAMETERPINJAMANEXTENDED"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getParameterTenor"
+			type="com.ams.mufins.webservice.GetParameterTenor"
+			parameter="GETPARAMETERTENOR"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getIndicatorHarga"
+			type="com.ams.mufins.webservice.GetIndicatorHarga"
+			parameter="GETINDICATORHARGA"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getIndicatorTahun"
+			type="com.ams.mufins.webservice.GetIndicatorTahun"
+			parameter="GETINDICATORTAHUN"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getRateBunga"
+			type="com.ams.mufins.webservice.GetRateBunga"
+			parameter="GETRATEBUNGA"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getRateAsuransi"
+			type="com.ams.mufins.webservice.GetRateAsuransi"
+			parameter="GETRATEASURANSI"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getRateAsuransiMotor"
+			type="com.ams.mufins.webservice.GetRateAsuransiMotor"
+			parameter="GETRATEASURANSIMOTOR"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getRateAsuransiJiwa"
+			type="com.ams.mufins.webservice.GetRateAsuransiJiwa"
+			parameter="GETRATEASURANSIJIWA"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getRateBiaya"
+			type="com.ams.mufins.webservice.GetRateBiaya"
+			parameter="GETRATEBIAYA"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getParameterKategoriAsuransi"
+			type="com.ams.mufins.webservice.GetParameterKategoriAsuransi"
+			parameter="GETPARAMETERKATEGORIASURANSI"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getParameterPenyusutan"
+			type="com.ams.mufins.webservice.GetParameterPenyusutan"
+			parameter="GETPARAMETERPENYUSUTAN"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getRateAsuransiMobilTlo"
+			type="com.ams.mufins.webservice.GetRateAsuransiMobilTlo"
+			parameter="GETRATEASURANSIMOBILTLO"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getWilayah"
+			type="com.ams.mufins.webservice.GetWilayah"
+			parameter="GETWILAYAH"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getClosestBranch"
+			type="com.ams.mufins.webservice.GetClosestBranch"
+			parameter="GETCLOSESTBRANCH"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getLookupByCategory"
+			type="com.ams.mufins.webservice.GetLookupByCategory"
+			parameter="GETLOOKUPBYCATEGORY"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getPostalCodeByTypeAndParentId"
+			type="com.ams.mufins.webservice.GetPostalCodeByTypeAndParentId"
+			parameter="GETPOSTALCODEBYTYPEANDPARENTID"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getBusinessSectorByTypeAndParentId"
+			type="com.ams.mufins.webservice.GetBusinessSectorByTypeAndParentId"
+			parameter="GETBUSINESSSECTORBYTYPEANDPARENTID"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getMappingCif"
+			type="com.ams.mufins.webservice.GetMappingCif"
+			parameter="GETMAPPINGCIF"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getSimulasiKredit"
+			type="com.ams.mufins.webservice.GetSimulasiKredit"
+			parameter="GETSIMULASIKREDIT"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/korwil"
+			type="com.ams.mufins.webservice.GetKorwil"
+			parameter="GETKORWIL"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/branch"
+			type="com.ams.mufins.webservice.GetBranch"
+			parameter="GETBRANCH"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/saveDocumentationFile"
+			type="com.ams.mufins.webservice.SaveDocumentationFile"
+			parameter="SAVEDOCUMENTATIONFILE"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getPersonalInfo"
+			type="com.ams.mufins.webservice.GetPersonalInfo"
+			parameter="GETPERSONALINFO"
+			validate="false">
+		</action>
+		
+        <action 
+			path="/api/getSlidesMobile"
+			type="com.ams.mufins.webservice.GetSlidesMobile"
+			parameter="GETSLIDESMOBILE"
+			validate="false">
+			<forward name="show" path="/common/image_media.jsp" />
+		</action>
+		
+        <action 
+			path="/api/getDealerRefundByLookupId"
+			type="com.ams.mufins.webservice.GetDealerRefundByLookupId"
+			parameter="GETDEALERREFUNDBYLOOKUPID"
+			validate="false">
+		</action>
+		
+		<action 
+			path="/api/getAdminRefundFromAgency"
+			type="com.ams.mufins.webservice.GetAdminRefundFromAgency"
+			parameter="GETADMINREFUNDFROMAGENCY"
+			validate="false">
+		</action>
+		
+		<action path="/api/getStatusKreditSimasku"
+			type="com.ams.mufins.webservice.GetStatusKreditSimasku"
+			parameter="GETSTATUSKREDITSIMASKU">
+		</action>
+		
+		<action path="/api/getDetailPersonalId"
+			type="com.ams.mufins.webservice.GetDetailPersonalId"
+			parameter="GETDETAILPERSONALID">
+		</action>
+		
+		<action path="/api/getOCR"
+			type="com.ams.mufins.webservice.GetOCR"
+			parameter="GETOCR">
+		</action>
+		
+    </action-mappings>
+	
+	
+	<!-- ========== Controller Configuration ================================ -->
+    <controller maxFileSize="5M" />
+
+    <!-- ========== Message Resources Definitions ============================ -->
+
+    <!-- ========== Plug Ins Configuration ================================= -->
+    <message-resources parameter="resource.ApplicationResources" />
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames" value="/WEB-INF/validator-rules.xml, /WEB-INF/validation.xml" />
+    </plug-in>
+    <plug-in className="com.mpe.common.HibernatePlugIn">
+		<!-- 'path-to-config-file' is relative to the root of the classpath.  It MUST start with a '/'. The default is "/hibernate.cfg.xml" -->
+		<set-property property="configFilePath1" value="/hibernate.cfg.xml" />
+	</plug-in>
+	<plug-in className="com.mpe.common.HibernateUtil" />
+
+</struts-config>

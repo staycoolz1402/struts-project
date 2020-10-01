@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="MasterVersioning"
+		table="master_versioning"
+		batch-size="10000"
+	>
+		
+		<meta attribute="sync-DAO">true</meta>
+		
+		<id
+			name="Id"
+			type="long"
+			column="master_versioning_id"
+		>
+			<generator class="sequence">
+				<param name="sequence">MASTER_VERSIONING_SEQ</param>
+			</generator>
+		</id>
+		
+  		<property
+			name="MasterVersionName"
+			column="master_version_name"
+			type="string"
+			not-null="false"
+			length="200"
+		/>
+		
+		<property
+			name="MasterVersionApp"
+			column="master_version_app"
+			type="string"
+			not-null="false"
+			length="200"
+		/>
+		
+		<property
+			name="Version"
+			column="version"
+			type="java.lang.Integer"
+		/>
+		
+		<property
+			name="CreateBy"
+			column="create_by"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="ChangeBy"
+			column="change_by"
+			type="string"
+			not-null="false"
+		/>
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		
+	</class>	
+</hibernate-mapping>

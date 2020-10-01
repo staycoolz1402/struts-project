@@ -1,0 +1,22 @@
+CHANGE LOG 31 OCTOBER 2016
+==========================
+0066075 Lucky - Softeng - Perubahan dari MS menjadi SAS(Mufins)
+
+
+CHANGE LOG 21 OCTOBER 2016
+==========================
+0065163 Kevin - SoftEng - Bug Fix Nama Sold to Dapat Mengandung Spasi Pada Menu Unit Titipan Nasabah
+0065200 Adyanti - Softeng – Penambahan Fungsi Print Pada Halaman CF Application Lettter Print List
+0065257 Lucky - Softeng - Bugfix Report Prepaid
+0065263 Adyanti - SoftEng - Bugfix Data Fiducia Report
+0065312 Satrio - Softeng - Replacement Service Running Number Journal Mufins
+0065334 Yuana - Softeng - Bugfix laba rugi tahun berjalan neraca manual dan param
+0065327 Willis - IT - Perubahan input login SA pada Refund Bank Account
+0065157 Januari Kristi - SoftEng - Bug Fix FA WO approval
+0065133 Januari Kristi - SoftEng - Bug Fix Drawdown dan Overdue Report
+0065493 Aries - DCSMG - ARF Penambahan data inputan UTN pada Login CC1 dan penambahan identitas staff call center dan manager pada note
+0065609 Kevin - SoftEng - Penambahan Pencatatan User Logging
+0065206 Agnes - KPNO - Penambahan payment amount
+0065769 Aaz - SoftEng - [SMMF] Penambahan code log info pada Running Number
+0065784 Lucky - Softeng - Penambahan Log Pada Termination
+0065812 Januari Kristi - SoftEng - Bug Fix Notifikasi Aplikasi Telemarketing CC1 ke CC2

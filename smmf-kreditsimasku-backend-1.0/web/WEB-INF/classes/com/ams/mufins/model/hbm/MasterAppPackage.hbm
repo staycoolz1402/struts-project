@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="MasterAppPackage"
+		table="master_app_package"
+		batch-size="100"
+	>
+		
+		<meta attribute="sync-DAO">true</meta>
+	
+		<id
+			name="Id"
+			type="long"
+			column="master_app_package_id"
+		>
+		<generator class="sequence">
+			<param name="sequence">MASTER_APP_PACKAGE_SEQ</param>
+		</generator>
+		</id>
+		<property
+			name="AppPackageName"
+			column="app_package_name"
+			type="string"
+		/>
+		<property
+			name="Active"
+			column="is_active"
+			type="true_false"
+			length="1"
+		/>
+		<property
+			name="CreateBy"
+			column="create_by"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="CreateOn"
+			column="create_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		
+		<property
+			name="ChangeBy"
+			column="change_by"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="ChangeOn"
+			column="change_on"
+			type="timestamp"
+			not-null="false"
+		/>
+		
+	</class>	
+</hibernate-mapping>

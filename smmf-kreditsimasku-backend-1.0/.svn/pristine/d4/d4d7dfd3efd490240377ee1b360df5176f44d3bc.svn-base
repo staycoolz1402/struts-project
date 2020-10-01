@@ -1,0 +1,128 @@
+package com.ams.mufins.webservice;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.transform.Transformers;
+
+import com.ams.mufins.model.dao.UsersDAO;
+import com.ams.mufins.webservice.model.ParameterPinjaman;
+import com.ams.mufins.webservice.util.CommonApiUtil;
+
+public class GetParameterPinjaman extends Action {
+	Logger log = Logger.getLogger(this.getClass());
+
+	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String action = mapping.getParameter();
+		if ("GETPARAMETERPINJAMAN".equalsIgnoreCase(action)) {
+			return this.performGetParameterPinjaman(mapping, form, request, response);
+		}
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	private ActionForward performGetParameterPinjaman(ActionMapping mapping, ActionForm actionForm, HttpServletRequest request,
+			HttpServletResponse response) {
+		int responseStatus = 200;
+		String responseMessage = "SUCCESS";
+		Session session = null;
+		List<ParameterPinjaman> list = null;
+
+		try {
+			session = UsersDAO.getInstance().getSession();
+			String sql = "select parameter_pinjaman_id as id, parameter as parameter, description as description, value_mobil as valueMobil, value_motor as valueMotor "+
+					"from parameter_pinjaman ";
+			
+			list = (List<ParameterPinjaman>) session.createSQLQuery(sql)
+					.addScalar("id", Hibernate.LONG)
+					.addScalar("parameter", Hibernate.STRING)
+					.addScalar("description", Hibernate.STRING)
+					.addScalar("valueMobil", Hibernate.INTEGER)
+					.addScalar("valueMotor", Hibernate.INTEGER)
+					.setResultTransformer(Transformers.aliasToBean(ParameterPinjaman.class))
+					.list();
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error(e);
+			log.error("Error : "+e);
+			responseMessage = "ERROR Exception: " + e;
+			responseStatus = 500;
+			return this.returnResponse(response, responseMessage, responseStatus, list);
+		} finally {
+			try {
+				if (session.isOpen()) {
+					CommonApiUtil.safeClose(session);
+				}
+				UsersDAO.getInstance().closeSessionForReal();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+				log.error(e2.getMessage());
+			}
+		}
+		try {
+			if (session.isOpen()) {
+				CommonApiUtil.safeClose(session);
+			}
+		} catch (Exception e2) {
+			log.error(e2.getMessage());
+			e2.printStackTrace();
+		}
+		return this.returnResponse(response, responseMessage, responseStatus, list);
+	}
+
+	private ActionForward returnResponse(HttpServletResponse response, String responseMessage, int responseStatus, List<ParameterPinjaman> list) {
+		try {
+			JsonArray array = null;
+			String result = null;
+			JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+			JsonObjectBuilder objectBuilderFinal = Json.createObjectBuilder();
+			JsonObject objectFinal = null;
+			
+			
+			for(ParameterPinjaman model : list) {
+				JsonObject object = null;
+				JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+				objectBuilder.add("id", model.getId() > 0 ? String.valueOf(model.getId()) : "0");
+				objectBuilder.add("parameter", model.getParameter().length()>0 ? model.getParameter() : "");
+				objectBuilder.add("description", model.getDescription().length()>0 ? model.getDescription() : "");
+				objectBuilder.add("value_mobil", model.getValueMobil() > 0 ? String.valueOf(model.getValueMobil()) : "0");
+				objectBuilder.add("value_motor", model.getValueMotor() > 0 ? String.valueOf(model.getValueMotor()) : "0");
+				object = objectBuilder.build();
+				
+				arrayBuilder.add(object);
+			}
+			array = arrayBuilder.build();
+			
+			objectBuilderFinal.add("rs", "OK");
+			objectBuilderFinal.add("l", array);
+			objectFinal = objectBuilderFinal.build();
+			
+			result = objectFinal.toString();
+			PrintWriter writer = response.getWriter();
+			writer.print(result.toString());
+			writer.flush();
+			response.setContentType("application/json");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+}

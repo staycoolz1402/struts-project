@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="Lookup"
+		table="lookup"
+		batch-size="100"
+	>
+		
+		<meta attribute="sync-DAO">true</meta>
+		<cache usage="read-only "/>
+		
+		<id
+			name="Id"
+			type="long"
+			column="lookup_id"
+		>
+		<generator class="sequence">
+				<param name="sequence">LOOKUP_SEQ</param>
+			</generator>
+		</id>
+		
+		<property
+			name="Category"
+			column="category"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Code"
+			column="code"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="ShortName"
+			column="short_name"
+			type="string"
+			not-null="true"
+			length="32"
+		/>
+		<property
+			name="Name"
+			column="name"
+			type="string"
+			not-null="true"
+			length="255"
+		/>
+		<property
+			name="Description"
+			column="description"
+			type="string"
+			not-null="false"
+		/>
+
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,50 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+
+<hibernate-configuration>
+	<session-factory name="SNIFAM">
+		
+		<property name="connection.datasource">java:comp/env/jdbc/smmfKreditsimaskuBackend</property>
+		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		
+		<property name="hibernate.show_sql">false</property>
+        <property name="hibernate.hbm2ddl.auto">false</property>
+        <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+        <property name="hibernate.connection.release_mode">after_transaction</property>
+
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		<property name="hibernate.cache.use_query_cache">false</property>
+		<property name="hibernate.cache.use_second_level_cache">false</property>
+		
+		<mapping resource="com/ams/mufins/model/hbm/Lookup.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/Organization.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/OrganizationSetup.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/ReportAccess.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/Role.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/Status.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/TempModel.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/UserDetail.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/UserLogging.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/UserLogin.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/UserPasswordHistory.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/Users.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/UsersHistory.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/View.hbm" />
+		
+		<mapping resource="com/ams/mufins/model/hbm/CustomerMobile.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/CustomerMobileHistory.hbm" />
+		
+		
+		<mapping resource="com/ams/mufins/model/hbm/ApplicationOnline.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/PersonalMain.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/PersonalEmployment.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/PersonalContact.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/PersonalSpouseGuarantor.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/DocumentationFile.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/MasterVersioning.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/LogVendorRequest.hbm" />
+		<mapping resource="com/ams/mufins/model/hbm/Vendor.hbm" />
+	</session-factory>
+</hibernate-configuration>

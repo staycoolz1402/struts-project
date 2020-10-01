@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="UserLogin"
+		table="user_login"
+		batch-size="1000"
+	>
+		
+		<id
+			name="Id"
+			type="long"
+			column="user_login_id"
+		>
+		<generator class="sequence">
+				<param name="sequence">USER_LOGIN_SEQ</param>
+			</generator>
+		</id>
+		
+		<property
+			name="UserId"
+			column="user_id"
+			type="long"
+			not-null="false"			
+		/>
+		
+		<property
+			name="UserName"
+			column="user_name"
+			type="string"
+			not-null="true"
+		/>
+		
+		<property
+			name="UserType"
+			column="user_type"
+			type="string"
+			not-null="false"
+		/>
+	
+		<property
+			name="LoginTime"
+			column="login_time"
+			type="timestamp"
+			not-null="false"
+		/>
+		<property
+			name="Ip"
+			column="ip"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="Server"
+			column="server"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="Browser"
+			column="browser"
+			type="string"
+			not-null="false"
+		/>
+		
+		
+	</class>	
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+	<persistence-unit name="mufins-hr-apb">
+		<class>com.smmf.bsm.agency.model.AtmPinMailerStockOpnameDetail</class>
+		<class>com.smmf.bsm.agency.model.AtmPinMailerStockOpname</class>
+		<class>com.smmf.bsm.agency.model.AtmPinMailerScrapingDetail</class>
+		<class>com.smmf.bsm.agency.model.AtmPinMailerScraping</class>
+		<class>com.smmf.bsm.agency.model.AtmPinMailerOutInDetail</class>
+		<class>com.smmf.bsm.agency.model.AtmPinMailerOutIn</class>
+		<class>com.smmf.bsm.agency.model.AtmPinMailerMutationDetail</class>
+		<class>com.smmf.bsm.agency.model.AtmPinMailerMutation</class>
+		<class>com.smmf.bsm.agency.model.AtmPinMailerBatch</class>
+		<class>com.smmf.bsm.agency.model.AtmPinMailer</class>
+		
+	</persistence-unit>
+</persistence>

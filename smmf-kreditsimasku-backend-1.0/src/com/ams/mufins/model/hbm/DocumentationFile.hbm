@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+  
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="DocumentationFile"
+		table="documentation_file"
+		batch-size="100"
+	>
+	
+		<meta attribute="sync-DAO">true</meta>
+	
+		<id
+			name="Id"
+			type="long"
+			column="documentation_file_id"
+		>
+		<generator class="sequence">
+			<param name="sequence">DOCUMENTATION_FILE_SEQ</param>
+		</generator>
+		</id>
+		
+		<property
+			name="PersonalId"
+			column="personal_id"
+			type="long"
+			not-null="true"
+		/>
+		
+		<property 
+			name="ApplicationOnlineId" 
+			column="application_online_id" 
+			type="long" 
+		/>
+		
+		<property 
+			name="FileContentType" 
+			column="file_content_type" 
+			type="string" 
+		/>
+		
+		<property 
+			name="FileName" 
+			column="file_name" 
+			type="string" 
+		/>
+		
+		<property 
+			name="FileSize" 
+			column="file_size" 
+			type="integer" 
+		/>
+		
+		<property 
+			name="FileContent" 
+			column="file_content" 
+			type="binary" 
+		/>
+		
+		<property 
+			name="Note" 
+			column="note" 
+			type="string" 
+		/>
+		
+		<property 
+			name="CreateBy" 
+			column="create_by" 
+			type="string" 
+		/>
+		
+		<property 
+			name="CreateOn" 
+			column="create_on" 
+			type="timestamp" 
+		/>
+		
+		<property 
+			name="ChangeBy" 
+			column="change_by" 
+			type="string" 
+		/>
+		
+		<property 
+			name="ChangeOn" 
+			column="change_on" 
+			type="timestamp" 
+		/>
+		
+		<property 
+			name="DocumentCategory" 
+			column="document_category" 
+			type="string" 
+		/>
+		
+		<property 
+			name="PullOn" 
+			column="pull_on" 
+			type="timestamp" 
+		/>
+		
+	</class>	
+</hibernate-mapping>

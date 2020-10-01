@@ -1,0 +1,221 @@
+package com.ams.mufins.webservice;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.StringReader;
+import java.net.URLConnection;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonReader;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.apache.struts.action.Action;
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionForward;
+import org.apache.struts.action.ActionMapping;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+import org.postgresql.util.Base64;
+
+import com.ams.mufins.model.DocumentationFile;
+import com.ams.mufins.model.dao.DocumentationFileDAO;
+import com.ams.mufins.webservice.util.CommonApiUtil;
+import com.mpe.common.CommonDynamics;
+
+public class SaveDocumentationFile extends Action {
+	Logger log = Logger.getLogger(this.getClass());
+
+	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		String action = mapping.getParameter();
+		if ("SAVEDOCUMENTATIONFILE".equalsIgnoreCase(action)) {
+			return this.performSaveDocumentationFile(mapping, form, request, response);
+		}
+		return null;
+	}
+
+	private ActionForward performSaveDocumentationFile(ActionMapping mapping, ActionForm form,
+			HttpServletRequest request, HttpServletResponse response) {
+		int responseStatus = 200;
+		String responseMessage = "SUCCESS";
+		String rs = "NOK";
+		String documentCategoryCommon = CommonDynamics.DOCUMENT_CATEGORY;
+		Session session = null;
+		Transaction transaction =null;
+		BufferedReader bufferedReader = null;
+		JsonReader jsonReader = null;
+		List<String> categoryList = null;
+		
+		try {
+
+			StringBuffer jsonBuffer = new StringBuffer();
+			String bufferedReaderLine = null;
+			bufferedReader = request.getReader();
+			while ((bufferedReaderLine = bufferedReader.readLine()) != null) {
+				jsonBuffer.append(bufferedReaderLine);
+			}
+			String body = jsonBuffer.toString();
+			if (body == null || body.equals("") || body.equals("{}")) {
+				responseMessage = "ERROR : Body JSON tidak boleh Kosong!";
+				return this.returnResponse(response, responseMessage, responseStatus, rs);
+			}
+			jsonReader = Json.createReader((Reader) new StringReader(body));
+			JsonObject jsonObject = jsonReader.readObject();
+			if (jsonObject == null 
+					|| !jsonObject.containsKey("fileName") 
+					|| !jsonObject.containsKey("fileSize")
+					|| !jsonObject.containsKey("fileString")
+					|| !jsonObject.containsKey("username")
+					|| !jsonObject.containsKey("category") ) {
+				responseMessage = "ERROR : Body JSON tidak sesuai format!";
+				return this.returnResponse(response, responseMessage, responseStatus, rs);
+			}
+			
+			session = DocumentationFileDAO.getInstance().getSession();
+			
+			String personalIdSQL = "select " +
+					"	personal_id as personalId " +
+					"from customer_mobile cm " + 
+					"join personal_main pm on (cm.customer_mobile_id = pm.customer_id) " + 
+					"where cm.handphone = :username ";
+			
+			long applicationOnlineId = 0;
+			
+			String split[] = documentCategoryCommon.split(",");
+			categoryList = Arrays.asList(split);
+			
+			for(String photoCategory : categoryList) {
+				if(jsonObject.getString("category").equalsIgnoreCase(photoCategory)) {
+					if(jsonObject.containsKey("applicationOnlineId") && jsonObject.getInt("applicationOnlineId") > 0) {
+						applicationOnlineId = jsonObject.getInt("applicationOnlineId");
+						break;
+					} else {
+						responseMessage = "ERROR : Category "+photoCategory+" tidak mempunyai applicationOnlineId yang valid !";
+						return this.returnResponse(response, responseMessage, responseStatus, rs);
+					}
+				}
+			}
+			
+			String fileName = jsonObject.getString("fileName");
+			int fileSize = jsonObject.getInt("fileSize");
+			byte[] fileContent = Base64.decode(jsonObject.getString("fileString"));
+			
+			InputStream inputStream = new ByteArrayInputStream(fileContent);
+		    String mimeType = null; //mimeType is something like "image/jpeg"
+		    mimeType = URLConnection.guessContentTypeFromStream(inputStream); //Find out image type
+	        String delimiter="[/]";
+	        String[] tokens = mimeType.split(delimiter);
+	        String fileContentType = tokens[1];
+	        
+			Object queryResult = (Object) session.createSQLQuery(personalIdSQL)
+					.addScalar("personalId",Hibernate.LONG)
+					.setString("username", jsonObject.getString("username"))
+					.setMaxResults(1)
+					.uniqueResult();
+			
+			if(queryResult == null) {
+				responseMessage = "ERROR : Username tidak ditemukan!";
+				return this.returnResponse(response, responseMessage, responseStatus, rs);
+			}
+			
+			long personalId = (long) queryResult;
+			
+			String documentCategory = jsonObject.getString("category");
+			
+			DocumentationFile checkData = (DocumentationFile) session.createCriteria(DocumentationFile.class)
+					.add(Restrictions.eq("PersonalId", personalId))
+					.add(Restrictions.eq("ApplicationOnlineId", applicationOnlineId))
+					.add(Restrictions.eq("DocumentCategory", documentCategory)).setMaxResults(1).uniqueResult();
+			
+			if(checkData==null) {
+				String createBy = "admin";
+				
+				transaction = session.beginTransaction();
+				DocumentationFile documentationFile = new DocumentationFile();
+				documentationFile.setApplicationOnlineId(applicationOnlineId);
+				documentationFile.setPersonalId(personalId);
+				documentationFile.setFileContentType(fileContentType);
+				documentationFile.setFileName(fileName);
+				documentationFile.setFileSize(fileSize);
+				documentationFile.setFileContent(fileContent);
+				documentationFile.setDocumentCategory(documentCategory);
+				documentationFile.setCreateBy(createBy);
+				documentationFile.setCreateOn(new Date());
+				
+				DocumentationFileDAO.getInstance().save(documentationFile, session);
+				transaction.commit();
+				
+				rs = "OK";
+			} else {
+				responseMessage = "ERROR : Dokumen sudah ada !";
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+			log.error("Error : "+e);
+			responseMessage = "ERROR Exception: " + e;
+			responseStatus = 500;
+			return this.returnResponse(response, responseMessage, responseStatus, rs);
+		} finally {
+			try {
+				if (session!=null && session.isOpen()) {
+					CommonApiUtil.safeClose(session);
+				}
+				CommonApiUtil.safeClose(bufferedReader);
+				CommonApiUtil.safeClose(jsonReader);
+				DocumentationFileDAO.getInstance().closeSessionForReal();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+				log.error(e2.getMessage());
+			}
+		}
+		try {
+			if (session.isOpen()) {
+				CommonApiUtil.safeClose(session);
+			}
+			CommonApiUtil.safeClose(bufferedReader);
+			CommonApiUtil.safeClose(jsonReader);
+		} catch (Exception e2) {
+			log.error(e2.getMessage());
+			e2.printStackTrace();
+		}
+		return this.returnResponse(response, responseMessage, responseStatus, rs);
+	}
+	
+	private ActionForward returnResponse(HttpServletResponse response, String responseMessage, int responseStatus, String rs) {
+		try {
+			String result = null;
+			JsonObjectBuilder objectBuilderFinal = Json.createObjectBuilder();
+			JsonObject objectFinal = null;
+			
+			objectBuilderFinal.add("rs", rs);
+			objectBuilderFinal.add("l", responseMessage);
+			objectFinal = objectBuilderFinal.build();
+			
+			result = objectFinal.toString();
+				
+			PrintWriter writer = response.getWriter();
+			writer.print(result.toString());
+			writer.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+}

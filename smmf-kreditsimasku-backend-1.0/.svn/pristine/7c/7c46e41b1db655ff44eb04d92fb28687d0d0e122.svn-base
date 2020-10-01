@@ -1,0 +1,263 @@
+<%@ page contentType="text/html;charset=iso-8859-1" language="java" %>
+<% response.setHeader("Pragma", "No-cache");
+response.setDateHeader("Expires", 0);
+response.setHeader("Cache-Control", "no-cache");%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+<%
+	int sequence = 0;
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title><bean:message key="page.index.title"/></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="<html:rewrite page="/js/simas.css"/>" rel="stylesheet" type="text/css">
+</head>
+
+<body style="margin:0px;" >
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_header.gif"/>); background-repeat:repeat-x; " height="94" valign="top" align="left">
+    
+    <!-- header start -->
+    
+<tiles:insert template='/common/header.jsp'/>
+    
+    <!-- header end -->
+    
+    </td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/list.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/bg_body.gif"/>); background-repeat:repeat-x; background-position:bottom; " height="627" bgcolor="#fbfdff" align="left" valign="top">
+    
+<!-- content -->    
+			<html:form action="/viewBlockMultiple/popUp" onsubmit="gowait(this);" >   
+	  <table width="900" border="0" cellspacing="0" cellpadding="5" style="margin-left:10px; margin-right:10px; ">
+        <tr>
+	        <td align="left" class="text03" width="20%"><b><logic:present name="viewName"><bean:write name="viewName"/></logic:present></b></td>
+	        <td align="left">         
+         	<div  id="wait" style="visibility:hidden;">
+			   <table width="20%" height="10px" border="0" valign="top"> 
+		       	<tr valign="top"><td align="center" valign="top"><b><i><bean:message key="pleaseWait"/></i></b></td></tr>
+		        <tr valign="top">
+		           <td align="center" valign="top">
+		             <img src="<html:rewrite page="/images/progressbar.gif"/>" name="progressbar" id="progressbar">
+		           </td>
+		        </tr>
+			   </table>
+				 </div>
+			</td>
+	      </tr>
+        <TR>
+          <TD align=middle width="100%" colspan="2">
+          
+				 <div id="main">
+         <TABLE cellSpacing="0" cellPadding="0" width="100%" align="center" border="0" class="text04">
+    			<tr valign="top"><td><html:errors/></td></tr>
+         		 <logic:messagesNotPresent>
+					<html:hidden property="start"/>
+					<html:hidden property="count"/>
+					<html:hidden property="orderBy"/>
+					<html:hidden property="ascDesc"/>
+					<html:hidden property="subaction"/>
+					<tr>
+						<td>
+							<table width="900" border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td width="1%"><html:img page="/images/round.gif"/></td>
+			            <td width="98%" class="smalltext" style="border-top:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td width="1%"><html:img page="/images/round1.gif"/></td>
+			          </tr>
+			          <tr>
+			            <td style="border-left:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td valign="top">
+			            
+						
+							<table width="100%">
+								<tr>
+									<td align="left"><bean:message key="page.name.title"/></td>
+									<td>:</td>
+									<td align="left">
+										<html:text property="name" size="40" styleClass="textbox"/>&nbsp;<html:submit styleClass="button" onclick="resetPage();this.form.subaction.value='search';"><bean:message key="page.search.link"/></html:submit>
+									</td>
+								</tr>
+							</table>
+							
+											</td>
+											<td  style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+										</tr>
+										<tr>
+					            <td width="1%"><html:img page="/images/round3.gif"/></td>
+					           	<td class="smalltext" style="border-bottom:solid 1px #6b6b71; ">&nbsp;</td>
+					            <td width="1%"><html:img page="/images/round2.gif"/></td>
+					          </tr>
+									</table>
+							
+						</td>
+					</tr>
+    			<tr><td>&nbsp;</td></tr>    			
+    			<tr>
+						<td>
+							<table width="900" border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td width="1%"><html:img page="/images/round.gif"/></td>
+			            <td width="98%" class="smalltext" style="border-top:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td width="1%"><html:img page="/images/round1.gif"/></td>
+			          </tr>
+			          <tr>
+			            <td style="border-left:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td valign="top">						
+										<table width="100%">
+    			
+    			<tr>
+    				<td>
+    					<table width="100%">
+    						<tr>
+    							<td align="left"><bean:write name="PAGER" scope="request" filter="false"/></td>
+    							<td align="center">Goto page : <html:text property="gotoPage" size="4" styleClass="textbox" onchange="gotoPager();"/>&nbsp;</td>
+    							<td align="right"><bean:write name="PAGERITEM" scope="request" filter="false"/></td>
+    						</tr>
+    					</table>
+    				</td>
+    			</tr>
+          <tr> 
+            <td align="center"> 
+              <table border="0" cellspacing=0 cellpadding=0 width="100%">
+                <tr align="center"> 
+                  <td width="1%" align="right"><html:img page="/images/round_table.gif"/></td>
+                  <td bgcolor="#1e272d">&nbsp;</td>
+                  <td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><a href=javascript:sort('ViewName')><bean:message key="page.name.title"/></a>&nbsp;<logic:match name="viewForm" property="orderBy" value="ViewName"><logic:match name="viewForm" property="ascDesc" value="desc"><html:img page="/images/sort_terang.gif" border="0"/></logic:match><logic:match name="viewForm" property="ascDesc" value="asc"><html:img page="/images/sort2_terang.gif" border="0"/></logic:match></logic:match></td>
+                  <td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><a href=javascript:sort('Parent')><bean:message key="page.parent.title"/></a>&nbsp;<logic:match name="viewForm" property="orderBy" value="Parent"><logic:match name="viewForm" property="ascDesc" value="desc"><html:img page="/images/sort_terang.gif" border="0"/></logic:match><logic:match name="viewForm" property="ascDesc" value="asc"><html:img page="/images/sort2_terang.gif" border="0"/></logic:match></logic:match></td>
+                  <td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><a href=javascript:sort('Link')><bean:message key="page.path.title"/></a>&nbsp;<logic:match name="viewForm" property="orderBy" value="Link"><logic:match name="viewForm" property="ascDesc" value="desc"><html:img page="/images/sort_terang.gif" border="0"/></logic:match><logic:match name="viewForm" property="ascDesc" value="asc"><html:img page="/images/sort2_terang.gif" border="0"/></logic:match></logic:match></td>
+                  <td nowrap="nowrap" bgcolor="#1e272d" class="borderLeft text05 padding"><a href=javascript:sort('View')><bean:message key="page.isActive.title"/></a>&nbsp;<logic:match name="viewForm" property="orderBy" value="View"><logic:match name="viewForm" property="ascDesc" value="desc"><html:img page="/images/sort_terang.gif" border="0"/></logic:match><logic:match name="viewForm" property="ascDesc" value="asc"><html:img page="/images/sort2_terang.gif" border="0"/></logic:match></logic:match></td>
+                  <td width="1%" align="left"><html:img page="/images/round_table1.gif"/></td>
+                </tr>
+<%
+int i = 0;
+try {
+i = Integer.parseInt(request.getParameter("start"));
+}catch(Exception ex){
+i = 0;
+}
+%>
+				<logic:present name="RESULT">
+                <logic:iterate id="view" name="RESULT" type="com.ams.mufins.model.View">
+								<% 
+									sequence++;
+									String bgcolor = "#FFFFFF";
+									if(sequence%2 == 0){
+										bgcolor = "#f9f3da";
+									}
+								 %>
+                <tr bgcolor="<% out.print(bgcolor); %>">
+                	<td align=right>&nbsp;</td>
+                	<td nowrap="nowrap" align=right><%=++i%>.&nbsp;</td>
+                	<td nowrap="nowrap" class=" borderLeft padding" align="left">
+                	<a href="#" onclick="javascript:pick(
+					'<bean:write name="view" property="id" scope="page"/>',
+					'<bean:write name="view" property="viewName" scope="page"/>',
+					'<bean:write name="view" property="link" scope="page"/>'
+					)">
+					<bean:write name="view" property="viewName" scope="page"/></a>
+					</td>
+                 	<td nowrap="nowrap" class=" borderLeft padding" align="left">
+						<logic:present name="view" property="parent" scope="page">
+						<bean:write name="view" property="parent.viewName" scope="page"/>
+						</logic:present>
+						<logic:notPresent name="view" property="parent" scope="page">-</logic:notPresent>
+				    </td>
+				    <td nowrap="nowrap" class=" borderLeft padding" align="left"><bean:write name="view" property="link" scope="page"/></td>
+                    <td nowrap="nowrap" class=" borderLeft padding" align="left">
+							<logic:match name="view" property="view" value="true"><bean:message key="page.yes.title"/></logic:match>
+							<logic:notMatch name="view" property="view" value="true"><bean:message key="page.no.title"/></logic:notMatch>
+				    </td>
+								  <td>&nbsp;</td>
+                </tr>
+                </logic:iterate>
+                </logic:present>
+                    <tr>
+                      <td width="1%" class="smalltext" align="right"><html:img page="/images/round_table2.gif"/></td>
+                      <td bgcolor="#1e272d"></td>
+                      <td bgcolor="#1e272d" class="borderLeft"></td>
+                      <td bgcolor="#1e272d" class="borderLeft"></td>
+                      <td bgcolor="#1e272d" class="borderLeft"></td>
+                      <td bgcolor="#1e272d" class="borderLeft"></td>
+                      <td width="1%" align="left"><html:img page="/images/round_table3.gif"/></td>
+                    </tr>
+			  </table>
+            </td>
+          </tr>
+          <tr>
+				<td>
+					<table width="100%">
+						<tr>
+							<td align="left"><bean:write name="PAGER" scope="request" filter="false"/></td>
+							<td align="center">Goto page : <html:text property="gotoPage2" size="4" styleClass="textbox" onchange="gotoPager2();"/>&nbsp;</td>
+							<td align="right"><bean:write name="PAGERITEM" scope="request" filter="false"/></td>
+						</tr>
+					</table>
+				</td>
+		  </tr>
+          <tr>
+	    		 	<td></td>
+    	  	</tr>
+										
+										</table>							
+									</td>
+									<td  style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+								</tr>
+								<tr>
+			            <td width="1%"><html:img page="/images/round3.gif"/></td>
+			           	<td class="smalltext" style="border-bottom:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td width="1%"><html:img page="/images/round2.gif"/></td>
+			          </tr>
+							</table>							
+						</td>
+					</tr>
+					</logic:messagesNotPresent>
+        </table> 
+        </div>
+           
+          </TD>
+        </TR>
+      </TABLE>
+        </html:form>
+<!-- end content-->            
+    </td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/list1.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_footer.gif"/>); background-repeat:repeat-x; " height="57" align="left" valign="top">
+    
+    <!-- footer start -->
+	<tiles:insert template='/common/footer.jsp'/>
+    
+    <!-- footer end -->
+    
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+
+<script language="javascript" type="text/javascript" src="<html:rewrite page="/js/pagesSort.js"/>" ></script>
+<script language="javascript">
+function pick (a,b,c){ 
+  top.window.opener.focus();
+  top.window.opener.document.forms[0].viewId.value = a;
+  top.window.opener.document.forms[0].viewName.value = b;
+  top.window.opener.document.forms[0].viewLink.value = c;
+  window.close();
+}
+</script>

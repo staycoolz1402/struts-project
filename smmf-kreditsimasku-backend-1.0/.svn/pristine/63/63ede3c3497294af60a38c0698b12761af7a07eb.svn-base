@@ -1,0 +1,146 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% response.setHeader("Pragma", "No-cache");
+response.setDateHeader("Expires", 0);
+response.setHeader("Cache-Control", "no-cache");%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title><bean:message key="page.index.title"/></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="<html:rewrite page="/js/simas.css"/>" rel="stylesheet" type="text/css">
+</head>
+
+<body style="margin:0px;" >
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_header.gif"/>); background-repeat:repeat-x; " height="94" valign="top" align="left">
+    
+    <!-- header start -->
+    
+<tiles:insert template='/common/header.jsp'/>
+    
+    <!-- header end -->
+    
+    </td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/list.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/bg_body.gif"/>); background-repeat:repeat-x; background-position:bottom; " height="627" bgcolor="#fbfdff" align="left" valign="top">
+    
+<!-- content -->    
+      <table width="900" border="0" cellspacing="0" cellpadding="5" style="margin-left:10px; ">
+        <tr>
+	        <td align="left" class="text03"><b><logic:present name="viewName"><bean:write name="viewName"/></logic:present></b></td>
+	      </tr>
+        <TR>
+          <TD align=middle width="100%">
+          
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+			          <tr>
+			            <td width="1%"><html:img page="/images/round.gif"/></td>
+			            <td width="98%" class="smalltext" style="border-top:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td width="1%"><html:img page="/images/round1.gif"/></td>
+			          </tr>
+			          <tr>
+			            <td style="border-left:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td valign="top">
+			
+			<!-- CONTENT START -->
+	      <table width="100%" border="0" cellspacing="2" cellpadding="0">
+    			<tr valign="top"><td>&nbsp;</td></tr>
+    			<tr valign="top"><td><html:errors/></td></tr>
+          <tr> 
+            <td align="center"> 
+              <table width="100%" border="0" cellspacing="1" cellpadding="0" class="text04">
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="type"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%" align="left"><bean:write name="status" property="type" scope="request"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%"align="left"><bean:message key="code"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%"align="left"><bean:write name="status" property="code" scope="request"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%"align="left"><bean:message key="name"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%"align="left"><bean:write name="status" property="name" scope="request"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%"align="left"><bean:message key="description"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%"align="left"><bean:write name="status" property="description" scope="request"/></td>
+                </tr>
+ 
+              </table>
+            </td>
+          </tr>
+          <tr>
+    				<td>
+    					<table width="100%">
+    						<tr valign="top"><td>&nbsp;</td></tr>
+    					</table>
+    				</td>
+    			</tr>
+<SCRIPT language=JavaScript>
+function confirm_delete(id) {
+	var valid=true;
+	var str="Is this data will be deleted?\n Click OK to delete or Cancel!";
+	valid=confirm(str);
+	if (valid) {
+		window.location.href=('<html:rewrite page="/status/delete.do"/>?statusId='+id);
+	}
+}
+</SCRIPT> 
+    			<tr>
+    				<td align="center">
+							<input class="button" type="button" name="edit" onclick="window.location.href=('<html:rewrite page="/status/edit.do"/>?statusId=<bean:write name="status" property="id"/>');" value="<bean:message key="edit.link"/>"/>&nbsp;&nbsp;
+							<input class="button" type="button" name="back" onclick="window.location.href=('<html:rewrite page="/status/list.do"/>?start=<bean:write name="start" scope="session"/>&count=<bean:write name="count" scope="session"/>');" value="<bean:message key="back.link"/>"/>
+    				</td>
+    			</tr>
+        </table> 
+        							</td>
+											<td  style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+										</tr>
+										<tr>
+					            <td width="1%"><html:img page="/images/round3.gif"/></td>
+					           	<td class="smalltext" style="border-bottom:solid 1px #6b6b71; ">&nbsp;</td>
+					            <td width="1%"><html:img page="/images/round2.gif"/></td>
+					          </tr>
+									</table>
+			<!-- CONTENT END -->
+			</TD>
+        </TR>
+      </TABLE>
+      
+      
+    </td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/list1.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_footer.gif"/>); background-repeat:repeat-x; " height="57" align="left" valign="top">
+    
+    <!-- footer start -->
+	<tiles:insert template='/common/footer.jsp'/>
+    
+    <!-- footer end -->
+    
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+
+

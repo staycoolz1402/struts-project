@@ -1,0 +1,198 @@
+<%@ page contentType="text/html;charset=iso-8859-1" language="java" %>
+<% response.setHeader("Pragma", "No-cache");
+response.setDateHeader("Expires", 0);
+response.setHeader("Cache-Control", "no-cache");%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title><bean:message key="page.index.title"/></title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="<html:rewrite page="/js/simas.css"/>" rel="stylesheet" type="text/css">
+</head>
+
+<body style="margin:0px;" >
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_header.gif"/>); background-repeat:repeat-x; " height="94" valign="top" align="left">
+    
+    <!-- header start -->
+    
+<tiles:insert template='/common/header.jsp'/>
+    
+    <!-- header end -->
+    
+    </td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/list.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/bg_body.gif"/>); background-repeat:repeat-x; background-position:bottom; " height="627" bgcolor="#fbfdff" align="left" valign="top">
+    
+<!-- content -->    
+      <table width="900" border="0" cellspacing="0" cellpadding="5" style="margin-left:10px; ">
+        <tr>
+	        <td align="left" class="text03"><b><logic:present name="viewName"><bean:write name="viewName"/></logic:present></b></td>
+	      </tr>
+        <TR>
+          <TD align="middle" width="100%">
+          
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" class="text04">
+			          <tr>
+			            <td width="1%"><html:img page="/images/round.gif"/></td>
+			            <td width="98%" class="smalltext" style="border-top:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td width="1%"><html:img page="/images/round1.gif"/></td>
+			          </tr>
+			          <tr>
+			            <td style="border-left:solid 1px #6b6b71; ">&nbsp;</td>
+			            <td valign="top">
+			
+			<!-- CONTENT START -->
+	      <table width="100%" border="0" cellspacing="2" cellpadding="0">
+    			<tr valign="top"><td><html:errors/></td></tr>
+    			<tr valign="top"><td>&nbsp;</td></tr>
+    			<html:form action="/view/save">
+				<html:hidden property="viewId"/>
+					<!--begin new entry by:indarto @20070619 -->
+				<html:hidden property="subaction" styleId="subaction"/>
+					<!--end new entry -->	
+          <tr> 
+            <td align="center"> 
+              <table width="100%" border="0" cellspacing="1" cellpadding="0" class=abuabu>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.name.title"/></td>
+                  <td width="5%" >:</td>
+                  <td width="65%"  align="left"><html:text property="name" size="40" styleClass="textbox"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.parent.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%"  align="left">
+		                  	<!--begin edited by:indarto @20070622 -->
+	                  	<html:select property="parentId" styleId="parentId" styleClass="selectBox" onchange="hehe();">
+		                  	<!--begin edited -->
+							<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+							<html:options collection="viewLst" property="id" labelProperty="viewName" />
+	                  	</html:select>
+				  </td>
+	                	<!--begin new entry by:indarto @20070619 -->
+                </tr>
+                <tr valign="top"> 
+                  <td width="30%" align="left" ><bean:message key="page.subParent.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%"  align="left">
+						<html:select property="subParentId" styleClass="textbox">
+						<html:option value=""><bean:message key="page.selectBellow.title"/></html:option>
+						<html:options collection="subParentList" property="id" labelProperty="viewName" />
+						</html:select>
+                  </td>
+                </tr>
+	                	<!--end new entry-->
+                <tr> 
+                  <td width="30%" align="left" ><bean:message key="page.path.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%"  align="left"><html:text property="path" size="40" styleClass="textbox"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left"><bean:message key="page.isView.title"/></td>
+                  <td width="5%">:</td>
+                  <td width="65%"  align="left"><html:checkbox property="isView" value="Y" styleClass="textbox"/>&nbsp;<bean:message key="page.yes.title"/></td>
+                </tr>
+                <tr> 
+                  <td width="30%" align="left" valign="top"s><bean:message key="page.description.title"/></td>
+                  <td width="5%" valign="top">:</td>
+                  <td width="65%"  align="left"><html:textarea property="description" styleClass="textbox"/></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+    				<td>
+    					<table width="100%">
+    						<tr valign="top"><td>&nbsp;</td></tr>
+    					</table>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td align="center">
+					<html:submit styleClass="button" onclick="return valid();"/>
+					<html:cancel styleClass="button"/>
+    				</td>
+    			</tr>
+          </html:form>
+        </table> 
+			<!-- CONTENT END -->
+        
+        							</td>
+											<td  style="border-right:solid 1px #6b6b71; ">&nbsp;</td>
+										</tr>
+										<tr>
+					            <td width="1%"><html:img page="/images/round3.gif"/></td>
+					           	<td class="smalltext" style="border-bottom:solid 1px #6b6b71; ">&nbsp;</td>
+					            <td width="1%"><html:img page="/images/round2.gif"/></td>
+					          </tr>
+									</table>
+									
+			          </TD>
+        </TR>
+      </TABLE>
+      
+			
+    </td>
+  </tr>
+  <tr>
+    <td style="background-image:url(<html:rewrite page="/images/list1.gif"/>); background-repeat:repeat-x; " height="24">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="background-image: url(<html:rewrite page="/images/bg_footer.gif"/>); background-repeat:repeat-x; " height="57" align="left" valign="top">
+    
+    <!-- footer start -->
+	<tiles:insert template='/common/footer.jsp'/>
+    
+    <!-- footer end -->
+    
+    </td>
+  </tr>
+</table>
+</body>
+</html>
+<!--begin new entry by:indarto @20070619 -->
+<script language="javascript">
+
+function valid(){
+	if(document.forms[0].name.value=="") {
+		alert('Name is required');
+		document.forms[0].name.focus();
+		return false;
+	}
+}
+
+function changeParent() {	
+	alert(document.getElementById("currentView.parent.id").value);	
+	//document.getElementById("parentChange").value = "change";
+	document.getElementById("parentId").value = document.getElementById("currentView.parent.id").value;
+	//document.getElementById("subParentId").value = 0;
+	alert(document.getElementById("parentId").value);
+	//document.forms[0].submit();
+	
+	}
+function hehe() {
+	//alert('hehe');
+	//alert( document.getElementById("parentId").value );
+	/*if( document.getElementById("parentId").value == 0 ) alert('nol');
+	else if( document.getElementById("parentId").value > 0 ) alert('>0');
+	else alert('else');
+	alert( document.getElementById("parentId").value );*/
+	document.getElementById( "subaction" ).value = "parentChange";
+	//alert( document.getElementById( "subaction" ).value );
+	document.forms[0].submit();
+}
+</script>
+<!--begin new change by:indarto @20070619 -->

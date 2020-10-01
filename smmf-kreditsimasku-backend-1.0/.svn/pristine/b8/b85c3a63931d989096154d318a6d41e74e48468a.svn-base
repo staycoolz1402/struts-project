@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.ams.mufins.model">
+	<class name="TempModel" mutable="false">
+	
+		<id name="Id" type="long"/>
+		 
+		<property name="String1" type="string"/>
+		<property name="String2" type="string"/>
+		<property name="String3" type="string"/>
+		<property name="String4" type="string"/>
+		<property name="String5" type="string"/>
+		<property name="String6" type="string"/>
+		<property name="String7" type="string"/>
+		<property name="String8" type="string"/>
+		<property name="String9" type="string"/>	
+		<property name="Double1" type="double"/>
+		<property name="Double2" type="double"/>
+		<property name="Double3" type="double"/>
+		<property name="Double4" type="double"/>
+		<property name="Double5" type="double"/>
+		<property name="Long1" type="long"/>
+		<property name="Long2" type="long"/>
+		<property name="Long3" type="long"/>
+		<property name="Long4" type="long"/>
+		<property name="Long5" type="long"/>
+		<property name="Date1" type="date"/>
+		<property name="Date2" type="date"/>
+		<property name="Date3" type="date"/>
+		<property name="Date4" type="date"/>
+		<property name="Date5" type="date"/>
+		
+		<property name="NumberOfDigit" type="int"/>
+		
+		
+			
+	</class>	
+</hibernate-mapping>

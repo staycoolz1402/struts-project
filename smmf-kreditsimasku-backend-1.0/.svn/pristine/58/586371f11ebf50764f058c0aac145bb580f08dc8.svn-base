@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.ams.mufins.model">
+	<class
+		name="UserDetail"
+		table="user_detail"
+		batch-size="1000"
+	> 
+		
+		<id
+			name="Id"
+			type="long"
+			column="user_detail_id"
+		>
+		<generator class="sequence">
+				<param name="sequence">USER_DETAIL_SEQ</param>
+			</generator>
+		</id>
+		
+		<many-to-one
+			name="Users"
+			column="user_id"
+			class="Users"
+			not-null="true"
+			lazy="false"
+		/>
+		
+		<property
+			name="BirthDate"
+			column="birth_date"
+			type="date"
+			not-null="false"
+			length="12"
+		/>
+		
+		<property
+			name="JoinDate"
+			column="join_date"
+			type="date"
+			not-null="false"
+			length="12"
+		/>
+		
+		<property
+			name="BankName"
+			column="bank_name"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="AccountNumber"
+			column="account_number"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="AccountName"
+			column="account_name"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="Telephone1"
+			column="telephone1"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="Telephone2"
+			column="telephone2"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="Mobile1"
+			column="mobile1"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="Mobile2"
+			column="mobile2"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="Address1"
+			column="address1"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="City"
+			column="city"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="PostalCode"
+			column="postal_code"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="IdCardNumber"
+			column="idcard_number"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="BirthPlace"
+			column="birth_place"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="MotherMaidenName"
+			column="mother_maiden_name"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="Gender"
+			column="gender"
+			type="string"
+			not-null="false"
+		/>
+		
+		<property
+			name="IdExpiryDate"
+			column="Id_expiry_date"
+			type="date"
+			not-null="false"
+			length="12"
+		/>
+		
+		<property
+			name="OpenOn"
+			column="open_on"
+			type="timestamp"
+			not-null="false"
+		/>
+			
+	</class>	
+</hibernate-mapping>
